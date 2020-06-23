@@ -1,0 +1,1292 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Category实现原理 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../Runtime/Runtime.html" />
+    
+    
+    <link rel="prev" href="../Class/Class.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    操作系统
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../../操作系统/MachO.html">
+            
+                <a href="../../操作系统/MachO.html">
+            
+                    
+                    Mach O结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../../操作系统/编译原理.html">
+            
+                <a href="../../操作系统/编译原理.html">
+            
+                    
+                    编译原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../../操作系统/链接原理.html">
+            
+                <a href="../../操作系统/链接原理.html">
+            
+                    
+                    链接原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../../操作系统/staticAnalysis.html">
+            
+                <a href="../../操作系统/staticAnalysis.html">
+            
+                    
+                    静态代码分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    内存管理
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../../内存管理/内存管理.html">
+            
+                <a href="../../内存管理/内存管理.html">
+            
+                    
+                    内存管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../../内存管理/autorelease原理.html">
+            
+                <a href="../../内存管理/autorelease原理.html">
+            
+                    
+                    autorelease原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../../内存管理/dealloc实现原理.html">
+            
+                <a href="../../内存管理/dealloc实现原理.html">
+            
+                    
+                    dealloc实现原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../../内存管理/weak实现原理.html">
+            
+                <a href="../../内存管理/weak实现原理.html">
+            
+                    
+                    weak实现原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../../多线程/多线程.html">
+            
+                <a href="../../多线程/多线程.html">
+            
+                    
+                    多线程
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../../多线程/GCD.html">
+            
+                <a href="../../多线程/GCD.html">
+            
+                    
+                    GCD
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../../多线程/NSOperation.html">
+            
+                <a href="../../多线程/NSOperation.html">
+            
+                    
+                    NSOperation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../../多线程/lock.html">
+            
+                <a href="../../多线程/lock.html">
+            
+                    
+                    线程锁分类
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    消息传递机制
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../../消息传递机制/Block.html">
+            
+                <a href="../../消息传递机制/Block.html">
+            
+                    
+                    Block原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../../消息传递机制/NSNotification.html">
+            
+                <a href="../../消息传递机制/NSNotification.html">
+            
+                    
+                    NSNotification原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../../消息传递机制/KVO.html">
+            
+                <a href="../../消息传递机制/KVO.html">
+            
+                    
+                    KVO原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    循环引用
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../../循环引用/循环引用.html">
+            
+                <a href="../../循环引用/循环引用.html">
+            
+                    
+                    循环引用种类
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" >
+            
+                <span>
+            
+                    
+                    内存管理泄露追溯方案
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" >
+            
+                <span>
+            
+                    
+                    Runtime
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../Class/Class.html">
+            
+                <a href="../Class/Class.html">
+            
+                    
+                    Class结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.7.2" data-path="Category.html">
+            
+                <a href="Category.html">
+            
+                    
+                    Category实现原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="../Runtime/Runtime.html">
+            
+                <a href="../Runtime/Runtime.html">
+            
+                    
+                    Runtime实际应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" >
+            
+                <span>
+            
+                    
+                    Runloop
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="../../Runloop/计时器.html">
+            
+                <a href="../../Runloop/计时器.html">
+            
+                    
+                    计时器实现原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="../../Runloop/Runloop.html">
+            
+                <a href="../../Runloop/Runloop.html">
+            
+                    
+                    Runloop原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="../../Runloop/Runloop实际应用.html">
+            
+                <a href="../../Runloop/Runloop实际应用.html">
+            
+                    
+                    Runloop应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" >
+            
+                <span>
+            
+                    
+                    性能优化
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" >
+            
+                <span>
+            
+                    
+                    启动时长
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" >
+            
+                <span>
+            
+                    
+                    包体积优化
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" >
+            
+                <span>
+            
+                    
+                    编译时长
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" >
+            
+                <span>
+            
+                    
+                    Feed优化
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" >
+            
+                <span>
+            
+                    
+                    算法相关
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" >
+            
+                <span>
+            
+                    
+                    二叉树
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" >
+            
+                <span>
+            
+                    
+                    链表
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >Category实现原理</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h3 id="category-&#x6709;&#x54EA;&#x4E9B;&#x7528;&#x9014;">Category &#x6709;&#x54EA;&#x4E9B;&#x7528;&#x9014;</h3>
+<ul>
+<li>&#x53EF;&#x4EE5;&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x7C7B;&#x4E0D;&#x540C;&#x6A21;&#x5757;&#x4E0D;&#x540C;&#x529F;&#x80FD;&#x5728;&#x4E0D;&#x540C;&#x7684;&#x5206;&#x7C7B;&#x4E2D;&#x5B9E;&#x73B0;&#xFF0C;&#x53EF;&#x4EE5;&#x6709;&#x6548;&#x7684;&#x533A;&#x5206;&#x4E0D;&#x80FD;&#x529F;&#x80FD;</li>
+<li>&#x53EF;&#x4EE5;&#x5728;&#x5206;&#x7C7B;&#x4E2D;&#x4EA4;&#x6362;&#x539F;&#x7C7B;&#x4E2D;&#x65B9;&#x6CD5;&#x6216;Framework&#x79C1;&#x6709;&#x65B9;&#x6CD5;</li>
+</ul>
+<h3 id="category-&#x548C;-class-extension-&#x6709;&#x4EC0;&#x4E48;&#x533A;&#x522B;">Category &#x548C; Class Extension &#x6709;&#x4EC0;&#x4E48;&#x533A;&#x522B;</h3>
+<ul>
+<li><p>Category</p>
+<ul>
+<li><p>&#x4E00;&#x822C;&#x7528;&#x6765;&#x6269;&#x5C55;&#x7C7B;&#x7684;&#x4E00;&#x4E9B;&#x529F;&#x80FD;, &#x5982;&#x5C06;&#x4E0D;&#x540C;&#x529F;&#x80FD;&#x4EE5;&#x5206;&#x7C7B;&#x7684;&#x5F62;&#x5F0F;&#x8FDB;&#x884C;&#x5206;&#x5E03;,&#x53EF;&#x4EE5;&#x6E05;&#x6670;&#x770B;&#x51FA;&#x4E0D;&#x540C;&#x529F;&#x80FD;&#x5728;&#x4E0D;&#x540C;&#x7684;&#x5730;&#x65B9;</p>
+</li>
+<li><p>&#x4E00;&#x822C;&#x5728;&#x8FD0;&#x884C;&#x65F6;&#x624D;&#x4F1A;&#x53BB;&#x52A0;&#x8F7D;,  <code>Class Extension</code>&#x5728;&#x7F16;&#x8BD1;&#x65F6;&#x4F1A;&#x88AB;&#x786E;&#x5B9A;</p>
+</li>
+</ul>
+</li>
+<li><p>Class Extension </p>
+<ul>
+<li><p>&#x4E0D;&#x53EF;&#x4EE5;&#x6DFB;&#x52A0;&#x5B9E;&#x73B0;&#x5177;&#x4F53;&#x65B9;&#x6CD5;,&#x53EA;&#x53EF;&#x4EE5;&#x7528;&#x58F0;&#x660E;&#x7684;&#x5F62;&#x5F0F;&#x751F;&#x6210;&#x5C5E;&#x6027;&#x53CA;&#x65B9;&#x6CD5;</p>
+</li>
+<li><p>&#x4E00;&#x822C;&#x4F1A;&#x7528;&#x6765;&#x505A;&#x4E00;&#x4E2A;&#x7C7B;&#x7684;&#x79C1;&#x6709;&#x7C7B;&#x5982;<code>#import&quot;ASObject+Private&quot;</code>&#x7684;&#x5F62;&#x5F0F;, &#x58F0;&#x660E;&#x4E00;&#x4E9B;&#x79C1;&#x6709;&#x65B9;&#x6CD5;&#x53CA;&#x5C5E;&#x6027;</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="category-&#x7684;&#x5B9E;&#x73B0;&#x539F;&#x7406;">Category &#x7684;&#x5B9E;&#x73B0;&#x539F;&#x7406;</h3>
+<p>&#x7F16;&#x8BD1;&#x5B8C;&#x6210;&#x4E4B;&#x540E;&#x5E95;&#x5C42;&#x7ED3;&#x6784;&#x662F; struct_category_t&#xFF0C;&#x91CC;&#x9762;&#x5B58;&#x50A8;&#x7740;&#x5206;&#x7C7B;&#x7684;&#x5BF9;&#x8C61;&#x65B9;&#x6CD5;&#xFF0C;&#x7C7B;&#x65B9;&#x6CD5;&#xFF0C;&#x5C5E;&#x6027;&#xFF0C;&#x534F;&#x8BAE;&#x4FE1;&#x606F;&#xFF0C;</p>
+<p>&#x5728;&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#x65F6;&#xFF0C;runtime &#x4F1A;&#x5C06; Category &#x7684;&#x6570;&#x636E;&#x5408;&#x5E76;&#x5230;&#x7C7B;&#x4FE1;&#x606F;&#x4E2D;(&#x7C7B;&#x5BF9;&#x8C61;&#xFF0C;&#x5143;&#x7C7B;&#x5BF9;&#x8C61;&#x4E2D;)</p>
+<pre><code class="lang-objective-c">#import &quot;MJPerson+Test.h&quot;
+@implementation MJPerson (Test)
+- (void)run{
+    NSLog(@&quot;MJPerson (Test) - run&quot;);
+}
+- (void)test{
+    NSLog(@&quot;test&quot;);
+}
++ (void)test2{
+}
+
+@end
+</code></pre>
+<pre><code class="lang-objective-c">struct _category_t {
+    const char *name;
+    struct _class_t *cls;
+    const struct _method_list_t *instance_methods;
+    const struct _method_list_t *class_methods;
+    const struct _protocol_list_t *protocols;
+    const struct _prop_list_t *properties;
+};
+</code></pre>
+<pre><code class="lang-objective-c">extern &quot;C&quot; __declspec(dllimport) struct _class_t OBJC_CLASS_$_MJPerson;
+
+static struct _category_t _OBJC_$_CATEGORY_MJPerson_$_Test __attribute__ ((used, section (&quot;__DATA,__objc_const&quot;))) =
+{
+    &quot;MJPerson&quot;,
+    0, // &amp;OBJC_CLASS_$_MJPerson,
+    (const struct _method_list_t *)&amp;_OBJC_$_CATEGORY_INSTANCE_METHODS_MJPerson_$_Test,
+    (const struct _method_list_t *)&amp;_OBJC_$_CATEGORY_CLASS_METHODS_MJPerson_$_Test,
+    0,
+    0,
+};
+</code></pre>
+<p>&#x5F53;&#x7136;, &#x6982;&#x62EC;&#x4E00;&#x4E0B;: &#x5B9A;&#x4E49;&#x7684;&#x65B9;&#x6CD5;, &#x5C5E;&#x6027;, &#x7B49;&#x90FD;&#x4F1A;&#x5728;&#x7F16;&#x8BD1;&#x65F6;&#x5B58;&#x653E;&#x5728;&#x5BF9;&#x5E94;&#x7684;&#x5B57;&#x6BB5;&#x4E2D; , &#x7F16;&#x8BD1;&#x540E;&#x901A;&#x8FC7; <code>section</code> &#x6BB5;&#x533A;&#x5206;&#x6807;&#x8BC6;&#x5B58;&#x653E;&#x5230;&#x751F;&#x6210;&#x7684; <code>Mach-O</code> &#x53EF;&#x6267;&#x884C;&#x6587;&#x4EF6;&#x4E2D;.</p>
+<pre><code class="lang-objective-c">static struct /*_method_list_t*/ {
+    unsigned int entsize;  // sizeof(struct _objc_method)
+    unsigned int method_count;
+    struct _objc_method method_list[1];
+} _OBJC_$_CATEGORY_CLASS_METHODS_MJPerson_$_Test __attribute__ ((used, section (&quot;__DATA,__objc_const&quot;))) = {
+    sizeof(_objc_method),
+    1,
+    {{(struct objc_selector *)&quot;test2&quot;, &quot;v16@0:8&quot;, (void *)_C_MJPerson_Test_test2}}
+};
+</code></pre>
+<p>&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x5F53;&#x5728;&#x7F16;&#x8BD1;&#x65F6; , &#x5DE5;&#x7A0B;&#x4E2D;&#x6240;&#x6709;&#x7684;&#x5206;&#x7C7B;&#x4F1A;&#x88AB;&#x5B58;&#x50A8;&#x5230; <code>__DATA</code> &#x6570;&#x636E;&#x6BB5;&#x4E2D;&#x7684; <code>__objc_catlist</code> &#x8FD9;&#x4E2A; <code>section</code> &#x6BB5;&#x4E2D;&#x3002;&#x4EE5;&#x4E0A;&#x5C31;&#x662F;&#x7F16;&#x8BD1;&#x65F6;&#x5206;&#x7C7B;&#x6240;&#x505A;&#x7684;&#x4E8B;&#x60C5; , &#x5206;&#x7C7B;&#x7ED3;&#x6784;&#x4F53;, &#x5206;&#x7C7B;&#x7684;&#x65B9;&#x6CD5; , &#x4EE5;&#x53CA;&#x58F0;&#x660E;&#x7684;&#x5C5E;&#x6027; , &#x548C;&#x5B58;&#x653E; &#x5DF2;&#x7ECF;&#x5B8C;&#x6210;.</p>
+<h3 id="category-&#x53EF;&#x4E0D;&#x53EF;&#x4EE5;&#x6DFB;&#x52A0;&#x6210;&#x5458;&#x53D8;&#x91CF;">Category &#x53EF;&#x4E0D;&#x53EF;&#x4EE5;&#x6DFB;&#x52A0;&#x6210;&#x5458;&#x53D8;&#x91CF;</h3>
+<p>&#x4E0D;&#x53EF;&#x4EE5;&#x6DFB;&#x52A0;&#x6210;&#x5458;&#x53D8;&#x91CF;, <code>Category</code>&#x7ED3;&#x6784;&#x4F53;&#x4E2D;&#x6CA1;&#x6709; <code>objc_ivar_list *ivars</code>, &#x6CA1;&#x6709;<code>Ivars</code>&#x5C5E;&#x6027;&#xFF0C;&#x800C;&#x4E14;&#x7531;&#x4E8E;class_rw_t &#x662F;&#x5728;&#x8FD0;&#x884C;&#x65F6;&#x624D;&#x4F1A;&#x53BB;&#x751F;&#x6210;&#xFF0C;&#x5728;class_rw_t&#x4E2D;&#x52A8;&#x6001;&#x6539;&#x53D8;&#x7684;&#x53EA;&#x6709; &#x65B9;&#x6CD5;(method_array_t methods )&#xFF0C;&#x5C5E;&#x6027;(property_array_t properties), &#x534F;&#x8BAE;(protocol_array_t protocols),&#x5176;&#x4ED6;&#x7684;&#x4E0D;&#x53EF;&#x4EE5;&#x589E;&#x52A0;&#xFF0C;&#x5728;&#x7F16;&#x8BD1;&#x65F6;&#x5DF2;&#x7ECF;&#x51B3;&#x5B9A;&#x5DF2;&#x7ECF;&#x5B58;&#x50A8;&#x5728; class_ro_t &#x4E2D;&#x6210;&#x5458;&#x53D8;&#x91CF;( const ivar_list_t * ivars)&#xFF0C;&#x6240;&#x4EE5;&#x5728;&#x8FD0;&#x884C;&#x65F6;&#x662F;&#x65E0;&#x6CD5;&#x5728;&#x5DF2;&#x7ECF;&#x6709;&#x7684;&#x7C7B;&#x4E2D;&#x52A8;&#x6001;&#x589E;&#x52A0;&#x6210;&#x5458;&#x53D8;&#x91CF;&#xFF0C;&#x56E0;&#x4E3A;&#x6210;&#x5458;&#x53D8;&#x91CF;&#x5728;&#x5185;&#x5B58;&#x4E2D;&#x5DF2;&#x7ECF;&#x786E;&#x5B9A;&#x4E86;&#x5185;&#x5B58;&#x5730;&#x5740;&#xFF0C;&#x5982;&#x679C;&#x589E;&#x52A0;&#x6210;&#x5458;&#x53D8;&#x91CF;&#x4F1A;&#x7834;&#x574F;&#x7C7B;&#x6210;&#x5458;&#x53D8;&#x91CF;&#x7684;&#x5185;&#x5B58;&#x5730;&#x5740;&#x662F;&#x975E;&#x5E38;&#x53EF;&#x6015;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x7C7B;&#x662F;&#x65E0;&#x6CD5;&#x63A5;&#x53D7;&#x52A8;&#x6001;&#x589E;&#x52A0;&#x6210;&#x5458;&#x53D8;&#x91CF;&#x3002;&#x540C;&#x65F6;&#x4E5F;&#x53EF;&#x4EE5;&#x770B;&#x51FA; category_t &#x7684;&#x7ED3;&#x6784;&#x4E2D;&#x662F;&#x6CA1;&#x6709;&#x6210;&#x5458;&#x53D8;&#x91CF;&#x7684;&#x53EA;&#x6709;&#x5C5E;&#x6027;&#xFF0C;&#x5B9E;&#x73B0;&#x65B9;&#x6CD5;&#x53CA;&#x534F;&#x8BAE;&#x4E0E;class_rw_t &#x4E2D;&#x7ED3;&#x6784;&#x7C7B;&#x4F3C;&#x3002; class_rw_t &#x53EA;&#x5141;&#x8BB8;&#x6DFB;&#x52A0;&#x7684;&#x6709;&#x8FD9;&#x4E9B;&#x53D8;&#x91CF;&#xFF0C; category &#x4E5F;&#x662F;&#x8FD0;&#x884C;&#x65F6;&#x5229;&#x7528; runtime &#x8FDB;&#x884C;&#x6DFB;&#x52A0;&#x5230;&#x7C7B;&#x4E2D;&#x3002;</p>
+<pre><code class="lang-objective-c">struct class_rw_t {
+    uint32_t flags;
+    uint32_t version;
+    const class_ro_t *ro;  //&#x7F16;&#x8BD1;&#x671F;&#x786E;&#x5B9A;
+    method_array_t methods;
+    property_array_t properties;
+    protocol_array_t protocols;
+    Class firstSubclass;
+    Class nextSiblingClass;
+    char *demangledName;
+}
+</code></pre>
+<pre><code class="lang-objective-c">struct class_ro_t {
+    uint32_t flags;
+    uint32_t instanceStart;
+    uint32_t instanceSize;
+ifdef LP64
+    uint32_t reserved;
+endif
+    const uint8_t * ivarLayout;
+    const char * name;
+    method_list_t * baseMethodList;
+    protocol_list_t * baseProtocols;
+    const ivar_list_t * ivars;
+    const uint8_t * weakIvarLayout;
+    property_list_t *baseProperties;
+    method_list_t *baseMethods() const {
+        return baseMethodList;
+    }
+};
+</code></pre>
+<pre><code class="lang-objective-c">typedef struct category_t {
+    const char *name;  //&#x7C7B;&#x7684;&#x540D;&#x5B57;
+    classref_t cls;  //&#x7C7B;
+    struct method_list_t *instanceMethods;  //category&#x4E2D;&#x6240;&#x6709;&#x7ED9;&#x7C7B;&#x6DFB;&#x52A0;&#x7684;&#x5B9E;&#x4F8B;&#x65B9;&#x6CD5;&#x7684;&#x5217;&#x8868;
+    struct method_list_t *classMethods;  //category&#x4E2D;&#x6240;&#x6709;&#x6DFB;&#x52A0;&#x7684;&#x7C7B;&#x65B9;&#x6CD5;&#x7684;&#x5217;&#x8868;
+    struct protocol_list_t *protocols;  //category&#x5B9E;&#x73B0;&#x7684;&#x6240;&#x6709;&#x534F;&#x8BAE;&#x7684;&#x5217;&#x8868;
+    struct property_list_t *instanceProperties;  //category&#x4E2D;&#x6DFB;&#x52A0;&#x7684;&#x6240;&#x6709;&#x5C5E;&#x6027;
+} category_t;
+</code></pre>
+<h3 id="category-&#x5728;&#x7F16;&#x8BD1;&#x8FC7;&#x540E;&#xFF0C;&#x662F;&#x5728;&#x4EC0;&#x4E48;&#x65F6;&#x673A;&#x4E0E;&#x539F;&#x6709;&#x7684;&#x7C7B;&#x5408;&#x5E76;&#x5230;&#x4E00;&#x8D77;&#x7684;">Category &#x5728;&#x7F16;&#x8BD1;&#x8FC7;&#x540E;&#xFF0C;&#x662F;&#x5728;&#x4EC0;&#x4E48;&#x65F6;&#x673A;&#x4E0E;&#x539F;&#x6709;&#x7684;&#x7C7B;&#x5408;&#x5E76;&#x5230;&#x4E00;&#x8D77;&#x7684;</h3>
+<p><div>
+<img src="../category/image/1.png" style="zoom:30%;" align="center"></div></p>
+<div>
+
+<p>dyld &#x52A0;&#x8F7D;&#x5165;&#x53E3; _objc_init</p>
+<pre><code class="lang-objective-c">void _objc_init(void) {
+    static bool initialized = false;
+    if (initialized) return;
+    initialized = true;
+
+    // fixme defer initialization until an objc-using image is found?
+    environ_init();
+    tls_init();
+    static_init();
+    lock_init();
+    exception_init();
+
+    _dyld_objc_notify_register(&amp;map_images, load_images, unmap_image);
+}
+</code></pre>
+<p>&#x4E3B;&#x8981;&#x770B;&#x4E00;&#x4E0B;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;</p>
+<pre><code class="lang-objective-c">_dyld_objc_notify_register(&amp;map_images, load_images, unmap_image);
+</code></pre>
+<ul>
+<li><code>map_images</code> : <code>dyld</code> &#x5C06; <code>image</code> &#x52A0;&#x8F7D;&#x8FDB;&#x5185;&#x5B58;&#x65F6; , &#x4F1A;&#x89E6;&#x53D1;&#x8BE5;&#x51FD;&#x6570;.</li>
+<li><code>load_images</code> : <code>dyld</code> &#x521D;&#x59CB;&#x5316; <code>image</code> &#x4F1A;&#x89E6;&#x53D1;&#x8BE5;&#x65B9;&#x6CD5;. ( &#x6211;&#x4EEC;&#x6240;&#x719F;&#x77E5;&#x7684; <code>load</code> &#x65B9;&#x6CD5;&#x4E5F;&#x662F;&#x5728;&#x6B64;&#x5904;&#x8C03;&#x7528; )</li>
+<li><code>unmap_image</code> : <code>dyld</code> &#x5C06; <code>image</code> &#x79FB;&#x9664;&#x65F6; , &#x4F1A;&#x89E6;&#x53D1;&#x8BE5;&#x51FD;&#x6570; .</li>
+</ul>
+<p>&#x4E2D;&#x95F4;&#x8FC7;&#x6E21;&#x65B9;&#x6CD5;&#x6211;&#x5C31;&#x7701;&#x7565;&#x4E86;. &#x76F4;&#x63A5;&#x6765;&#x5230; <code>_read_images</code> &#x7684;&#x65B9;&#x6CD5;&#x5B9E;&#x73B0;.</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">void</span> _read_images(header_info **hList, <span class="hljs-keyword">uint32_t</span> hCount, <span class="hljs-keyword">int</span> totalClasses, <span class="hljs-keyword">int</span> unoptimizedTotalClasses) {
+    header_info *hi;
+    <span class="hljs-keyword">uint32_t</span> hIndex;
+    <span class="hljs-keyword">size_t</span> count;
+    <span class="hljs-keyword">size_t</span> i;
+    Class *resolvedFutureClasses = nil;
+    <span class="hljs-keyword">size_t</span> resolvedFutureClassCount = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">static</span> <span class="hljs-keyword">bool</span> doneOnce;
+    <span class="hljs-function">TimeLogger <span class="hljs-title">ts</span><span class="hljs-params">(PrintImageTimes)</span></span>;
+
+    runtimeLock.assertLocked();
+
+    <span class="hljs-keyword">for</span> (EACH_HEADER) {
+          <span class="hljs-comment">//&#x8FD9;&#x91CC;&#x662F;&#x4E00;&#x4E2A;category&#x7684;&#x4E8C;&#x7EF4;&#x6570;&#x7EC4;</span>
+        <span class="hljs-keyword">category_t</span> **catlist =  _getObjc2CategoryList(hi, &amp;count);
+        <span class="hljs-keyword">bool</span> hasClassProperties = hi-&gt;info()-&gt;hasCategoryClassProperties();
+
+          <span class="hljs-comment">//&#x904D;&#x5386;&#x6240;&#x6709;&#x5206;&#x7C7B;&#x65B9;&#x6CD5;</span>
+        <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; count; i++) {
+            <span class="hljs-keyword">category_t</span> *cat = catlist[i];
+            Class cls = remapClass(cat-&gt;cls);
+
+            <span class="hljs-keyword">if</span> (!cls) {
+                catlist[i] = nil;
+                <span class="hljs-keyword">if</span> (PrintConnecting) {
+                    _objc_inform(<span class="hljs-string">&quot;CLASS: IGNORING category \?\?\?(%s) %p with &quot;</span>
+                                 <span class="hljs-string">&quot;missing weak-linked target class&quot;</span>, 
+                                 cat-&gt;name, cat);
+                }
+                <span class="hljs-keyword">continue</span>;
+            }
+
+            <span class="hljs-keyword">bool</span> classExists = NO;
+            <span class="hljs-keyword">if</span> (cat-&gt;instanceMethods ||  cat-&gt;protocols  ||  cat-&gt;instanceProperties) {
+                  <span class="hljs-comment">//&#x5C06;&#x6240;&#x6709;category &#x6DFB;&#x52A0;&#x5230;&#x539F;&#x7C7B;&#x4E2D;</span>
+                addUnattachedCategoryForClass(cat, cls, hi);
+                <span class="hljs-keyword">if</span> (cls-&gt;isRealized()) {
+                    remethodizeClass(cls);
+                    classExists = YES;
+                }
+                <span class="hljs-keyword">if</span> (PrintConnecting) {
+                    _objc_inform(<span class="hljs-string">&quot;CLASS: found category -%s(%s) %s&quot;</span>, 
+                                 cls-&gt;nameForLogging(), cat-&gt;name, 
+                                 classExists ? <span class="hljs-string">&quot;on existing class&quot;</span> : <span class="hljs-string">&quot;&quot;</span>);
+                }
+            }
+
+            <span class="hljs-keyword">if</span> (cat-&gt;classMethods  ||  cat-&gt;protocols  ||  (hasClassProperties &amp;&amp; cat-&gt;_classProperties)) {
+              <span class="hljs-comment">//&#x5C06;&#x6240;&#x6709;category &#x6DFB;&#x52A0;&#x5230;&#x7C7B;&#x5BF9;&#x8C61;</span>
+                addUnattachedCategoryForClass(cat, cls-&gt;ISA(), hi);
+                <span class="hljs-keyword">if</span> (cls-&gt;ISA()-&gt;isRealized()) {
+                    remethodizeClass(cls-&gt;ISA());
+                }
+                <span class="hljs-keyword">if</span> (PrintConnecting) {
+                    _objc_inform(<span class="hljs-string">&quot;CLASS: found category +%s(%s)&quot;</span>, 
+                                 cls-&gt;nameForLogging(), cat-&gt;name);
+                }
+            }
+
+        }
+    }
+}
+</code></pre>
+<p>&#x904D;&#x5386;&#x6240;&#x6709;&#x5206;&#x7C7B;&#x6DFB;&#x52A0;&#x5230;&#x539F;&#x7C7B;&#x4E2D;&#xFF0C;&#x76F8;&#x5F53;&#x4E8E;&#x5F00;&#x8F9F;&#x65B0;&#x7684;&#x7A7A;&#x95F4;&#x6269;&#x5BB9;&#x539F;&#x7C7B;&#x7684;&#x6570;&#x7EC4;</p>
+<pre><code class="lang-objective-c">static void addUnattachedCategoryForClass(category_t *cat, Class cls, header_info *catHeader) {
+    runtimeLock.assertLocked();
+    // DO NOT use cat-&gt;cls! cls may be cat-&gt;cls-&gt;isa instead
+    NXMapTable *cats = unattachedCategories();
+    category_list *list;
+
+    list = (category_list *)NXMapGet(cats, cls);
+    if (!list) {
+        list = (category_list *)
+            calloc(sizeof(*list) + sizeof(list-&gt;list[0]), 1);
+    } else {
+        list = (category_list *)
+            realloc(list, sizeof(*list) + sizeof(list-&gt;list[0]) * (list-&gt;count + 1));
+    }
+    list-&gt;list[list-&gt;count++] = (locstamped_category_t){cat, catHeader};
+    NXMapInsert(cats, cls, list);
+}
+</code></pre>
+<p>&#x8FD9;&#x91CC;&#x4E3B;&#x8981;&#x662F; <code>NXMapInsert(cats, cls, list);</code> &#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;, &#x5176;&#x5B9E;&#x7B80;&#x5355;&#x8BF4;&#x4E00;&#x4E0B;&#x4E5F;&#x5C31;&#x662F;&#x628A;&#x5F53;&#x524D;&#x5206;&#x7C7B; , &#x548C;&#x539F;&#x7C7B; &#x5EFA;&#x7ACB;&#x8D77;&#x4E00;&#x4E2A;&#x7ED1;&#x5B9A;&#x5173;&#x7CFB; ( &#x5176;&#x5B9E;&#x5C31;&#x662F;&#x901A;&#x8FC7;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x6620;&#x5C04;&#x8D77;&#x6765; ). &#x4E3A;&#x4E0B;&#x9762;&#x7684;&#x4E8B;&#x60C5;&#x505A;&#x51C6;&#x5907;.</p>
+<pre><code class="lang-objective-c">static void attachCategories(Class cls, category_list *cats, bool flush_caches) {
+    if (!cats) return;
+    if (PrintReplacedMethods) printReplacements(cls, cats);
+
+    bool isMeta = cls-&gt;isMetaClass();
+
+    // fixme rearrange to remove these intermediate allocations
+    method_list_t **mlists = (method_list_t **)
+        malloc(cats-&gt;count * sizeof(*mlists));
+    property_list_t **proplists = (property_list_t **)
+        malloc(cats-&gt;count * sizeof(*proplists));
+    protocol_list_t **protolists = (protocol_list_t **)
+        malloc(cats-&gt;count * sizeof(*protolists));
+
+    // Count backwards through cats to get newest categories first
+    int mcount = 0;
+    int propcount = 0;
+    int protocount = 0;
+    int i = cats-&gt;count;
+    bool fromBundle = NO;
+    while (i--) {
+        auto&amp; entry = cats-&gt;list[i];
+        method_list_t *mlist = entry.cat-&gt;methodsForMeta(isMeta);
+        if (mlist) {
+            mlists[mcount++] = mlist;
+            fromBundle |= entry.hi-&gt;isBundle();
+        }
+        property_list_t *proplist = 
+            entry.cat-&gt;propertiesForMeta(isMeta, entry.hi);
+        if (proplist) {
+            proplists[propcount++] = proplist;
+        }
+        protocol_list_t *protolist = entry.cat-&gt;protocols;
+        if (protolist) {
+            protolists[protocount++] = protolist;
+        }
+    }
+    auto rw = cls-&gt;data();
+    prepareMethodLists(cls, mlists, mcount, NO, fromBundle);
+    rw-&gt;methods.attachLists(mlists, mcount);
+    free(mlists);
+
+    if (flush_caches  &amp;&amp;  mcount &gt; 0) flushCaches(cls);
+    rw-&gt;properties.attachLists(proplists, propcount);
+    free(proplists);
+
+    rw-&gt;protocols.attachLists(protolists, protocount);
+    free(protolists);
+}
+</code></pre>
+<p><div>
+<img src="../category/image/7.png" style="zoom:40%;"></div></p>
+<div>
+
+<p>&#x6700;&#x540E;&#x5408;&#x5E76;&#x5230;&#x539F;&#x7C7B;&#x4E2D;&#x7684;&#x4E3B;&#x8981;&#x65B9;&#x6CD5;&#xFF0C;remethodizeClass(cls-&gt;ISA()) </p>
+<p><strong>&#x91CD;&#x70B9;</strong> <code>attachCategories</code> &#x65B9;&#x6CD5;&#x524D;&#x534A;&#x6BB5;&#x6211;&#x4EEC;&#x5DF2;&#x7ECF;&#x7B80;&#x5355;&#x6982;&#x8FF0;&#x4E86;&#x4E00;&#x4E0B; , &#x90A3;&#x4E48;&#x63A5;&#x4E0B;&#x6765;&#x6765;&#x5230;</p>
+<p>rw-&gt;methods.attachLists(mlists, mcount);</p>
+<pre><code class="lang-c++">void attachLists(List* const * addedLists, uint32_t addedCount) {
+    if (addedCount == 0) return;
+
+    if (hasArray()) {
+        // many lists -&gt; many lists
+        uint32_t oldCount = array()-&gt;count;
+        uint32_t newCount = oldCount + addedCount;
+        setArray((array_t *)realloc(array(), array_t::byteSize(newCount)));
+        array()-&gt;count = newCount;
+        /**
+         &#x62F7;&#x8D1D;&#x7684;&#x64CD;&#x4F5C;
+         void    *memmove(void *__dst, const void *__src, size_t __len);
+         */
+        memmove(array()-&gt;lists + addedCount, array()-&gt;lists, 
+                oldCount * sizeof(array()-&gt;lists[0]));
+        memcpy(array()-&gt;lists, addedLists, 
+               addedCount * sizeof(array()-&gt;lists[0]));
+    }
+    else if (!list  &amp;&amp;  addedCount == 1) {
+        // 0 lists -&gt; 1 list
+        list = addedLists[0];
+    } 
+    else {
+        // 1 list -&gt; many lists
+        List* oldList = list;
+        uint32_t oldCount = oldList ? 1 : 0;
+        uint32_t newCount = oldCount + addedCount;
+        setArray((array_t *)malloc(array_t::byteSize(newCount)));
+        array()-&gt;count = newCount;
+        if (oldList) array()-&gt;lists[addedCount] = oldList;
+        memcpy(array()-&gt;lists, addedLists, 
+               addedCount * sizeof(array()-&gt;lists[0]));
+    }
+}
+</code></pre>
+<p>&#x4EE5;&#x4E0A;&#x65B9;&#x6CD5;&#x5C31;&#x662F;&#x5206;&#x7C7B;&#x6DFB;&#x52A0;&#x65B9;&#x6CD5;&#x7684;&#x6838;&#x5FC3;&#x903B;&#x8F91; . &#x7B80;&#x5355;&#x6765;&#x8BF4;&#x5C31;&#x662F;&#x901A;&#x8FC7; <code>memmove</code> &#x548C; <code>memcpy</code> &#x8FD9;&#x4E24;&#x4E2A;&#x51FD;&#x6570; , &#x4EE5;&#x53CA;&#x539F;&#x672C;&#x7C7B;&#x7684;&#x65B9;&#x6CD5;&#x5217;&#x8868;&#x548C;&#x65B0;&#x5206;&#x7C7B;&#x7684;&#x65B9;&#x6CD5;&#x5217;&#x8868;&#x5408;&#x5E76; , &#x6DFB;&#x52A0;&#x5230;&#x539F;&#x65B9;&#x6CD5;&#x7684;&#x65B9;&#x6CD5;&#x5217;&#x8868;&#x4E2D;.</p>
+<h4 id="&#x8FD0;&#x884C;&#x65F6;&#x8BFB;&#x53D6;&#x5206;&#x7C7B;&#x8BBE;&#x7F6E;&#x603B;&#x7ED3;-">&#x8FD0;&#x884C;&#x65F6;&#x8BFB;&#x53D6;&#x5206;&#x7C7B;&#x8BBE;&#x7F6E;&#x603B;&#x7ED3; :</h4>
+<ul>
+<li>&#x2460; :  &#x5728;&#x8FD0;&#x884C;&#x65F6;, &#x8BFB;&#x53D6; <code>Mach-O</code> &#x53EF;&#x6267;&#x884C;&#x6587;&#x4EF6; , &#x52A0;&#x8F7D;&#x5176;&#x4E2D;&#x7684; <code>image</code> &#x8D44;&#x6E90;&#x65F6; (  &#x4E5F;&#x5C31;&#x662F; <code>map_images</code> &#x65B9;&#x6CD5;&#x4E2D;&#x7684; <code>_read_images</code> ) , &#x53BB;&#x8BFB;&#x53D6;&#x7F16;&#x8BD1;&#x65F6;&#x6240;&#x5B58;&#x50A8;&#x5230; <code>__objc_catlist</code> &#x7684; <code>section</code> &#x6BB5;&#x4E2D;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784; , &#x5E76;&#x5B58;&#x50A8;&#x5230; <code>category_t</code> &#x7C7B;&#x578B;&#x7684;&#x4E00;&#x4E2A;&#x4E34;&#x65F6;&#x53D8;&#x91CF;&#x4E2D;.</li>
+<li>&#x2461; : &#x904D;&#x5386;&#x8FD9;&#x4E2A;&#x4E34;&#x65F6;&#x53D8;&#x91CF;&#x6570;&#x7EC4;,  &#x4F9D;&#x6B21;&#x8BFB;&#x53D6;</li>
+<li>&#x2462; : &#x5C06; <code>catlist</code> &#x548C;&#x539F;&#x5148;&#x7C7B; <code>cls</code> &#x8FDB;&#x884C;&#x6620;&#x5C04;</li>
+<li>&#x2463; : &#x8C03;&#x7528; <code>remethodizeClass</code> &#x4FEE;&#x6539; <code>method_list</code> &#x7ED3;&#x6784; , &#x5C06;&#x5206;&#x7C7B;&#x7684;&#x5185;&#x5BB9;&#x6DFB;&#x52A0;&#x5230;&#x539F;&#x672C;&#x7C7B;&#x4E2D;.</li>
+</ul>
+<p><div>
+<img src="../category/image/8.png" style="zoom:50%;"></div></p>
+<p><div></div></p>
+<h3 id="&#x5982;&#x4F55;&#x7ED9;-category-&#x6DFB;&#x52A0;&#x5C5E;&#x6027;&#xFF1F;&#x5173;&#x8054;&#x5BF9;&#x8C61;&#x4EE5;&#x4EC0;&#x4E48;&#x5F62;&#x5F0F;&#x8FDB;&#x884C;&#x5B58;&#x50A8;&#xFF1F;">&#x5982;&#x4F55;&#x7ED9; Category &#x6DFB;&#x52A0;&#x5C5E;&#x6027;&#xFF1F;&#x5173;&#x8054;&#x5BF9;&#x8C61;&#x4EE5;&#x4EC0;&#x4E48;&#x5F62;&#x5F0F;&#x8FDB;&#x884C;&#x5B58;&#x50A8;&#xFF1F;</h3>
+<p>&#x4E0D;&#x53EF;&#x4EE5;&#x6DFB;&#x52A0;&#x5C5E;&#x6027;&#xFF0C;&#x53EA;&#x53EF;&#x4EE5;&#x5173;&#x8054;&#x5BF9;&#x8C61;&#x901A;&#x8FC7;&#x5982;&#x4E0B;&#x65B9;&#x6CD5;&#x8FDB;&#x884C;&#x5173;&#x8054;&#x3002;</p>
+<p><div>
+<img src="../category/image/4.png" style="zoom:30%;"></div></p>
+<div>
+
+<p>&#x8BBE;&#x7F6E;&#x5173;&#x8054;&#x5C5E;&#x6027;</p>
+<pre><code class="lang-objective-c">objc_setAssociatedObject(self, @&quot;name&quot;,name, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+</code></pre>
+<p>&#x83B7;&#x53D6;&#x5173;&#x8054;&#x7684;&#x5C5E;&#x6027;</p>
+<pre><code class="lang-objective-c">objc_getAssociatedObject(id object, const void *key);
+</code></pre>
+<p>&#x79FB;&#x9664;&#x6240;&#x6709;&#x5173;&#x8054;&#x5BF9;&#x8C61;</p>
+<pre><code class="lang-objective-c">objc_removeAssociatedObjects(self);
+</code></pre>
+<p><div>
+<img src="../category/image/5.png" style="zoom:30%;"></div></p>
+<div>
+
+<p>&#x53C2;&#x6570;&#x4E00;&#xFF1A;id object: &#x7ED9;&#x54EA;&#x4E2A;&#x5BF9;&#x8C61;&#x6DFB;&#x52A0;&#x5C5E;&#x6027;&#xFF0C;&#x8FD9;&#x91CC;&#x8981;&#x7ED9;&#x81EA;&#x5DF1;&#x6DFB;&#x52A0;&#x5C5E;&#x6027;&#xFF0C;&#x7528;self&#x3002; &#x53C2;&#x6570;&#x4E8C;&#xFF1A;void <em> == id key: &#x5C5E;&#x6027;&#x540D;&#xFF0C;&#x6839;&#x636E;key&#x83B7;&#x53D6;&#x5173;&#x8054;&#x5BF9;&#x8C61;&#x7684;&#x5C5E;&#x6027;&#x7684;&#x503C;&#xFF0C;&#x5728;objc_getAssociatedObject&#x4E2D;&#x901A;&#x8FC7;&#x6B21;key&#x83B7;&#x5F97;&#x5C5E;&#x6027;&#x7684;&#x503C;&#x5E76;&#x8FD4;&#x56DE;&#x3002; &#x53C2;&#x6570;&#x4E09;&#xFF1A;id value<em>* : &#x5173;&#x8054;&#x7684;&#x503C;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;set&#x65B9;&#x6CD5;&#x4F20;&#x5165;&#x7684;&#x503C;&#x7ED9;&#x5C5E;&#x6027;&#x53BB;&#x4FDD;&#x5B58;&#x3002; &#x53C2;&#x6570;&#x56DB;&#xFF1A;objc_AssociationPolicy policy</em></em>: &#x7B56;&#x7565;&#xFF0C;&#x5C5E;&#x6027;&#x4EE5;&#x4EC0;&#x4E48;&#x5F62;&#x5F0F;&#x4FDD;&#x5B58;&#x3002; &#x6709;&#x4EE5;&#x4E0B;&#x51E0;&#x79CD;</p>
+<p><div>
+<img src="../category/image/6.png" style="zoom:30%;"></div></p>
+<div>
+
+<pre><code class="lang-objective-c">typedef OBJC_ENUM(uintptr_t, objc_AssociationPolicy) {
+    OBJC_ASSOCIATION_ASSIGN = 0,  // &#x6307;&#x5B9A;&#x4E00;&#x4E2A;&#x5F31;&#x5F15;&#x7528;&#x76F8;&#x5173;&#x8054;&#x7684;&#x5BF9;&#x8C61;
+    OBJC_ASSOCIATION_RETAIN_NONATOMIC = 1, // &#x6307;&#x5B9A;&#x76F8;&#x5173;&#x5BF9;&#x8C61;&#x7684;&#x5F3A;&#x5F15;&#x7528;&#xFF0C;&#x975E;&#x539F;&#x5B50;&#x6027;
+    OBJC_ASSOCIATION_COPY_NONATOMIC = 3,  // &#x6307;&#x5B9A;&#x76F8;&#x5173;&#x7684;&#x5BF9;&#x8C61;&#x88AB;&#x590D;&#x5236;&#xFF0C;&#x975E;&#x539F;&#x5B50;&#x6027;
+    OBJC_ASSOCIATION_RETAIN = 01401,  // &#x6307;&#x5B9A;&#x76F8;&#x5173;&#x5BF9;&#x8C61;&#x7684;&#x5F3A;&#x5F15;&#x7528;&#xFF0C;&#x539F;&#x5B50;&#x6027;
+    OBJC_ASSOCIATION_COPY = 01403     // &#x6307;&#x5B9A;&#x76F8;&#x5173;&#x7684;&#x5BF9;&#x8C61;&#x88AB;&#x590D;&#x5236;&#xFF0C;&#x539F;&#x5B50;&#x6027;   
+};
+</code></pre>
+<h4 id="objcsetassociatedobject-&#x5B9E;&#x73B0;&#x539F;&#x7406;">objc_setAssociatedObject &#x5B9E;&#x73B0;&#x539F;&#x7406;</h4>
+<p><div>
+<img src="../category/image/3.png" style="zoom:30%;"></div></p>
+<div>
+
+<pre><code class="lang-objective-c">void objc_setAssociatedObject(id object, const void *key, id value, objc_AssociationPolicy policy) {
+    _object_set_associative_reference(object, (void *)key, value, policy);
+}
+</code></pre>
+<p>&#x8FD9;&#x91CC;&#x662F;AssociationsManager-&gt; AssociationsHashMap-&gt; ObjectAssociationMap-&gt; ObjcAssociation &#x7ED3;&#x6784;&#x5982;&#x4E0B;</p>
+<p><div>
+<img src="../category/image/3.png" style="zoom:30%;"></div></p>
+<div>
+
+<p><div>
+<img src="../category/image/2.png" style="zoom:30%;"></div></p>
+<div>
+
+<p>&#x9996;&#x5148;&#x53BB;&#x662F;&#x5426;&#x6709;&#x5173;&#x8054;&#x7684;&#x503C;&#x786E;&#x5B9A;<code>new_value</code>&#x662F;&#x5426;&#x6709;&#x503C;,&#x5148;&#x5206;&#x6790;<code>new_value  != nil</code>&#x7684;&#x60C5;&#x51B5;<code>id new_value = value ? acquireValue(value, policy) : nil;</code></p>
+<pre><code class="lang-objective-c">void _object_set_associative_reference(id object, void *key, id value, uintptr_t policy) {    
+    // &#x4F7F;&#x7528; old_association(0, nil) &#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x4E34;&#x65F6;&#x7684; ObjcAssociation &#x5BF9;&#x8C61;
+    &#xFF08;&#x7528;&#x4E8E;&#x6301;&#x6709;&#x539F;&#x6709;&#x7684;&#x5173;&#x8054;&#x5BF9;&#x8C61;&#xFF0C;&#x65B9;&#x4FBF;&#x5728;&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#x7684;&#x6700;&#x540E;&#x91CA;&#x653E;&#x503C;&#xFF09;
+
+    ObjcAssociation old_association(0, nil);
+      // acquireValue(value, policy) &#x8FD9;&#x91CC;&#x5148;&#x8FDB;&#x884C;&#x9488;&#x5BF9;&#x5173;&#x8054;&#x7684;&#x5C5E;&#x6027;&#x8FDB;&#x884C; retain &#x6216;&#x8005; copy
+
+    id new_value = value ? acquireValue(value, policy) : nil;{
+            //&#x521D;&#x59CB;&#x5316;&#x4E00;&#x4E2A; AssociationsManager&#xFF0C;&#x5E76;&#x83B7;&#x53D6;&#x552F;&#x4E00;&#x7684;&#x4FDD;&#x5B58;&#x5173;&#x8054;&#x5BF9;&#x8C61;&#x7684;&#x54C8;&#x5E0C;&#x8868; AssociationsHashMap
+        AssociationsManager manager;
+        AssociationsHashMap &amp;associations(manager.associations());
+           //&#x5148;&#x4F7F;&#x7528; DISGUISE(object) &#x4F5C;&#x4E3A; key &#x5BFB;&#x627E;&#x5BF9;&#x5E94;&#x7684; ObjectAssociationMap
+        disguised_ptr_t disguised_object = DISGUISE(object);
+        AssociationsHashMap::iterator i = associations.find(disguised_object);
+        if (i != associations.end()) {
+              //&#x8FD9;&#x91CC;&#x5DF2;&#x7ECF;&#x6709;&#x5173;&#x8054;&#x5C5E;&#x6027;&#x4E86;,&#x67E5;&#x627E;&#x662F;&#x5426;&#x5DF2;&#x7ECF;&#x5305;&#x542B;&#x4E86;&#x5F53;&#x524D;&#x9700;&#x8981;&#x5173;&#x8054;&#x5C5E;&#x6027;&#x7684;key
+            ObjectAssociationMap *refs = i-&gt;second;
+            ObjectAssociationMap::iterator j = refs-&gt;find(key);
+            if (j != refs-&gt;end()) {
+                //&#x5DF2;&#x7ECF;&#x5305;&#x542B;&#x5F53;&#x524D;&#x65B0;&#x589E;&#x7684;&#x5C5E;&#x6027;&#x7684;key , &#x90A3;&#x4E48;&#x66F4;&#x65B0;&#x5F53;&#x524D;&#x7684;&#x5173;&#x8054;&#x5C5E;&#x6027;&#x7684;&#x503C;
+                old_association = j-&gt;second;
+                j-&gt;second = ObjcAssociation(policy, new_value);
+            } else {
+                //&#x6CA1;&#x6709;&#x65B0;&#x589E;&#x5C5E;&#x6027;&#x7684;&#x5173;&#x8054;&#x503C;, &#x589E;&#x52A0;&#x5173;&#x8054;&#x5C5E;&#x6027;&#x5373;&#x53EF;
+                (*refs)[key] = ObjcAssociation(policy, new_value);
+            }
+        } else {
+            //&#x8FD9;&#x91CC;&#x6CA1;&#x6709;&#x627E;&#x5230; ObjectAssociationMap &#x6240;&#x4EE5;&#x521B;&#x5EFA;&#x4E00;&#x4E2A; ObjectAssociationMap &#x7528;&#x6765; &#x5173;&#x8054;&#x5C5E;&#x6027;
+            ObjectAssociationMap *refs = new ObjectAssociationMap;
+            associations[disguised_object] = refs;
+            (*refs)[key] = ObjcAssociation(policy, new_value);
+            object-&gt;setHasAssociatedObjects();
+        }
+    } 
+   //&#x5982;&#x679C;&#x539F;&#x6765;&#x7684;&#x5173;&#x8054;&#x5BF9;&#x8C61;&#x6709;&#x503C;&#x7684;&#x8BDD;&#xFF0C;&#x4F1A;&#x8C03;&#x7528; ReleaseValue() &#x91CA;&#x653E;&#x5173;&#x8054;&#x5BF9;&#x8C61;&#x7684;&#x503C;
+    if (old_association.hasValue()) ReleaseValue()(old_association);
+}
+</code></pre>
+<p>&#x63A5;&#x4E0B;&#x6765;&#x5206;&#x6790;<code>new_value == nil</code>&#x7684;&#x60C5;&#x51B5;</p>
+<pre><code class="lang-c++">void _object_set_associative_reference(id object, void *key, id value, uintptr_t policy) {
+    ObjcAssociation old_association(0, nil);
+    id new_value = value ? acquireValue(value, policy) : nil;
+    {
+        AssociationsManager manager;
+        AssociationsHashMap &amp;associations(manager.associations());
+        disguised_ptr_t disguised_object = DISGUISE(object);
+        AssociationsHashMap::iterator i = associations.find(disguised_object);
+        if (i !=  associations.end()) {
+            ObjectAssociationMap *refs = i-&gt;second;
+            ObjectAssociationMap::iterator j = refs-&gt;find(key);
+            if (j != refs-&gt;end()) {
+                   //&#x64E6;&#x9664; ObjectAssociationMap &#x4E2D; key &#x5BF9;&#x5E94;&#x7684;&#x8282;&#x70B9;&#x3002;
+                old_association = j-&gt;second;
+                refs-&gt;erase(j);
+            }
+        }
+    }
+    if (old_association.hasValue()) ReleaseValue()(old_association);
+}
+</code></pre>
+<p>&#x4E0E;&#x9700;&#x8981;&#x66F4;&#x65B0;&#x5173;&#x8054;&#x5C5E;&#x6027;&#x503C;&#x90E8;&#x5206;&#x57FA;&#x672C;&#x76F8;&#x540C;,&#x533A;&#x522B;&#x5728;&#x4E8E;<code>refs-&gt;erase(j);</code>,&#x5982;&#x679C;<code>newValue == ni</code>l&#x7684;&#x8BDD;&#x5C31;&#x6E05;&#x9664;&#x539F;&#x6765;&#x5173;&#x8054;&#x5C5E;&#x6027;&#x503C;,&#x5219;&#x66F4;&#x65B0;&#x5C5E;&#x6027;<code>j-&gt;second = ObjcAssociation(policy, new_value);</code>&#x8986;&#x76D6;&#x539F;&#x6765;&#x7684;&#x5173;&#x8054;&#x5C5E;&#x6027;&#x503C;.</p>
+<h4 id="objcgetassociatedobject-&#x5B9E;&#x73B0;&#x539F;&#x7406;">objc_getAssociatedObject &#x5B9E;&#x73B0;&#x539F;&#x7406;</h4>
+<pre><code class="lang-c++"><span class="hljs-function">id <span class="hljs-title">objc_getAssociatedObject</span><span class="hljs-params">(id object, <span class="hljs-keyword">const</span> <span class="hljs-keyword">void</span> *key)</span> </span>{
+    <span class="hljs-keyword">return</span> _object_get_associative_reference(object, (<span class="hljs-keyword">void</span> *)key);
+}
+</code></pre>
+<pre><code class="lang-objective-c">id _object_get_associative_reference(id object, void *key) {
+    id value = nil;
+    uintptr_t policy = OBJC_ASSOCIATION_ASSIGN;
+    {
+        AssociationsManager manager;
+        AssociationsHashMap &amp;associations(manager.associations());
+        disguised_ptr_t disguised_object = DISGUISE(object);
+        AssociationsHashMap::iterator i = associations.find(disguised_object);
+        if (i != associations.end()) {
+            ObjectAssociationMap *refs = i-&gt;second;
+            ObjectAssociationMap::iterator j = refs-&gt;find(key);
+            if (j != refs-&gt;end()) {
+                ObjcAssociation &amp;entry = j-&gt;second;
+                value = entry.value();
+                policy = entry.policy();
+                if (policy &amp; OBJC_ASSOCIATION_GETTER_RETAIN) {
+                    objc_retain(value);
+                }
+            }
+        }
+    }
+    if (value &amp;&amp; (policy &amp; OBJC_ASSOCIATION_GETTER_AUTORELEASE)) {
+        objc_autorelease(value);
+    }
+    return value;
+}
+</code></pre>
+<p>&#x6574;&#x4F53;&#x7ED3;&#x6784;&#x4E0E;<code>objc_setAssociatedObject</code>&#x7C7B;&#x4F3C;&#x57FA;&#x672C;&#x6B65;&#x9AA4;</p>
+<p>1.&#x83B7;&#x53D6;&#x9759;&#x6001;&#x53D8;&#x91CF; AssociationsHashMap
+2.&#x4EE5; DISGUISE(object) &#x4E3A; key &#x67E5;&#x627E; AssociationsHashMap
+3.&#x4EE5; void *key &#x4E3A; key &#x67E5;&#x627E; ObjcAssociation
+4.&#x6839;&#x636E; policy &#x8C03;&#x7528;&#x76F8;&#x5E94;&#x7684;&#x65B9;&#x6CD5;</p>
+<p>//&#x8FD9;&#x91CC;&#x662F;&#x5224;&#x65AD;&#x5F53;&#x524D;&#x7684;&#x5173;&#x8054;&#x7684;&#x5C5E;&#x6027;&#x662F;&#x5426;&#x9700;&#x8981;<code>retain</code>
+<code>if (policy &amp; OBJC_ASSOCIATION_GETTER_RETAIN) {
+    objc_retain(value);
+}</code>
+//&#x8FD9;&#x91CC;&#x548C;&#x8C03;&#x7528;getter&#x65B9;&#x6CD5;&#x7C7B;&#x4F3C;,&#x9700;&#x8981;&#x6DFB;&#x52A0;&#x5230;<code>objc_autorelease</code>
+<code>if (value &amp;&amp; (policy &amp; OBJC_ASSOCIATION_GETTER_AUTORELEASE)) {
+     objc_autorelease(value);
+ }</code></p>
+<p>5.&#x8FD4;&#x56DE;&#x5173;&#x8054;&#x5BF9;&#x8C61; ObjcAssociation &#x7684;&#x503C;</p>
+<h4 id="objcremoveassociatedobjects-&#x5B9E;&#x73B0;&#x539F;&#x7406;">objc_removeAssociatedObjects &#x5B9E;&#x73B0;&#x539F;&#x7406;</h4>
+<pre><code class="lang-objective-c">void objc_removeAssociatedObjects(id object) {
+    if (object &amp;&amp; object-&gt;hasAssociatedObjects()) {
+        _object_remove_assocations(object);
+    }
+}
+</code></pre>
+<pre><code class="lang-objective-c">void _object_remove_assocations(id object) {
+    vector&lt; ObjcAssociation,ObjcAllocator&lt;ObjcAssociation&gt; &gt; elements;{
+
+          AssociationsManager manager;
+        AssociationsHashMap &amp;associations(manager.associations());
+        if (associations.size() == 0) return;
+        disguised_ptr_t disguised_object = DISGUISE(object);
+        AssociationsHashMap::iterator i = associations.find(disguised_object);
+
+        if (i != associations.end()) {
+
+            ObjectAssociationMap *refs = i-&gt;second;
+
+            for (ObjectAssociationMap::iterator j = refs-&gt;begin(), end = refs-&gt;end(); j != end; ++j) {
+                elements.push_back(j-&gt;second);
+            }
+
+            delete refs;
+            associations.erase(i);
+        }
+    }
+
+    for_each(elements.begin(), elements.end(), ReleaseValue());
+}
+</code></pre>
+<p>&#x9996;&#x5148;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;<code>vector</code>&#x5BB9;&#x5668;&#x7528;&#x6765;&#x5B58;&#x50A8;&#x9700;&#x8981;&#x91CA;&#x653E;&#x5BF9;&#x8C61;&#x5173;&#x8054;&#x7684;&#x6240;&#x6709;&#x5C5E;&#x6027;,&#x904D;&#x5386;&#x540E;&#x5168;&#x90E8;&#x6DFB;&#x52A0;&#x5230;<code>vector</code>&#x4E2D;, <code>ObjectAssociationMap</code>&#x8FDB;&#x884C;<code>`delete refs;</code>&#x6E05;&#x9664;&#x64CD;&#x4F5C;,<code>AssociationsHashMap</code> &#x8FDB;&#x884C;<code>associations.erase(i);</code>&#x64CD;&#x4F5C;. &#x7136;&#x540E;&#x5BF9;&#x6240;&#x6709;&#x7684;<code>ObjcAssociation</code>&#x5BF9;&#x8C61;&#x8C03;&#x7528; <code>ReleaseValue()</code> &#x65B9;&#x6CD5;&#xFF0C;&#x91CA;&#x653E;&#x4E0D;&#x518D;&#x88AB;&#x9700;&#x8981;&#x7684;&#x503C;&#x3002;</p>
+<h3 id="category&#x4E2D;&#x6709;load&#x65B9;&#x6CD5;&#x561B;&#xFF1F;load&#x65B9;&#x6CD5;&#x662F;&#x4EC0;&#x4E48;&#x65F6;&#x5019;&#x8C03;&#x7528;&#x7684;&#xFF1F;load&#x65B9;&#x6CD5;&#x80FD;&#x7EE7;&#x627F;&#x561B;&#xFF1F;">Category&#x4E2D;&#x6709;load&#x65B9;&#x6CD5;&#x561B;&#xFF1F;load&#x65B9;&#x6CD5;&#x662F;&#x4EC0;&#x4E48;&#x65F6;&#x5019;&#x8C03;&#x7528;&#x7684;&#xFF1F;load&#x65B9;&#x6CD5;&#x80FD;&#x7EE7;&#x627F;&#x561B;&#xFF1F;</h3>
+<h3 id="load&#xFF0C;-initialize-&#x65B9;&#x6CD5;&#x533A;&#x522B;&#xFF1F;&#x4ED6;&#x4EEC;&#x5728;category&#x4E2D;&#x7684;&#x8C03;&#x7528;&#x987A;&#x5E8F;&#xFF1F;&#x4EE5;&#x53CA;&#x51FA;&#x73B0;&#x7EE7;&#x627F;&#x4ED6;&#x4EEC;&#x4E4B;&#x95F4;&#x7684;&#x8C03;&#x7528;&#x8FC7;&#x7A0B;&#xFF1F;">load&#xFF0C; initialize &#x65B9;&#x6CD5;&#x533A;&#x522B;&#xFF1F;&#x4ED6;&#x4EEC;&#x5728;Category&#x4E2D;&#x7684;&#x8C03;&#x7528;&#x987A;&#x5E8F;&#xFF1F;&#x4EE5;&#x53CA;&#x51FA;&#x73B0;&#x7EE7;&#x627F;&#x4ED6;&#x4EEC;&#x4E4B;&#x95F4;&#x7684;&#x8C03;&#x7528;&#x8FC7;&#x7A0B;&#xFF1F;</h3>
+</div></div></div></div></div></div></div></div>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../Class/Class.html" class="navigation navigation-prev " aria-label="Previous page: Class结构">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../Runtime/Runtime.html" class="navigation navigation-next " aria-label="Next page: Runtime实际应用">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Category实现原理","level":"1.7.2","depth":2,"next":{"title":"Runtime实际应用","level":"1.7.3","depth":2,"path":"Runtime/Runtime/Runtime.md","ref":"Runtime/Runtime/Runtime.md","articles":[]},"previous":{"title":"Class结构","level":"1.7.1","depth":2,"path":"Runtime/Class/Class.md","ref":"Runtime/Class/Class.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Runtime/Category/Category.md","mtime":"2020-06-23T03:48:32.140Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-06-23T05:10:41.331Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

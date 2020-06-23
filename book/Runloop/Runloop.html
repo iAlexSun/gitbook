@@ -1,0 +1,888 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Runloop原理 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Runloop实际应用.html" />
+    
+    
+    <link rel="prev" href="计时器.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    操作系统
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../操作系统/MachO.html">
+            
+                <a href="../操作系统/MachO.html">
+            
+                    
+                    Mach O结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../操作系统/编译原理.html">
+            
+                <a href="../操作系统/编译原理.html">
+            
+                    
+                    编译原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../操作系统/链接原理.html">
+            
+                <a href="../操作系统/链接原理.html">
+            
+                    
+                    链接原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../操作系统/staticAnalysis.html">
+            
+                <a href="../操作系统/staticAnalysis.html">
+            
+                    
+                    静态代码分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    内存管理
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../内存管理/内存管理.html">
+            
+                <a href="../内存管理/内存管理.html">
+            
+                    
+                    内存管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../内存管理/autorelease原理.html">
+            
+                <a href="../内存管理/autorelease原理.html">
+            
+                    
+                    autorelease原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../内存管理/dealloc实现原理.html">
+            
+                <a href="../内存管理/dealloc实现原理.html">
+            
+                    
+                    dealloc实现原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../内存管理/weak实现原理.html">
+            
+                <a href="../内存管理/weak实现原理.html">
+            
+                    
+                    weak实现原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../多线程/多线程.html">
+            
+                <a href="../多线程/多线程.html">
+            
+                    
+                    多线程
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../多线程/GCD.html">
+            
+                <a href="../多线程/GCD.html">
+            
+                    
+                    GCD
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../多线程/NSOperation.html">
+            
+                <a href="../多线程/NSOperation.html">
+            
+                    
+                    NSOperation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../多线程/lock.html">
+            
+                <a href="../多线程/lock.html">
+            
+                    
+                    线程锁分类
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    消息传递机制
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../消息传递机制/Block.html">
+            
+                <a href="../消息传递机制/Block.html">
+            
+                    
+                    Block原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../消息传递机制/NSNotification.html">
+            
+                <a href="../消息传递机制/NSNotification.html">
+            
+                    
+                    NSNotification原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../消息传递机制/KVO.html">
+            
+                <a href="../消息传递机制/KVO.html">
+            
+                    
+                    KVO原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    循环引用
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../循环引用/循环引用.html">
+            
+                <a href="../循环引用/循环引用.html">
+            
+                    
+                    循环引用种类
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" >
+            
+                <span>
+            
+                    
+                    内存管理泄露追溯方案
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" >
+            
+                <span>
+            
+                    
+                    Runtime
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../Runtime/Class/Class.html">
+            
+                <a href="../Runtime/Class/Class.html">
+            
+                    
+                    Class结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../Runtime/Category/Category.html">
+            
+                <a href="../Runtime/Category/Category.html">
+            
+                    
+                    Category实现原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="../Runtime/Runtime/Runtime.html">
+            
+                <a href="../Runtime/Runtime/Runtime.html">
+            
+                    
+                    Runtime实际应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" >
+            
+                <span>
+            
+                    
+                    Runloop
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="计时器.html">
+            
+                <a href="计时器.html">
+            
+                    
+                    计时器实现原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.8.2" data-path="Runloop.html">
+            
+                <a href="Runloop.html">
+            
+                    
+                    Runloop原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="Runloop实际应用.html">
+            
+                <a href="Runloop实际应用.html">
+            
+                    
+                    Runloop应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" >
+            
+                <span>
+            
+                    
+                    性能优化
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" >
+            
+                <span>
+            
+                    
+                    启动时长
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" >
+            
+                <span>
+            
+                    
+                    包体积优化
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" >
+            
+                <span>
+            
+                    
+                    编译时长
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" >
+            
+                <span>
+            
+                    
+                    Feed优化
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" >
+            
+                <span>
+            
+                    
+                    算法相关
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" >
+            
+                <span>
+            
+                    
+                    二叉树
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" >
+            
+                <span>
+            
+                    
+                    链表
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Runloop原理</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h3 id="runloop&#x5728;cocoa&#x4E2D;&#x7684;&#x5E94;&#x7528;">Runloop&#x5728;Cocoa&#x4E2D;&#x7684;&#x5E94;&#x7528;</h3>
+<p>&#x4E3B;&#x8981;&#x662F;&#x4F7F;&#x7528;NSRunloop&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x4F46;&#x662F;NSRunloop&#x5C01;&#x88C5;&#x4E86;CFRunloop&#x540E;&#x7684;&#x4E00;&#x4E2A;&#x5B9E;&#x73B0;&#x64CD;&#x4F5C;,CFRunloop&#x662F;&#x57FA;&#x4E8E;C&#x7684;&#x4E00;&#x4E2A;&#x8DE8;&#x5E73;&#x53F0;&#x7684;&#x800C;&#x4E14;&#x662F;&#x5F00;&#x6E90;&#x7684;.&#x5B83;&#x7684;&#x5E95;&#x5C42;&#x5B9E;&#x73B0;&#x5305;&#x542B;GCD,  mach hernel  (Apple &#x5185;&#x6838;),block , pthread&#x7B49;.</p>
+<p><div>
+<img src="image/1.png" style="zoom:30%;" align="center"></div></p>
+<div>
+
+<p>&#x4E0B;&#x56FE;&#x4E2D;&#x7684;NSTimer, UIEvent,Autorelease&#x7B49;&#x64CD;&#x4F5C;&#x90FD;&#x4E0E;Runloop</p>
+<p><div>
+<img src="image/2.png" style="zoom:30%;" align="center"></div></p>
+<p><div></div></p>
+<h3 id="runloop-&#x548C;&#x7EBF;&#x7A0B;&#x7684;&#x5173;&#x7CFB;">Runloop &#x548C;&#x7EBF;&#x7A0B;&#x7684;&#x5173;&#x7CFB;</h3>
+<h3 id="runloop-&#x548C;&#x7EBF;&#x7A0B;&#x7684;&#x5173;&#x7CFB;">Runloop &#x548C;&#x7EBF;&#x7A0B;&#x7684;&#x5173;&#x7CFB;</h3>
+<p>&#x7A0B;&#x5E8F;&#x542F;&#x52A8;&#x4E3B;&#x7EBF;&#x7A0B;&#x9ED8;&#x8BA4;&#x4F1A;&#x6709;&#x4E00;&#x4E2A;Runloop&#x3002;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x5BF9;&#x5E94;&#x4E00;&#x4E2A;Runloop,&#x4F46;&#x662F;&#x53EF;&#x4EE5;Runloop&#x5D4C;&#x5957;&#x51FA;&#x73B0;,&#x4F46;&#x662F;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x5E76;&#x4E0D;&#x591A;&#x51FA;&#x73B0;&#x3002;&#x5982;&#x679C;&#x60F3;&#x8981;&#x5355;&#x72EC;&#x5F00;&#x542F;Runloop&#x53EA;&#x80FD;&#x901A;&#x8FC7;</p>
+<h3 id="&#x8BB2;&#x4E00;&#x4E0B;-runloop-&#x7684;-mode">&#x8BB2;&#x4E00;&#x4E0B; Runloop &#x7684; Mode</h3>
+<p><div>
+<img src="image/3.png" style="zoom:25%;" align="center"></div></p>
+<div>
+
+<p>&#x4E00;&#x5171;&#x5E38;&#x7528;&#x7684;&#x4E09;&#x79CD;Mode,DefaultMode,TrackingMode,CommonMode&#x3002;&#x8FD8;&#x6709;&#x4E00;&#x79CD;UIInitializationRunLoopMode&#x3002;</p>
+<ul>
+<li><p>UIInitializationRunLoopMode&#xFF1A;&#x8FD9;&#x79CD;Mode&#x4E00;&#x822C;&#x60C5;&#x51B5;&#x4E0B;&#x53EA;&#x5728;&#x7A0B;&#x5E8F;&#x542F;&#x52A8;&#x7684;&#x65F6;&#x5019;&#x5F00;&#x542F;&#x7684;Runloop&#x7684;&#x4E00;&#x79CD;Mode,&#x5176;&#x4ED6;&#x5730;&#x65B9;&#x5E94;&#x8BE5;&#x4E0D;&#x4F1A;&#x5E94;&#x7528;&#x5230;&#x8FD9;&#x79CD;Mode&#x3002;</p>
+</li>
+<li><p>DefaultMode&#xFF1A;&#x4E3B;&#x8981;&#x662F;&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#x4F7F;&#x7528;&#x7684;&#x4E00;&#x4E2A;Mode,&#x5F53;&#x5217;&#x8868;&#x6ED1;&#x52A8;&#x65F6;&#x5C31;&#x4F1A;&#x5207;&#x6362;&#x5230;TrackingMode,&#x505C;&#x6B62;&#x540E;&#x5C31;&#x4F1A;&#x5207;&#x6362;&#x5230;&#x9ED8;&#x8BA4;&#x7684;mode &#x4E2D;&#x3002;&#x8FD9;&#x91CC;&#x9700;&#x8981;&#x5F3A;&#x8C03;&#x4E00;&#x4E0B;&#x6ED1;&#x52A8;&#x4E4B;&#x524D;&#x662F;&#x5F00;&#x542F;&#x4E86;&#x4E00;&#x4E2A;Runloop,&#x5207;&#x6362;&#x7684;&#x65F6;&#x5019;Runloop&#x6839;&#x636E;sunny&#x7684;&#x5B9E;&#x9A8C;&#x7ED3;&#x8BBA;&#x662F;&#x5C31;&#x9000;&#x51FA;&#x5F53;&#x524D;&#x7684;Runloop,&#x76F8;&#x5F53;&#x4E8E;&#x8DF3;&#x51FA;&#x4E86;while&#x5FAA;&#x73AF;&#x5F00;&#x542F;&#x4E86;&#x4E00;&#x4E2A;&#x5168;&#x65B0;&#x7684;DefaultMode&#x91CD;&#x65B0;&#x5F00;&#x59CB;&#x5FAA;&#x73AF;&#x3002;</p>
+</li>
+<li><p>TrackingMode&#xFF1A;&#x53EA;&#x6709;&#x5728;&#x6ED1;&#x52A8;&#x5217;&#x8868;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x624D;&#x4F1A;&#x5207;&#x6362;&#x7684;Mode.CommonMode&#xFF1A;&#x76F8;&#x5F53;&#x4E8E;&#x5305;&#x542B;&#x591A;&#x79CD;Mode&#x7684;&#x96C6;&#x5408;,&#x7528;&#x6237;&#x4E5F;&#x53EF;&#x4EE5;&#x81EA;&#x5B9A;&#x4E00;&#x79CD;Mode&#x6DFB;&#x52A0;&#x5230;&#x8FD9;&#x4E2A;&#x91CC;&#x9762;&#x4F46;&#x662F;&#x4E00;&#x822C;&#x60C5;&#x51B5;&#x4E0B;&#x5C31;&#x662F;&#x4F7F;&#x7528;&#x5176;&#x4E2D;&#x7684;DefaultMode &amp;&amp; TrackingMode&#x3002;</p>
+</li>
+</ul>
+<h3 id="&#x8BB2;&#x4E00;&#x4E0B;-observer-&#xFF08;mode&#x4E2D;&#x7684;&#x91CD;&#x70B9;&#xFF09;">&#x8BB2;&#x4E00;&#x4E0B; Observer &#xFF08;Mode&#x4E2D;&#x7684;&#x91CD;&#x70B9;&#xFF09;</h3>
+<pre><code class="lang-objective-c">Mode&#x4E2D;&#x5305;&#x542B;Source &amp;&amp; Timer &amp;&amp; Observer,&#x90FD;&#x662F;&#x4E00;&#x5BF9;&#x591A;&#x7684;&#x5173;&#x7CFB; Observer &#x72B6;&#x6001;&#x5982;&#x4E0B;:
+typedef CF_OPTIONS(CFOptionFlags, CFRunLoopActivity) {
+    kCFRunLoopEntry         = (1UL &lt;&lt; 0), // &#x5373;&#x5C06;&#x8FDB;&#x5165;Loop
+    kCFRunLoopBeforeTimers  = (1UL &lt;&lt; 1), // &#x5373;&#x5C06;&#x5904;&#x7406; Timer
+    kCFRunLoopBeforeSources = (1UL &lt;&lt; 2), // &#x5373;&#x5C06;&#x5904;&#x7406; Source
+    kCFRunLoopBeforeWaiting = (1UL &lt;&lt; 5), // &#x5373;&#x5C06;&#x8FDB;&#x5165;&#x4F11;&#x7720;        
+    kCFRunLoopAfterWaiting  = (1UL &lt;&lt; 6), // &#x521A;&#x4ECE;&#x4F11;&#x7720;&#x4E2D;&#x5524;&#x9192;
+    kCFRunLoopExit          = (1UL &lt;&lt; 7), // &#x5373;&#x5C06;&#x9000;&#x51FA;Loop
+};
+</code></pre>
+<h3 id="&#x8BB2;&#x4E00;&#x4E0B;-runloop-&#x7684;&#x5185;&#x90E8;&#x5B9E;&#x73B0;&#x903B;&#x8F91;&#xFF1F;&#xFF08;&#x8FD0;&#x884C;&#x8FC7;&#x7A0B;&#xFF09;">&#x8BB2;&#x4E00;&#x4E0B; Runloop &#x7684;&#x5185;&#x90E8;&#x5B9E;&#x73B0;&#x903B;&#x8F91;&#xFF1F;&#xFF08;&#x8FD0;&#x884C;&#x8FC7;&#x7A0B;&#xFF09;</h3>
+<p><div>
+<img src="image/13.png" style="zoom:30%;" align="center"></div></p>
+<div>
+
+<p><div>
+<img src="image/4.png" style="zoom:70%;" align="center"></div></p>
+<p><div></div></p>
+<ul>
+<li>&#x4E00;&#x4E2A; RunLoop &#x5305;&#x542B;&#x82E5;&#x5E72;&#x4E2A; Mode&#xFF0C;&#x6BCF;&#x4E2A; Mode &#x53C8;&#x5305;&#x542B;&#x82E5;&#x5E72;&#x4E2A; Source/Timer/Observer&#x3002;&#x6BCF;&#x6B21;&#x8C03;&#x7528; RunLoop &#x7684;&#x4E3B;&#x51FD;&#x6570;&#x65F6;&#xFF0C;&#x53EA;&#x80FD;&#x6307;&#x5B9A;&#x5176;&#x4E2D;&#x4E00;&#x4E2A; Mode&#xFF0C;&#x8FD9;&#x4E2A;Mode&#x88AB;&#x79F0;&#x4F5C; CurrentMode&#x3002;&#x5982;&#x679C;&#x9700;&#x8981;&#x5207;&#x6362; Mode&#xFF0C;&#x53EA;&#x80FD;&#x9000;&#x51FA; Loop&#xFF0C;&#x518D;&#x91CD;&#x65B0;&#x6307;&#x5B9A;&#x4E00;&#x4E2A; Mode &#x8FDB;&#x5165;&#x3002;&#x8FD9;&#x6837;&#x505A;&#x4E3B;&#x8981;&#x662F;&#x4E3A;&#x4E86;&#x5206;&#x9694;&#x5F00;&#x4E0D;&#x540C;&#x7EC4;&#x7684; Source/Timer/Observer&#xFF0C;&#x8BA9;&#x5176;&#x4E92;&#x4E0D;&#x5F71;&#x54CD;&#x3002;</li>
+</ul>
+<ul>
+<li><p>CFRunLoopSourceRef &#x662F;&#x4E8B;&#x4EF6;&#x4EA7;&#x751F;&#x7684;&#x5730;&#x65B9;&#x3002;Source&#x6709;&#x4E24;&#x4E2A;&#x7248;&#x672C;&#xFF1A;Source0 &#x548C; Source1&#x3002;
+&#x2022; Source0 &#x53EA;&#x5305;&#x542B;&#x4E86;&#x4E00;&#x4E2A;&#x56DE;&#x8C03;&#xFF08;&#x51FD;&#x6570;&#x6307;&#x9488;&#xFF09;&#xFF0C;&#x5B83;&#x5E76;&#x4E0D;&#x80FD;&#x4E3B;&#x52A8;&#x89E6;&#x53D1;&#x4E8B;&#x4EF6;&#x3002;&#x4F7F;&#x7528;&#x65F6;&#xFF0C;&#x4F60;&#x9700;&#x8981;&#x5148;&#x8C03;&#x7528; CFRunLoopSourceSignal(source)&#xFF0C;&#x5C06;&#x8FD9;&#x4E2A; Source &#x6807;&#x8BB0;&#x4E3A;&#x5F85;&#x5904;&#x7406;&#xFF0C;&#x7136;&#x540E;&#x624B;&#x52A8;&#x8C03;&#x7528; CFRunLoopWakeUp(runloop) &#x6765;&#x5524;&#x9192; RunLoop&#xFF0C;&#x8BA9;&#x5176;&#x5904;&#x7406;&#x8FD9;&#x4E2A;&#x4E8B;&#x4EF6;&#x3002;
+&#x2022; Source1 &#x5305;&#x542B;&#x4E86;&#x4E00;&#x4E2A; mach_port &#x548C;&#x4E00;&#x4E2A;&#x56DE;&#x8C03;&#xFF08;&#x51FD;&#x6570;&#x6307;&#x9488;&#xFF09;&#xFF0C;&#x88AB;&#x7528;&#x4E8E;&#x901A;&#x8FC7;&#x5185;&#x6838;&#x548C;&#x5176;&#x4ED6;&#x7EBF;&#x7A0B;&#x76F8;&#x4E92;&#x53D1;&#x9001;&#x6D88;&#x606F;&#x3002;&#x8FD9;&#x79CD; Source &#x80FD;&#x4E3B;&#x52A8;&#x5524;&#x9192; RunLoop &#x7684;&#x7EBF;&#x7A0B;&#xFF0C;&#x5176;&#x539F;&#x7406;&#x5728;&#x4E0B;&#x9762;&#x4F1A;&#x8BB2;&#x5230;&#x3002;</p>
+</li>
+<li><p>CFRunLoopTimerRef &#x662F;&#x57FA;&#x4E8E;&#x65F6;&#x95F4;&#x7684;&#x89E6;&#x53D1;&#x5668;&#xFF0C;&#x5B83;&#x548C; NSTimer &#x662F;toll-free bridged &#x7684;&#xFF0C;&#x53EF;&#x4EE5;&#x6DF7;&#x7528;&#x3002;&#x5176;&#x5305;&#x542B;&#x4E00;&#x4E2A;&#x65F6;&#x95F4;&#x957F;&#x5EA6;&#x548C;&#x4E00;&#x4E2A;&#x56DE;&#x8C03;&#xFF08;&#x51FD;&#x6570;&#x6307;&#x9488;&#xFF09;&#x3002;&#x5F53;&#x5176;&#x52A0;&#x5165;&#x5230; RunLoop &#x65F6;&#xFF0C;RunLoop&#x4F1A;&#x6CE8;&#x518C;&#x5BF9;&#x5E94;&#x7684;&#x65F6;&#x95F4;&#x70B9;&#xFF0C;&#x5F53;&#x65F6;&#x95F4;&#x70B9;&#x5230;&#x65F6;&#xFF0C;RunLoop&#x4F1A;&#x88AB;&#x5524;&#x9192;&#x4EE5;&#x6267;&#x884C;&#x90A3;&#x4E2A;&#x56DE;&#x8C03;&#x3002;</p>
+</li>
+</ul>
+<pre><code class="lang-objective-c">typedef CF_OPTIONS(CFOptionFlags, CFRunLoopActivity) {
+    kCFRunLoopEntry         = (1UL &lt;&lt; 0), // &#x5373;&#x5C06;&#x8FDB;&#x5165;Loop
+    kCFRunLoopBeforeTimers  = (1UL &lt;&lt; 1), // &#x5373;&#x5C06;&#x5904;&#x7406; Timer
+    kCFRunLoopBeforeSources = (1UL &lt;&lt; 2), // &#x5373;&#x5C06;&#x5904;&#x7406; Source
+    kCFRunLoopBeforeWaiting = (1UL &lt;&lt; 5), // &#x5373;&#x5C06;&#x8FDB;&#x5165;&#x4F11;&#x7720;
+    kCFRunLoopAfterWaiting  = (1UL &lt;&lt; 6), // &#x521A;&#x4ECE;&#x4F11;&#x7720;&#x4E2D;&#x5524;&#x9192;
+    kCFRunLoopExit          = (1UL &lt;&lt; 7), // &#x5373;&#x5C06;&#x9000;&#x51FA;Loop
+};
+</code></pre>
+<p>&#x4E0A;&#x9762;&#x7684; Source/Timer/Observer &#x88AB;&#x7EDF;&#x79F0;&#x4E3A; mode item&#xFF0C;&#x4E00;&#x4E2A; item &#x53EF;&#x4EE5;&#x88AB;&#x540C;&#x65F6;&#x52A0;&#x5165;&#x591A;&#x4E2A; mode&#x3002;&#x4F46;&#x4E00;&#x4E2A; item &#x88AB;&#x91CD;&#x590D;&#x52A0;&#x5165;&#x540C;&#x4E00;&#x4E2A; mode &#x65F6;&#x662F;&#x4E0D;&#x4F1A;&#x6709;&#x6548;&#x679C;&#x7684;&#x3002;&#x5982;&#x679C;&#x4E00;&#x4E2A; mode &#x4E2D;&#x4E00;&#x4E2A; item &#x90FD;&#x6CA1;&#x6709;&#xFF0C;&#x5219; RunLoop &#x4F1A;&#x76F4;&#x63A5;&#x9000;&#x51FA;&#xFF0C;&#x4E0D;&#x8FDB;&#x5165;&#x5FAA;&#x73AF;&#x3002;</p>
+<h3 id="autoreleasepool-&#x5728;&#x4F55;&#x65F6;&#x88AB;&#x91CA;&#x653E;">autoreleasePool &#x5728;&#x4F55;&#x65F6;&#x88AB;&#x91CA;&#x653E;</h3>
+<p>App&#x542F;&#x52A8;&#x540E;&#xFF0C;&#x82F9;&#x679C;&#x5728;&#x4E3B;&#x7EBF;&#x7A0B;<code>RunLoop</code>&#x91CC;&#x6CE8;&#x518C;&#x4E86;&#x4E24;&#x4E2A; Observer&#xFF0C;&#x5176;&#x56DE;&#x8C03;
+<code>_wrapRunLoopWithAutoreleasePoolHandler()</code>&#x3002;</p>
+<pre><code class="lang-objective-c">1.&lt;CFRunLoopObserver&gt;{activities = 0x1, callout = _wrapRunLoopWithAutoreleasePoolHandler} 
+2.&lt;CFRunLoopObserver&gt;{activities = 0xa0, callout = _wrapRunLoopWithAutoreleasePoolHandler}
+</code></pre>
+<ul>
+<li>&#x7B2C;&#x4E00;&#x4E2A; Observer &#x76D1;&#x89C6;&#x7684;&#x4E8B;&#x4EF6;&#x662F; <code>activities = 0x1</code> <code>kCFRunLoopEntry</code>(&#x5373;&#x5C06;&#x8FDB;&#x5165;Loop)&#xFF0C;&#x5176;&#x56DE;&#x8C03;&#x5185;&#x4F1A;&#x8C03;&#x7528; <code>_objc_autoreleasePoolPush()</code> &#x521B;&#x5EFA;&#x81EA;&#x52A8;&#x91CA;&#x653E;&#x6C60;&#x3002;&#x5176; <code>order &#x662F;-2147483647</code>&#xFF0C;&#x4F18;&#x5148;&#x7EA7;&#x6700;&#x9AD8;&#xFF0C;&#x4FDD;&#x8BC1;&#x521B;&#x5EFA;&#x91CA;&#x653E;&#x6C60;&#x53D1;&#x751F;&#x5728;&#x5176;&#x4ED6;&#x6240;&#x6709;&#x56DE;&#x8C03;&#x4E4B;&#x524D;&#x3002;</li>
+</ul>
+<p><img src="image/8.png" alt=""></p>
+<ul>
+<li><p>&#x7B2C;&#x4E8C;&#x4E2A; <code>Observer</code> &#x76D1;&#x89C6;&#x4E86;<code>activities = 0xa0</code>&#x4E24;&#x4E2A;&#x4E8B;&#x4EF6;&#xFF1A; </p>
+<ul>
+<li><p><code>kCFRunLoopBeforeWaiting</code>(&#x51C6;&#x5907;&#x8FDB;&#x5165;&#x4F11;&#x7720;) &#x65F6;&#x8C03;&#x7528;<code>_objc_autoreleasePoolPop()</code>&#x548C; <code>_objc_autoreleasePoolPush()</code> &#x91CA;&#x653E;&#x65E7;&#x7684;&#x6C60;&#x5E76;&#x521B;&#x5EFA;&#x65B0;&#x6C60;&#xFF1B;</p>
+</li>
+<li><p><code>kCFRunLoopExit</code>(&#x5373;&#x5C06;&#x9000;&#x51FA;Loop) &#x65F6;&#x8C03;&#x7528; <code>_objc_autoreleasePoolPop(</code>) &#x6765;&#x91CA;&#x653E;&#x81EA;&#x52A8;&#x91CA;&#x653E;&#x6C60;&#xFF0C;&#x8FD9;&#x4E2A; <code>Observer &#x7684; order &#x662F; 2147483647</code>&#xFF0C;&#x4F18;&#x5148;&#x7EA7;&#x6700;&#x4F4E;&#xFF0C;&#x4FDD;&#x8BC1;&#x5176;&#x91CA;&#x653E;&#x6C60;&#x5B50;&#x53D1;&#x751F;&#x5728;&#x5176;&#x4ED6;&#x6240;&#x6709;&#x56DE;&#x8C03;&#x4E4B;&#x540E;&#x3002;</p>
+<p><img src="image/9.png" alt=""></p>
+</li>
+</ul>
+</li>
+</ul>
+<p>&#x5728;&#x4E3B;&#x7EBF;&#x7A0B;&#x6267;&#x884C;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x901A;&#x5E38;&#x662F;&#x5199;&#x5728;&#x8BF8;&#x5982;&#x4E8B;&#x4EF6;&#x56DE;&#x8C03;&#x3001;Timer&#x56DE;&#x8C03;&#x5185;&#x7684;&#x3002;&#x8FD9;&#x4E9B;&#x56DE;&#x8C03;&#x4F1A;&#x88AB; RunLoop &#x521B;&#x5EFA;&#x597D;&#x7684; <code>AutoreleasePool</code> &#x73AF;&#x7ED5;&#x7740;&#xFF0C;&#x6240;&#x4EE5;&#x4E0D;&#x4F1A;&#x51FA;&#x73B0;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;&#xFF0C;&#x5F00;&#x53D1;&#x8005;&#x4E5F;&#x4E0D;&#x5FC5;&#x663E;&#x793A;&#x521B;&#x5EFA; Pool &#x4E86;&#x3002;</p>
+<h3 id="&#x89E3;&#x91CA;&#x4E00;&#x4E0B;-&#x4E8B;&#x4EF6;&#x54CD;&#x5E94;-&#x7684;&#x8FC7;&#x7A0B;">&#x89E3;&#x91CA;&#x4E00;&#x4E0B; &#x4E8B;&#x4EF6;&#x54CD;&#x5E94; &#x7684;&#x8FC7;&#x7A0B;</h3>
+<ul>
+<li><p>&#x82F9;&#x679C;&#x6CE8;&#x518C;&#x4E86;&#x4E00;&#x4E2A; Source1 (&#x57FA;&#x4E8E; mach port &#x7684;) &#x7528;&#x6765;&#x63A5;&#x6536;&#x7CFB;&#x7EDF;&#x4E8B;&#x4EF6;&#xFF0C;&#x5176;&#x56DE;&#x8C03;&#x51FD;&#x6570;__IOHIDEventSystemClientQueueCallback()&#x3002;</p>
+</li>
+<li><p>&#x5F53;&#x4E00;&#x4E2A;&#x786C;&#x4EF6;&#x4E8B;&#x4EF6;(&#x89E6;&#x6478;/&#x9501;&#x5C4F;/&#x6447;&#x6643;&#x7B49;)&#x53D1;&#x751F;&#x540E;&#xFF0C;&#x9996;&#x5148;&#x7531; IOKit.framework &#x751F;&#x6210;&#x4E00;&#x4E2A; IOHIDEvent &#x4E8B;&#x4EF6;&#x5E76;&#x7531; SpringBoard &#x63A5;&#x6536;&#x3002;&#x8FD9;&#x4E2A;&#x8FC7;&#x7A0B;&#x7684;&#x8BE6;&#x7EC6;&#x60C5;&#x51B5;&#x53EF;&#x4EE5;&#x53C2;&#x8003;&#x8FD9;&#x91CC;&#x3002;SpringBoard &#x53EA;&#x63A5;&#x6536;&#x6309;&#x952E;(&#x9501;&#x5C4F;/&#x9759;&#x97F3;&#x7B49;)&#xFF0C;&#x89E6;&#x6478;&#xFF0C;&#x52A0;&#x901F;&#xFF0C;&#x63A5;&#x8FD1;&#x4F20;&#x611F;&#x5668;&#x7B49;&#x51E0;&#x79CD; Event&#xFF0C;&#x968F;&#x540E;&#x7528; mach port &#x8F6C;&#x53D1;&#x7ED9;&#x9700;&#x8981;&#x7684;App&#x8FDB;&#x7A0B;&#x3002;&#x968F;&#x540E;&#x82F9;&#x679C;&#x6CE8;&#x518C;&#x7684;&#x90A3;&#x4E2A; Source1 &#x5C31;&#x4F1A;&#x89E6;&#x53D1;&#x56DE;&#x8C03;&#xFF0C;&#x5E76;&#x8C03;&#x7528; _UIApplicationHandleEventQueue() &#x8FDB;&#x884C;&#x5E94;&#x7528;&#x5185;&#x90E8;&#x7684;&#x5206;&#x53D1;&#x3002;</p>
+</li>
+<li><p>_UIApplicationHandleEventQueue() &#x4F1A;&#x628A; IOHIDEvent &#x5904;&#x7406;&#x5E76;&#x5305;&#x88C5;&#x6210; UIEvent &#x8FDB;&#x884C;&#x5904;&#x7406;&#x6216;&#x5206;&#x53D1;&#xFF0C;&#x5176;&#x4E2D;&#x5305;&#x62EC;&#x8BC6;&#x522B; UIGesture/&#x5904;&#x7406;&#x5C4F;&#x5E55;&#x65CB;&#x8F6C;/&#x53D1;&#x9001;&#x7ED9; UIWindow &#x7B49;&#x3002;&#x901A;&#x5E38;&#x4E8B;&#x4EF6;&#x6BD4;&#x5982; UIButton &#x70B9;&#x51FB;&#x3001;touchesBegin/Move/End/Cancel &#x4E8B;&#x4EF6;&#x90FD;&#x662F;&#x5728;&#x8FD9;&#x4E2A;&#x56DE;&#x8C03;&#x4E2D;&#x5B8C;&#x6210;&#x7684;&#x3002;</p>
+</li>
+</ul>
+<pre><code class="lang-objective-c">7.1&#x624B;&#x52BF;&#x8BC6;&#x522B;
+&#x5F53;&#x4E0A;&#x9762;&#x7684; _UIApplicationHandleEventQueue() &#x8BC6;&#x522B;&#x4E86;&#x4E00;&#x4E2A;&#x624B;&#x52BF;&#x65F6;&#xFF0C;&#x5176;&#x9996;&#x5148;&#x4F1A;&#x8C03;&#x7528; Cancel &#x5C06;&#x5F53;&#x524D;&#x7684; touchesBegin/Move/End &#x7CFB;&#x5217;&#x56DE;&#x8C03;&#x6253;&#x65AD;&#x3002;&#x968F;&#x540E;&#x7CFB;&#x7EDF;&#x5C06;&#x5BF9;&#x5E94;&#x7684; UIGestureRecognizer &#x6807;&#x8BB0;&#x4E3A;&#x5F85;&#x5904;&#x7406;&#x3002;
+
+&#x82F9;&#x679C;&#x6CE8;&#x518C;&#x4E86;&#x4E00;&#x4E2A; Observer &#x76D1;&#x6D4B; BeforeWaiting (Loop&#x5373;&#x5C06;&#x8FDB;&#x5165;&#x4F11;&#x7720;) &#x4E8B;&#x4EF6;&#xFF0C;&#x8FD9;&#x4E2A;Observer&#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x662F; _UIGestureRecognizerUpdateObserver()&#xFF0C;&#x5176;&#x5185;&#x90E8;&#x4F1A;&#x83B7;&#x53D6;&#x6240;&#x6709;&#x521A;&#x88AB;&#x6807;&#x8BB0;&#x4E3A;&#x5F85;&#x5904;&#x7406;&#x7684; GestureRecognizer&#xFF0C;&#x5E76;&#x6267;&#x884C;GestureRecognizer&#x7684;&#x56DE;&#x8C03;&#x3002;
+&#x5F53;&#x6709; UIGestureRecognizer &#x7684;&#x53D8;&#x5316;(&#x521B;&#x5EFA;/&#x9500;&#x6BC1;/&#x72B6;&#x6001;&#x6539;&#x53D8;)&#x65F6;&#xFF0C;&#x8FD9;&#x4E2A;&#x56DE;&#x8C03;&#x90FD;&#x4F1A;&#x8FDB;&#x884C;&#x76F8;&#x5E94;&#x5904;&#x7406;&#x3002;
+</code></pre>
+<h3 id="&#x89E3;&#x91CA;&#x4E00;&#x4E0B;-gcd-&#x5728;-runloop-&#x4E2D;&#x7684;&#x4F7F;&#x7528;">&#x89E3;&#x91CA;&#x4E00;&#x4E0B; GCD &#x5728; Runloop &#x4E2D;&#x7684;&#x4F7F;&#x7528;</h3>
+<p><div>
+<img src="image/5.png" style="zoom:30%;" align="center"></div></p>
+<div>
+
+<h3 id="performselector-&#x7684;&#x5B9E;&#x73B0;&#x539F;&#x7406;">PerformSelector &#x7684;&#x5B9E;&#x73B0;&#x539F;&#x7406;</h3>
+<h3 id="&#x5229;&#x7528;-runloop-&#x89E3;&#x91CA;&#x4E00;&#x4E0B;&#x9875;&#x9762;&#x7684;&#x6E32;&#x67D3;&#x7684;&#x8FC7;&#x7A0B;">&#x5229;&#x7528; Runloop &#x89E3;&#x91CA;&#x4E00;&#x4E0B;&#x9875;&#x9762;&#x7684;&#x6E32;&#x67D3;&#x7684;&#x8FC7;&#x7A0B;</h3>
+<h3 id="performselectorafterdelay&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x5728;&#x5B50;&#x7EBF;&#x7A0B;&#x4E2D;&#x662F;&#x5426;&#x8D77;&#x4F5C;&#x7528;&#xFF1F;&#x4E3A;&#x4EC0;&#x4E48;&#xFF1F;&#x600E;&#x4E48;&#x89E3;&#x51B3;&#xFF1F;">PerformSelector:afterDelay:&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x5728;&#x5B50;&#x7EBF;&#x7A0B;&#x4E2D;&#x662F;&#x5426;&#x8D77;&#x4F5C;&#x7528;&#xFF1F;&#x4E3A;&#x4EC0;&#x4E48;&#xFF1F;&#x600E;&#x4E48;&#x89E3;&#x51B3;&#xFF1F;</h3>
+<p>&#x56E0;&#x4E3A;&#x5B50;&#x7EBF;&#x7A0B;&#x9ED8;&#x8BA4;&#x6CA1;&#x6709;&#x5F00;&#x542F;Runloop&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x6CA1;&#x6709;&#x5B9A;&#x65F6;&#x5668;,&#x5728;  [self performSelector:@selector(delayTest) withObject:nil afterDelay:0.2] &#x5C31;&#x4E0D;&#x4F1A;&#x8D77;&#x4F5C;&#x7528;,&#x9700;&#x8981;&#x5728;&#x5B50;&#x7EBF;&#x7A0B;&#x4E2D;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;runloop&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x5B9A;&#x65F6;&#x5668;&#x6DFB;&#x52A0;&#x5230;runloop&#x4E2D;,&#x4F46;&#x662F;&#x5982;&#x679C;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;Runloop&#x5C31;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4E86;&#x3002;</p>
+<p>[self performSelector:@selector(noDelayTest) withObject:nil] &#x5C31;&#x4F1A;&#x8C03;&#x7528;&#x5230;,&#x56E0;&#x4E3A;&#x5728;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#x53BB;&#x8C03;&#x7528;&#x5F53;&#x7136;&#x662F;&#x53EF;&#x4EE5;&#x7684;&#x3002;&#x5176;&#x5B9E;performSelector &#x65B9;&#x6CD5;&#x76F8;&#x5F53;&#x4E8E;&#x544A;&#x8BC9;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#x53BB;&#x76F4;&#x63A5;&#x53BB;&#x8C03;&#x7528;noDelayTest&#x65B9;&#x6CD5;,noDelayTest&#x65B9;&#x6CD5;&#x5F53;&#x7136;&#x4F1A;&#x88AB;&#x8C03;&#x7528;&#x3002;</p>
+<p><div>
+<img src="image/7.png" style="zoom:30%;"></div></p>
+<div>
+
+
+<p>&#x5982;&#x679C;&#x4E0D;&#x60F3;&#x4F7F;&#x7528;afterDelay&#x53EF;&#x4EE5;&#x4F7F;&#x7528;dispatch_after&#x6765;&#x4EE3;&#x66FF;&#x4E0A;&#x8FF0;&#x51FA;&#x73B0;&#x7684;&#x95EE;&#x9898;&#x3002;</p>
+</div></div></div></div></div>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="计时器.html" class="navigation navigation-prev " aria-label="Previous page: 计时器实现原理">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="Runloop实际应用.html" class="navigation navigation-next " aria-label="Next page: Runloop应用">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Runloop原理","level":"1.8.2","depth":2,"next":{"title":"Runloop应用","level":"1.8.3","depth":2,"path":"Runloop/Runloop实际应用.md","ref":"Runloop/Runloop实际应用.md","articles":[]},"previous":{"title":"计时器实现原理","level":"1.8.1","depth":2,"path":"Runloop/计时器.md","ref":"Runloop/计时器.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Runloop/Runloop.md","mtime":"2020-06-23T04:03:25.769Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-06-23T05:10:41.331Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

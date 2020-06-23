@@ -1,0 +1,1140 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>dealloc实现原理 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="weak实现原理.html" />
+    
+    
+    <link rel="prev" href="autorelease原理.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    操作系统
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../操作系统/MachO.html">
+            
+                <a href="../操作系统/MachO.html">
+            
+                    
+                    Mach O结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../操作系统/编译原理.html">
+            
+                <a href="../操作系统/编译原理.html">
+            
+                    
+                    编译原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../操作系统/链接原理.html">
+            
+                <a href="../操作系统/链接原理.html">
+            
+                    
+                    链接原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../操作系统/staticAnalysis.html">
+            
+                <a href="../操作系统/staticAnalysis.html">
+            
+                    
+                    静态代码分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    内存管理
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="内存管理.html">
+            
+                <a href="内存管理.html">
+            
+                    
+                    内存管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="autorelease原理.html">
+            
+                <a href="autorelease原理.html">
+            
+                    
+                    autorelease原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3.3" data-path="dealloc实现原理.html">
+            
+                <a href="dealloc实现原理.html">
+            
+                    
+                    dealloc实现原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="weak实现原理.html">
+            
+                <a href="weak实现原理.html">
+            
+                    
+                    weak实现原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../多线程/多线程.html">
+            
+                <a href="../多线程/多线程.html">
+            
+                    
+                    多线程
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../多线程/GCD.html">
+            
+                <a href="../多线程/GCD.html">
+            
+                    
+                    GCD
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../多线程/NSOperation.html">
+            
+                <a href="../多线程/NSOperation.html">
+            
+                    
+                    NSOperation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../多线程/lock.html">
+            
+                <a href="../多线程/lock.html">
+            
+                    
+                    线程锁分类
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    消息传递机制
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../消息传递机制/Block.html">
+            
+                <a href="../消息传递机制/Block.html">
+            
+                    
+                    Block原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../消息传递机制/NSNotification.html">
+            
+                <a href="../消息传递机制/NSNotification.html">
+            
+                    
+                    NSNotification原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../消息传递机制/KVO.html">
+            
+                <a href="../消息传递机制/KVO.html">
+            
+                    
+                    KVO原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    循环引用
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../循环引用/循环引用.html">
+            
+                <a href="../循环引用/循环引用.html">
+            
+                    
+                    循环引用种类
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" >
+            
+                <span>
+            
+                    
+                    内存管理泄露追溯方案
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" >
+            
+                <span>
+            
+                    
+                    Runtime
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../Runtime/Class/Class.html">
+            
+                <a href="../Runtime/Class/Class.html">
+            
+                    
+                    Class结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../Runtime/Category/Category.html">
+            
+                <a href="../Runtime/Category/Category.html">
+            
+                    
+                    Category实现原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="../Runtime/Runtime/Runtime.html">
+            
+                <a href="../Runtime/Runtime/Runtime.html">
+            
+                    
+                    Runtime实际应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" >
+            
+                <span>
+            
+                    
+                    Runloop
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="../Runloop/计时器.html">
+            
+                <a href="../Runloop/计时器.html">
+            
+                    
+                    计时器实现原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="../Runloop/Runloop.html">
+            
+                <a href="../Runloop/Runloop.html">
+            
+                    
+                    Runloop原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="../Runloop/Runloop实际应用.html">
+            
+                <a href="../Runloop/Runloop实际应用.html">
+            
+                    
+                    Runloop应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" >
+            
+                <span>
+            
+                    
+                    性能优化
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" >
+            
+                <span>
+            
+                    
+                    启动时长
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" >
+            
+                <span>
+            
+                    
+                    包体积优化
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" >
+            
+                <span>
+            
+                    
+                    编译时长
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" >
+            
+                <span>
+            
+                    
+                    Feed优化
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" >
+            
+                <span>
+            
+                    
+                    算法相关
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" >
+            
+                <span>
+            
+                    
+                    二叉树
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" >
+            
+                <span>
+            
+                    
+                    链表
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >dealloc实现原理</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h3 id="retaincount-&#x5B9E;&#x73B0;&#x673A;&#x5236;">retainCount &#x5B9E;&#x73B0;&#x673A;&#x5236;</h3>
+<p>SideTable&#x6E90;&#x7801;</p>
+<pre><code class="lang-objective-c">typedef objc::DenseMap&lt;DisguisedPtr&lt;objc_object&gt;,size_t,RefcountMapValuePurgeable&gt; RefcountMap;
+struct SideTable {
+        //&#x8FD9;&#x91CC;&#x662F;&#x81EA;&#x65CB;&#x9501;
+    spinlock_t slock;
+    //&#x7528;&#x6765;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x7684;&#x8868;
+    RefcountMap refcnts;
+    //weak&#x8868;,&#x7528;&#x6765;&#x5B58;&#x50A8;weak&#x4FEE;&#x9970;&#x7684;&#x5BF9;&#x8C61;
+    weak_table_t weak_table;
+        ...
+};
+</code></pre>
+<pre><code class="lang-objective-c">objc_object::rootRetainCount() {
+    if (isTaggedPointer()) return (uintptr_t)this;
+    sidetable_lock();
+    isa_t bits = LoadExclusive(&amp;isa.bits);
+    ClearExclusive(&amp;isa.bits);
+    if (bits.nonpointer) { //&#x4F18;&#x5316;&#x8FC7;&#x7684; isa &#x6307;&#x9488;
+
+        uintptr_t rc = 1 + bits.extra_rc;
+        if (bits.has_sidetable_rc) { // &#x5F15;&#x7528;&#x8BA1;&#x6570;&#x6CA1;&#x6709;&#x5B58;&#x50A8;&#x5728; isa &#x6307;&#x9488;&#x4E2D;&#xFF0C;&#x5B58;&#x50A8;&#x5728; sidetable &#x4E2D;
+            rc += sidetable_getExtraRC_nolock();
+        }
+        sidetable_unlock();
+        return rc;
+    }
+    sidetable_unlock();
+    return sidetable_retainCount();
+}
+</code></pre>
+<p>&#x5148;&#x5224;&#x65AD;&#x662F;&#x5426;&#x662F; isTaggedPointer &#x5982;&#x679C;&#x662F;&#x5219;&#x76F4;&#x63A5;&#x8FD4;&#x56DE;&#x672C;&#x8EAB;&#x3002;&#x9996;&#x5148;&#x4ECE; isa &#x6307;&#x9488;&#x4E2D;&#x53D6;&#x51FA;&#x6570;&#x636E;&#x5224;&#x65AD;&#x662F;&#x5426;&#x662F; nonpointer &#x7C7B;&#x578B;&#xFF0C;&#x5982;&#x679C;&#x662F; nonpointer &#x7C7B;&#x578B;&#x5219;&#x8FDB;&#x884C;&#x5F15;&#x7528;&#x8BA1;&#x6570; +1&#x3002;</p>
+<pre><code class="lang-objective-c">objc_object::sidetable_getExtraRC_nolock() {
+    assert(isa.nonpointer);
+    SideTable&amp; table = SideTables()[this];
+    RefcountMap::iterator it = table.refcnts.find(this);
+    if (it == table.refcnts.end()) return 0;
+    else return it-&gt;second &gt;&gt; SIDE_TABLE_RC_SHIFT;
+}
+</code></pre>
+<p>&#x5982;&#x679C; isa &#x6307;&#x9488;&#x5B58;&#x50A8;&#x5DF2;&#x7ECF;&#x4F4D;&#x6570;&#x6EE1;&#x4E86;&#x5219;&#x5B58;&#x50A8;&#x5728;&#x4E86; sidetable &#x4E2D;, &#x90A3;&#x4E48;&#x4ECE; sidetable &#x4E2D;&#x7684; refcnts &#x5F15;&#x7528;&#x8BA1;&#x6570;&#x8868;&#x627E;&#x5230;&#x8FD9;&#x4E2A;&#x904D;&#x5386;&#x5668;&#xFF0C;&#x8FDB;&#x884C;&#x4E86;&#x5C06;&#x8FD9;&#x4E2A;&#x904D;&#x5386;&#x5668;&#x7684;&#x7B2C;&#x4E8C;&#x4F4D;&#x8FDB;&#x884C;&#x4E86;&#x4E00;&#x4E2A;&#x4F4D;&#x8FD0;&#x7B97;&#x540E;&#x8FD4;&#x56DE;&#x3002;</p>
+<h3 id="retain&#x7684;&#x5B9E;&#x73B0;&#x673A;&#x5236;">retain&#x7684;&#x5B9E;&#x73B0;&#x673A;&#x5236;</h3>
+<p>retain&#x7684;&#x5B9E;&#x73B0;&#x4E0E;&#x83B7;&#x53D6;reatainCount&#x7C7B;&#x4F3C;,&#x4E5F;&#x662F;&#x5148;&#x53D6;&#x51FA;</p>
+<pre><code class="lang-objective-c">_objc_rootRetain(id obj) {
+    ASSERT(obj);
+    return obj-&gt;rootRetain();
+}
+</code></pre>
+<p>&#x7B80;&#x5316;&#x540E;&#x57FA;&#x672C; rootRetain &#x7ED3;&#x6784;</p>
+<pre><code class="lang-objective-c">objc_object::rootRetain(bool tryRetain, bool handleOverflow) {
+    if (isTaggedPointer()) return (id)this;
+
+    bool sideTableLocked = false;
+    bool transcribeToSideTable = false;
+
+    isa_t oldisa;
+    isa_t newisa;
+
+    do {     
+        oldisa = LoadExclusive(&amp;isa.bits);
+        newisa = oldisa;
+          ...
+        uintptr_t carry;
+        newisa.bits = addc(newisa.bits, RC_ONE, 0, &amp;carry);  // extra_rc++
+          //&#x5224;&#x65AD;&#x5982;&#x679C;&#x8D85;&#x8FC7;19&#x4F4D;&#x9700;&#x8981;&#x8FDB;&#x4F4D;
+          ...
+
+    } while (slowpath(!StoreExclusive(&amp;isa.bits, oldisa.bits, newisa.bits)));
+        ...
+        ...
+    return (id)this;
+}
+</code></pre>
+<ul>
+<li><p>&#x4F7F;&#x7528; LoadExclusive(&amp;isa.bits) &#x53D6;&#x51FA;&#x65E7;&#x7684; isa &#x6570;&#x636E;&#xFF0C;&#x65B0;&#x7684; isa &#x6307;&#x9488;&#x6307;&#x5411;&#x65E7;&#x7684; isa &#x6307;&#x9488;</p>
+</li>
+<li><p>&#x4F7F;&#x7528; addc(newisa.bits, RC_ONE, 0, &amp;carry) &#x8FDB;&#x884C;&#x5F15;&#x7528;&#x8BA1;&#x6570; +1</p>
+</li>
+<li><p>&#x4F7F;&#x7528; slowpath(!StoreExclusive(&amp;isa.bits, oldisa.bits, newisa.bits)) &#x66F4;&#x65B0;&#x65B0;&#x7684;&#x5F15;&#x7528;&#x8BA1;&#x6570;</p>
+</li>
+<li><p>&#x8FD4;&#x56DE;&#x66F4;&#x65B0;&#x7684;&#x7684; isa &#x6307;&#x9488;</p>
+</li>
+</ul>
+<h4 id="&#x5982;&#x679C;-isa-&#x4E2D;&#x7684;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x8D85;&#x8FC7;19&#x4F4D;&#x5982;&#x4F55;&#x5904;&#x7406;&#xFF1F;&#x5982;&#x4F55;&#x8FDB;&#x4F4D;&#xFF1F;">&#x5982;&#x679C; isa &#x4E2D;&#x7684;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x8D85;&#x8FC7;19&#x4F4D;&#x5982;&#x4F55;&#x5904;&#x7406;&#xFF1F;&#x5982;&#x4F55;&#x8FDB;&#x4F4D;&#xFF1F;</h4>
+<pre><code class="lang-objective-c">do {
+  ....
+  ...
+  uintptr_t carry;
+  newisa.bits = addc(newisa.bits, RC_ONE, 0, &amp;carry);  // extra_rc++
+
+  // &#x5982;&#x679C; isa &#x4E2D;&#x7684;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x8D85;&#x8FC7;19&#x4F4D;&#x540E;&#x5219;&#x9700;&#x8981;&#x5C06;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x5B58;&#x50A8;&#x5230; sidetable &#x4E2D;
+  if (slowpath(carry)) {
+      // newisa.extra_rc++ overflowed
+      if (!handleOverflow) {
+          ClearExclusive(&amp;isa.bits);
+          return rootRetain_overflow(tryRetain);
+      }
+      // Leave half of the retain counts inline and 
+      // prepare to copy the other half to the side table.
+      if (!tryRetain &amp;&amp; !sideTableLocked) sidetable_lock();
+      sideTableLocked = true;
+      transcribeToSideTable = true;
+      newisa.extra_rc = RC_HALF;
+      newisa.has_sidetable_rc = true;
+  }
+}while(slowpath(!StoreExclusive(&amp;isa.bits, oldisa.bits, newisa.bits)))
+
+if (slowpath(transcribeToSideTable)) {
+    // Copy the other half of the retain counts to the side table.
+    sidetable_addExtraRC_nolock(RC_HALF);
+}
+
+if (slowpath(!tryRetain &amp;&amp; sideTableLocked)) sidetable_unlock();
+
+return (id)this;
+</code></pre>
+<p>&#x5982;&#x679C; isa &#x4E2D;&#x7684;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x8D85;&#x8FC7;19&#x4F4D;&#x540E;&#x5219;&#x9700;&#x8981;&#x5C06;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x5B58;&#x50A8;&#x5230; sidetable &#x4E2D;&#x4E14;&#x4FEE;&#x6539; isa &#x6307;&#x9488;&#x4E2D;&#x7684;&#x4E00;&#x4E9B;&#x6570;&#x636E;&#xFF0C;&#x5982; extra_rc &#x5DF2;&#x7ECF;&#x6EA2;&#x51FA;&#x4E86;&#x5219;&#x9700;&#x8981;&#x66F4;&#x65B0; isa &#x7684; extra_rc &#x7684;&#x503C;&#x4E3A; RC_HALF&#xFF0C;&#x8FD9;&#x4E2A;&#x503C;&#x4E3A; #define RC_HALF (1ULL&lt;&lt;18)&#xFF0C;&#x90A3;&#x4E48; extra_ra &#x7684;&#x503C;&#x5C31;&#x662F; 01b1000....000 &#x3002;&#x8BBE;&#x7F6E; has_sidetable_rc &#x7684;&#x503C;&#x4E3A; 1 &#x4E14;&#x8BBE;&#x7F6E;transcribeToSideTable &#x4E3A;&#x771F;&#x5C06;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x8F6C;&#x79FB;&#x5230; sidetable&#xFF0C; &#x8DF3;&#x51FA;&#x5FAA;&#x73AF;&#x8FDB;&#x884C; sidetable &#x4E2D;&#x7684;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x66F4;&#x65B0;&#xFF0C;&#x8C03;&#x7528; sidetable_addExtraRC_nolock &#x4F20;&#x5165; RC_HALF &#x503C;&#x3002;</p>
+<pre><code class="lang-objective-c">bool objc_object::sidetable_addExtraRC_nolock(size_t delta_rc) {
+    SideTable&amp; table = SideTables()[this];
+
+    size_t&amp; refcntStorage = table.refcnts[this];
+    size_t oldRefcnt = refcntStorage;
+
+    if (oldRefcnt &amp; SIDE_TABLE_RC_PINNED) return true;
+
+    uintptr_t carry;
+    size_t newRefcnt = addc(oldRefcnt, delta_rc &lt;&lt; SIDE_TABLE_RC_SHIFT, 0, &amp;carry);
+    if (carry) {
+        refcntStorage = SIDE_TABLE_RC_PINNED | (oldRefcnt &amp; SIDE_TABLE_FLAG_MASK);
+        return true;
+    } else {
+        refcntStorage = newRefcnt;
+        return false;
+    }
+}
+</code></pre>
+<h3 id="release-&#x7684;&#x5B9E;&#x73B0;&#x673A;&#x5236;">release &#x7684;&#x5B9E;&#x73B0;&#x673A;&#x5236;</h3>
+<p>release &#x5B9E;&#x73B0;&#x673A;&#x5236;&#x4E0E;retain &#x5927;&#x81F4;&#x76F8;&#x540C; &#x4E3B;&#x8981;&#x5B9E;&#x73B0;&#x5728;rootRelease&#x4E2D;</p>
+<pre><code class="lang-objective-c">objc_object::rootRelease(bool performDealloc, bool handleUnderflow) {
+    if (isTaggedPointer()) return false;
+
+    bool sideTableLocked = false;
+
+    isa_t oldisa;
+    isa_t newisa;
+
+ retry:
+    do {
+        oldisa = LoadExclusive(&amp;isa.bits);
+        newisa = oldisa;
+        if (slowpath(!newisa.nonpointer)) {
+            ClearExclusive(&amp;isa.bits);
+            if (sideTableLocked) sidetable_unlock();
+            return sidetable_release(performDealloc);
+        }
+        // don&apos;t check newisa.fast_rr; we already called any RR overrides
+        uintptr_t carry;
+        newisa.bits = subc(newisa.bits, RC_ONE, 0, &amp;carry);  // extra_rc--
+        if (slowpath(carry)) {
+            // don&apos;t ClearExclusive()
+            goto underflow;
+        }
+    } while (slowpath(!StoreReleaseExclusive(&amp;isa.bits,oldisa.bits, newisa.bits)));
+
+    if (slowpath(sideTableLocked)) sidetable_unlock();
+    return false;
+
+ underflow:
+    newisa = oldisa;
+    if (newisa.has_sidetable_rc) {
+        if (!handleUnderflow) {
+            return rootRelease_underflow(performDealloc);
+        }
+
+        size_t borrowed = sidetable_subExtraRC_nolock(RC_HALF);
+
+        if (borrowed &gt; 0) {
+            newisa.extra_rc = borrowed - 1;
+            bool stored = StoreExclusive(&amp;isa.bits, oldisa.bits, newisa.bits);
+            return false;
+        }
+
+        if (newisa.deallocating) {
+            return overrelease_error();
+        }
+        newisa.deallocating = true;
+        StoreExclusive(&amp;isa.bits, oldisa.bits, newisa.bits);
+
+        if (performDealloc) {
+            ((void(*)(objc_object *, SEL))objc_msgSend)(this, SEL_dealloc);
+        }
+    }
+}
+</code></pre>
+<p>&#x8FD9;&#x91CC;&#x662F;&#x9996;&#x5148;&#x51CF;&#x53BB;extra_rc &#x4E2D;&#x7684;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x662F; nonpointer &#x5219;&#x662F;&#x91C7;&#x7528; sidetable &#x8FDB;&#x884C;&#x7684;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x5219;&#x5C31;&#x4F1A;&#x8FDB;&#x5165; sidetable_release &#x8FDB;&#x884C;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x7684; -1 &#x64CD;&#x4F5C;&#x3002;&#x8FD8;&#x6709;&#x4E00;&#x79CD;&#x7279;&#x6B8A;&#x60C5;&#x51B5;&#x5C31;&#x662F;&#x4F4D;&#x6570;&#x8D85;&#x8FC7;19&#x4F4D;&#xFF0C;&#x4ECE; sidetable &#x4E2D;&#x8FDB;&#x884C;&#x501F;&#x4F4D;&#x8FDB;&#x884C;-1&#x64CD;&#x4F5C;&#x3002;&#x5982;&#x679C; release &#x64CD;&#x4F5C;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x4E3A;0&#x540E;&#x5219;&#x53D1;&#x9001;&#x6D88;&#x606F;&#x7ED9; dealloc &#x8FDB;&#x884C;&#x5BF9;&#x8C61;&#x7684;&#x56DE;&#x6536;&#x64CD;&#x4F5C;&#x3002;</p>
+<pre><code class="lang-objective-c">objc_object::sidetable_release(bool performDealloc) {
+#if SUPPORT_NONPOINTER_ISA
+    ASSERT(!isa.nonpointer);
+#endif
+
+    SideTable&amp; table = SideTables()[this];
+    bool do_dealloc = false;
+    table.lock();
+    auto it = table.refcnts.try_emplace(this, SIDE_TABLE_DEALLOCATING);
+    auto &amp;refcnt = it.first-&gt;second;
+    if (it.second) {
+        do_dealloc = true;
+    } else if (refcnt &lt; SIDE_TABLE_DEALLOCATING) {
+        //do_dealloc&#x72B6;&#x6001;&#x662F;&#x901A;&#x8FC7;&#x83B7;&#x53D6;&#x8868;&#x4E2D;&#x7684;
+        do_dealloc = true;
+        refcnt |= SIDE_TABLE_DEALLOCATING;
+    } else if (! (refcnt &amp; SIDE_TABLE_RC_PINNED)) {
+          //&#x8FD9;&#x91CC;&#x8FDB;&#x884C;&#x4E86;&#x6B63;&#x5E38;&#x7684;&#x8BA1;&#x6570;&#x51CF;&#x5C11;&#x64CD;&#x4F5C;,&#x51CF;&#x5C11; 4 &#x800C;&#x4E0D;&#x662F; 1
+        refcnt -= SIDE_TABLE_RC_ONE;
+    }
+
+    table.unlock();
+
+    //&#x8FD9;&#x91CC;&#x5224;&#x65AD;&#x662F;&#x5426;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x4E3A;0&#x4E86;&#x9700;&#x8981;&#x88AB;dealloc&#x56DE;&#x6536;
+    if (do_dealloc &amp;&amp; performDealloc) {
+        ((void(*)(objc_object *, SEL))objc_msgSend)(this, @selector(dealloc));
+    }
+    return do_dealloc;
+}
+</code></pre>
+<p>&#x770B;&#x5230;&#x8FD9;&#x91CC;&#x77E5;&#x9053;&#x4E3A;&#x4EC0;&#x4E48;&#x5728;&#x5B58;&#x50A8;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x65F6;&#x603B;&#x662F;&#x771F;&#x6B63;&#x7684;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x503C;&#x51CF;&#x4E00;&#x4E86;&#x5427;&#x3002;&#x56E0;&#x4E3A; <code>release</code> &#x672C;&#x6765;&#x662F;&#x8981;&#x5C06;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x51CF;&#x4E00;&#xFF0C;&#x6240;&#x4EE5;&#x5B58;&#x50A8;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x65F6;&#x5148;&#x9884;&#x7559;&#x4E86;&#x4E2A;&#x201C;&#x4E00;&#x201D;&#xFF0C;&#x5728;&#x51CF;&#x4E00;&#x4E4B;&#x524D;&#x5148;&#x770B;&#x770B;&#x5B58;&#x50A8;&#x7684;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x503C;&#x662F;&#x5426;&#x4E3A; 0 <code>&#xFF08;it-&gt;second &lt; SIDE_TABLE_DEALLOCATING&#xFF09;</code>&#xFF0C;&#x5982;&#x679C;&#x662F;&#xFF0C;&#x90A3;&#x5C31;&#x5C06;&#x5BF9;&#x8C61;&#x6807;&#x8BB0;&#x4E3A;&#x201C;&#x6B63;&#x5728;&#x6790;&#x6784;&#x201D;&#xFF08;<code>it-&gt;second |= SIDE_TABLE_DEALLOCATING&#xFF09;</code>,&#x5E76;&#x53D1;&#x9001; <code>dealloc</code> &#x6D88;&#x606F;&#xFF0C;&#x8FD4;&#x56DE; YES&#xFF1B;&#x5426;&#x5219;&#x5C31;&#x5C06;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x51CF;&#x4E00;<code>&#xFF08;it-&gt;second -= SIDE_TABLE_RC_ONE&#xFF09;</code>&#x3002;&#x8FD9;&#x6837;&#x505A;&#x907F;&#x514D;&#x4E86;&#x8D1F;&#x6570;&#x7684;&#x4EA7;&#x751F;&#x3002;</p>
+<h3 id="dealloc-&#x7684;&#x5B9E;&#x73B0;&#x673A;&#x5236;">dealloc &#x7684;&#x5B9E;&#x73B0;&#x673A;&#x5236;</h3>
+<p><code>dealloc</code> &#x7684;&#x5B9E;&#x73B0;&#x673A;&#x5236;&#x662F;&#x5185;&#x5BB9;&#x7BA1;&#x7406;&#x90E8;&#x5206;&#x7684;&#x91CD;&#x70B9;&#xFF0C;&#x628A;&#x8FD9;&#x4E2A;&#x77E5;&#x8BC6;&#x70B9;&#x5F04;&#x660E;&#x767D;&#xFF0C;&#x5BF9;&#x4E8E;&#x5168;&#x65B9;&#x4F4D;&#x7684;&#x7406;&#x89E3;&#x5185;&#x5B58;&#x7BA1;&#x7406;&#x7684;&#x53EA;&#x662F;&#x5F88;&#x6709;&#x5FC5;&#x8981;&#x3002;</p>
+<h4 id="dealloc-&#x8C03;&#x7528;&#x6D41;&#x7A0B;">dealloc &#x8C03;&#x7528;&#x6D41;&#x7A0B;</h4>
+<pre><code class="lang-objective-c">objc_object::rootDealloc(){
+    if (isTaggedPointer()) return;  // fixme necessary?
+    if (fastpath(isa.nonpointer  &amp;&amp;  
+                 !isa.weakly_referenced  &amp;&amp;  
+                 !isa.has_assoc  &amp;&amp;  
+                 !isa.has_cxx_dtor  &amp;&amp;  
+                 !isa.has_sidetable_rc))
+    {
+        assert(!sidetable_present());
+        free(this);
+    } 
+    else {
+        object_dispose((id)this);
+    }
+}
+</code></pre>
+<ul>
+<li>.&#x9996;&#x5148;&#x8C03;&#x7528; <code>_objc_rootDealloc()</code></li>
+<li>2.&#x63A5;&#x4E0B;&#x6765;&#x8C03;&#x7528; <code>rootDealloc()</code></li>
+<li>3.&#x8FD9;&#x65F6;&#x5019;&#x4F1A;&#x5224;&#x65AD;&#x662F;&#x5426;&#x53EF;&#x4EE5;&#x88AB;&#x91CA;&#x653E;&#xFF0C;&#x5224;&#x65AD;&#x7684;&#x4F9D;&#x636E;&#x4E3B;&#x8981;&#x6709;5&#x4E2A;&#xFF0C;&#x5224;&#x65AD;&#x662F;&#x5426;&#x6709;&#x4EE5;&#x4E0A;&#x4E94;&#x79CD;&#x60C5;&#x51B5;<ul>
+<li><code>NONPointer_ISA</code> //&#x975E;&#x6307;&#x9488;&#x7C7B;&#x578B;isa</li>
+<li><code>weakly_reference</code> //&#x662F;&#x5426;&#x5305;&#x542B;&#x5F31;&#x5F15;&#x7528;</li>
+<li><code>has_assoc</code> //&#x662F;&#x5426;&#x5305;&#x542B;&#x5173;&#x8054;&#x5BF9;&#x8C61;</li>
+<li><code>has_cxx_dtor</code> //&#x662F;&#x5426;&#x6709;&#x6790;&#x6784;</li>
+<li><code>has_sidetable_rc</code> //&#x662F;&#x5426;&#x6709;sideTable&#x5B58;&#x50A8;&#x4FE1;&#x606F;</li>
+</ul>
+</li>
+<li>4-1.&#x5982;&#x679C;&#x6709;&#x4EE5;&#x4E0A;&#x4E94;&#x4E2D;&#x4EFB;&#x610F;&#x4E00;&#x79CD;&#xFF0C;&#x5C06;&#x4F1A;&#x8C03;&#x7528; <code>object_dispose()</code>&#x65B9;&#x6CD5;&#xFF0C;&#x505A;&#x4E0B;&#x4E00;&#x6B65;&#x7684;&#x5904;&#x7406;&#x3002;</li>
+<li>4-2.&#x5982;&#x679C;&#x6CA1;&#x6709;&#x4E4B;&#x524D;&#x4E94;&#x79CD;&#x60C5;&#x51B5;&#x7684;&#x4EFB;&#x610F;&#x4E00;&#x79CD;&#xFF0C;&#x5219;&#x53EF;&#x4EE5;&#x6267;&#x884C;&#x91CA;&#x653E;&#x64CD;&#x4F5C;&#xFF0C;C&#x51FD;&#x6570;&#x7684; <code>free()</code>&#x3002;</li>
+<li>5.&#x6267;&#x884C;&#x5B8C;&#x6BD5;&#x3002;</li>
+</ul>
+<h4 id="objectdispose-&#x8C03;&#x7528;&#x6D41;&#x7A0B;">object_dispose() &#x8C03;&#x7528;&#x6D41;&#x7A0B;</h4>
+<pre><code class="lang-objective-c">object_dispose(id obj) {
+    if (!obj) return nil;
+    objc_destructInstance(obj);    
+    free(obj);
+
+    return nil;
+}
+</code></pre>
+<ul>
+<li>1.&#x76F4;&#x63A5;&#x8C03;&#x7528; <code>objc_destructInstance()</code>&#x3002;</li>
+<li>2.&#x4E4B;&#x540E;&#x8C03;&#x7528; C&#x51FD;&#x6570;&#x7684; <code>free()</code>&#x3002;</li>
+</ul>
+<h4 id="objcdestructinstance-&#x8C03;&#x7528;&#x6D41;&#x7A0B;">objc_destructInstance() &#x8C03;&#x7528;&#x6D41;&#x7A0B;</h4>
+<pre><code class="lang-objective-c">void *objc_destructInstance(id obj) {
+    if (obj) {
+        // Read all of the flags at once for performance.
+        bool cxx = obj-&gt;hasCxxDtor();
+        bool assoc = obj-&gt;hasAssociatedObjects();
+
+        // This order is important.
+        if (cxx) object_cxxDestruct(obj); //&#x5982;&#x679C;&#x6709;c++ &#x6790;&#x6784;&#x51FD;&#x6570;&#x5219;&#x6267;&#x884C;object_cxxDestruct&#x9500;&#x6BC1;
+        if (assoc) _object_remove_assocations(obj); // &#x5982;&#x679C;&#x6709;&#x5173;&#x8054;&#x5BF9;&#x8C61;&#x5219;&#x8C03;&#x7528;object_remove_assocations&#x79FB;&#x9664;&#x5173;&#x8054;&#x5BF9;&#x8C61;
+        obj-&gt;clearDeallocating();
+    }
+    return obj;
+}
+</code></pre>
+<ul>
+<li>1.&#x5148;&#x5224;&#x65AD; <code>hasCxxDtor</code>&#xFF0C;&#x5982;&#x679C;&#x6709; <code>C++</code> &#x7684;&#x76F8;&#x5173;&#x5185;&#x5BB9;&#xFF0C;&#x8981;&#x8C03;&#x7528; <code>object_cxxDestruct()</code> &#xFF0C;&#x9500;&#x6BC1; <code>C++</code> &#x76F8;&#x5173;&#x7684;&#x5185;&#x5BB9;&#x3002;</li>
+<li>2.&#x518D;&#x5224;&#x65AD; <code>hasAssocitatedObjects</code>&#xFF0C;&#x5982;&#x679C;&#x6709;&#x7684;&#x8BDD;&#xFF0C;&#x8981;&#x8C03;&#x7528; <code>object_remove_associations()</code>&#xFF0C;&#x9500;&#x6BC1;&#x5173;&#x8054;&#x5BF9;&#x8C61;&#x7684;&#x4E00;&#x7CFB;&#x5217;&#x64CD;&#x4F5C;&#x3002;</li>
+<li>3.&#x7136;&#x540E;&#x8C03;&#x7528; <code>clearDeallocating()</code>&#x3002;</li>
+<li>4.&#x6267;&#x884C;&#x5B8C;&#x6BD5;&#x3002; </li>
+</ul>
+<h4 id="cleardeallocating-&#x8C03;&#x7528;&#x6D41;&#x7A0B;">clearDeallocating() &#x8C03;&#x7528;&#x6D41;&#x7A0B;</h4>
+<pre><code class="lang-objective-c">objc_object::clearDeallocating() {
+    if (slowpath(!isa.nonpointer)) {
+        // Slow path for raw pointer isa.
+        sidetable_clearDeallocating();
+    }
+    else if (slowpath(isa.weakly_referenced  ||  isa.has_sidetable_rc)) {
+        // Slow path for non-pointer isa with weak refs and/or side table data.
+        clearDeallocating_slow();
+    }
+
+    assert(!sidetable_present());
+}
+</code></pre>
+<pre><code class="lang-objective-c">objc_object::clearDeallocating_slow() {
+    assert(isa.nonpointer  &amp;&amp;  (isa.weakly_referenced || isa.has_sidetable_rc));
+
+    SideTable&amp; table = SideTables()[this];
+    table.lock();
+    if (isa.weakly_referenced) {
+        weak_clear_no_lock(&amp;table.weak_table, (id)this);
+    }
+    if (isa.has_sidetable_rc) {
+        table.refcnts.erase(this);
+    }
+    table.unlock();
+}
+</code></pre>
+<ul>
+<li>1.&#x5148;&#x6267;&#x884C; <code>sideTable_clearDellocating()</code>&#x3002;</li>
+<li>2.&#x518D;&#x6267;&#x884C; <code>weak_clear_no_lock</code>,&#x5728;&#x8FD9;&#x4E00;&#x6B65;&#x9AA4;&#x4E2D;&#xFF0C;&#x4F1A;&#x5C06;&#x6307;&#x5411;&#x8BE5;&#x5BF9;&#x8C61;&#x7684;&#x5F31;&#x5F15;&#x7528;&#x6307;&#x9488;&#x7F6E;&#x4E3A; <code>nil</code>&#x3002;</li>
+<li>3.&#x63A5;&#x4E0B;&#x6765;&#x6267;&#x884C; <code>table.refcnts.eraser()</code>&#xFF0C;&#x4ECE;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x8868;&#x4E2D;&#x64E6;&#x9664;&#x8BE5;&#x5BF9;&#x8C61;&#x7684;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x3002;</li>
+<li>4.&#x81F3;&#x6B64;&#x4E3A;&#x6B62;&#xFF0C;<code>dealloc</code> &#x7684;&#x6267;&#x884C;&#x6D41;&#x7A0B;&#x7ED3;&#x675F;&#x3002;</li>
+</ul>
+<h4 id="weak-&#x5C5E;&#x6027;&#x4FEE;&#x9970;&#x7684;&#x53D8;&#x91CF;&#xFF0C;&#x5982;&#x4F55;&#x5B9E;&#x73B0;&#x5728;&#x53D8;&#x91CF;&#x6CA1;&#x6709;&#x5F3A;&#x5F15;&#x7528;&#x540E;&#x81EA;&#x52A8;&#x7F6E;&#x4E3A;-nil">__weak &#x5C5E;&#x6027;&#x4FEE;&#x9970;&#x7684;&#x53D8;&#x91CF;&#xFF0C;&#x5982;&#x4F55;&#x5B9E;&#x73B0;&#x5728;&#x53D8;&#x91CF;&#x6CA1;&#x6709;&#x5F3A;&#x5F15;&#x7528;&#x540E;&#x81EA;&#x52A8;&#x7F6E;&#x4E3A; nil</h4>
+<pre><code class="lang-objective-c">weak_clear_no_lock(weak_table_t *weak_table, id referent_id) {
+    objc_object *referent = (objc_object *)referent_id;
+
+    weak_entry_t *entry = weak_entry_for_referent(weak_table, referent);
+    if (entry == nil) {
+        /// XXX shouldn&apos;t happen, but does with mismatched CF/objc
+        //printf(&quot;XXX no entry for clear deallocating %p\n&quot;, referent);
+        return;
+    }
+
+    // zero out references
+    weak_referrer_t *referrers;
+    size_t count;
+
+    if (entry-&gt;out_of_line()) {
+        referrers = entry-&gt;referrers;
+        count = TABLE_SIZE(entry);
+    } 
+    else {
+        referrers = entry-&gt;inline_referrers;
+        count = WEAK_INLINE_COUNT;
+    }
+
+    for (size_t i = 0; i &lt; count; ++i) {
+        objc_object **referrer = referrers[i];
+        if (referrer) {
+            if (*referrer == referent) {
+                *referrer = nil;
+            }
+            else if (*referrer) {
+                _objc_inform(&quot;__weak variable at %p holds %p instead of %p. &quot;
+                             &quot;This is probably incorrect use of &quot;
+                             &quot;objc_storeWeak() and objc_loadWeak(). &quot;
+                             &quot;Break on objc_weak_error to debug.\n&quot;, 
+                             referrer, (void*)*referrer, (void*)referent);
+                objc_weak_error();
+            }
+        }
+    }
+
+    weak_entry_remove(weak_table, entry);
+}
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="autorelease原理.html" class="navigation navigation-prev " aria-label="Previous page: autorelease原理">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="weak实现原理.html" class="navigation navigation-next " aria-label="Next page: weak实现原理">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"dealloc实现原理","level":"1.3.3","depth":2,"next":{"title":"weak实现原理","level":"1.3.4","depth":2,"path":"内存管理/weak实现原理.md","ref":"内存管理/weak实现原理.md","articles":[]},"previous":{"title":"autorelease原理","level":"1.3.2","depth":2,"path":"内存管理/autorelease原理.md","ref":"内存管理/autorelease原理.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"内存管理/dealloc实现原理.md","mtime":"2020-06-22T04:09:32.425Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-06-23T05:10:41.331Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

@@ -1,0 +1,1312 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Block原理 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="NSNotification.html" />
+    
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    操作系统
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../操作系统/MachO.html">
+            
+                <a href="../操作系统/MachO.html">
+            
+                    
+                    Mach O结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../操作系统/编译原理.html">
+            
+                <a href="../操作系统/编译原理.html">
+            
+                    
+                    编译原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../操作系统/链接原理.html">
+            
+                <a href="../操作系统/链接原理.html">
+            
+                    
+                    链接原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../操作系统/staticAnalysis.html">
+            
+                <a href="../操作系统/staticAnalysis.html">
+            
+                    
+                    静态代码分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    内存管理
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../内存管理/内存管理.html">
+            
+                <a href="../内存管理/内存管理.html">
+            
+                    
+                    内存管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../内存管理/autorelease原理.html">
+            
+                <a href="../内存管理/autorelease原理.html">
+            
+                    
+                    autorelease原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../内存管理/dealloc实现原理.html">
+            
+                <a href="../内存管理/dealloc实现原理.html">
+            
+                    
+                    dealloc实现原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../内存管理/weak实现原理.html">
+            
+                <a href="../内存管理/weak实现原理.html">
+            
+                    
+                    weak实现原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../多线程/多线程.html">
+            
+                <a href="../多线程/多线程.html">
+            
+                    
+                    多线程
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../多线程/GCD.html">
+            
+                <a href="../多线程/GCD.html">
+            
+                    
+                    GCD
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../多线程/NSOperation.html">
+            
+                <a href="../多线程/NSOperation.html">
+            
+                    
+                    NSOperation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../多线程/lock.html">
+            
+                <a href="../多线程/lock.html">
+            
+                    
+                    线程锁分类
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    消息传递机制
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.5.1" data-path="Block.html">
+            
+                <a href="Block.html">
+            
+                    
+                    Block原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="NSNotification.html">
+            
+                <a href="NSNotification.html">
+            
+                    
+                    NSNotification原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="KVO.html">
+            
+                <a href="KVO.html">
+            
+                    
+                    KVO原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    循环引用
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../循环引用/循环引用.html">
+            
+                <a href="../循环引用/循环引用.html">
+            
+                    
+                    循环引用种类
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" >
+            
+                <span>
+            
+                    
+                    内存管理泄露追溯方案
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" >
+            
+                <span>
+            
+                    
+                    Runtime
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../Runtime/Class/Class.html">
+            
+                <a href="../Runtime/Class/Class.html">
+            
+                    
+                    Class结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../Runtime/Category/Category.html">
+            
+                <a href="../Runtime/Category/Category.html">
+            
+                    
+                    Category实现原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="../Runtime/Runtime/Runtime.html">
+            
+                <a href="../Runtime/Runtime/Runtime.html">
+            
+                    
+                    Runtime实际应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" >
+            
+                <span>
+            
+                    
+                    Runloop
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="../Runloop/计时器.html">
+            
+                <a href="../Runloop/计时器.html">
+            
+                    
+                    计时器实现原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="../Runloop/Runloop.html">
+            
+                <a href="../Runloop/Runloop.html">
+            
+                    
+                    Runloop原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="../Runloop/Runloop实际应用.html">
+            
+                <a href="../Runloop/Runloop实际应用.html">
+            
+                    
+                    Runloop应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" >
+            
+                <span>
+            
+                    
+                    性能优化
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" >
+            
+                <span>
+            
+                    
+                    启动时长
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" >
+            
+                <span>
+            
+                    
+                    包体积优化
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" >
+            
+                <span>
+            
+                    
+                    编译时长
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" >
+            
+                <span>
+            
+                    
+                    Feed优化
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" >
+            
+                <span>
+            
+                    
+                    算法相关
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" >
+            
+                <span>
+            
+                    
+                    二叉树
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" >
+            
+                <span>
+            
+                    
+                    链表
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Block原理</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h3 id="&#x4EC0;&#x4E48;&#x662F;-block">&#x4EC0;&#x4E48;&#x662F; Block</h3>
+<p>&#x5C01;&#x88C5;&#x4E86;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x5B9E;&#x73B0;&#x7684;&#x51FD;&#x6570;&#x6307;&#x9488;&#x4E14;&#x5C06;&#x4E00;&#x4E9B;&#x53D8;&#x91CF;&#x5C01;&#x88C5;&#x5728;block&#x5185;&#x90E8;&#x4F5C;&#x4E3A;&#x4F7F;&#x7528;&#xFF0C;&#x8C03;&#x7528;block&#x65F6;&#x76F8;&#x5F53;&#x4E8E;&#x8C03;&#x7528;&#x7684;&#x662F;&#x5C01;&#x88C5;&#x51FD;&#x6570;&#x7684;&#x5730;&#x5740;&#x3002;&#x5176;&#x5B9E;&#x4E5F;&#x5C31;&#x662F;&#x5C01;&#x88C5;&#x51FD;&#x6570;&#x7684;&#x5730;&#x5740;&#x4E5F;&#x5C31;&#x662F;&#x51FD;&#x6570;&#x6307;&#x9488;&#x3002;</p>
+<p><div>
+<img src="7.png" style="zoom:30%;"></div></p>
+<p><div></div></p>
+<h3 id="block-&#x548C;--&#x51FD;&#x6570;&#x6307;&#x9488;-&#x7684;&#x533A;&#x522B;">Block &#x548C;  &#x51FD;&#x6570;&#x6307;&#x9488; &#x7684;&#x533A;&#x522B;</h3>
+<h3 id="block-&#x5728;--arc--&#x548C;--mrc-&#x4E0B;&#x6709;&#x4EC0;&#x4E48;&#x4E0D;&#x540C;">block &#x5728;  ARC  &#x548C;  MRC &#x4E0B;&#x6709;&#x4EC0;&#x4E48;&#x4E0D;&#x540C;</h3>
+<ul>
+<li><p>MRC</p>
+<ul>
+<li><p>&#x975E;&#x5168;&#x5C40;&#x7684;block&#x5B9E;&#x73B0;&#x662F;&#x5728;&#x6808;&#x4E2D;&#x751F;&#x6210;&#x7684;</p>
+</li>
+<li><p>&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x53C2;&#x6570;&#x4E3A; block &#x5185;&#x90E8;&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x4E34;&#x65F6;&#x53D8;&#x91CF;&#x751F;&#x6210;&#x5728;&#x6808;&#x4E0A;&#xFF0C;&#x8FD4;&#x56DE;&#x65F6;&#x9700;&#x8981;&#x8FDB;&#x884C;copy&#x64CD;&#x4F5C;&#xFF0C;</p>
+<pre><code>&#x5426;&#x5219;&#x8C03;&#x7528;&#x5176;&#x51FD;&#x6570;&#x51FA;&#x73B0;&#x9519;&#x8BEF;&#x3002;
+</code></pre><ul>
+<li><p>Block &#x9700;&#x8981;&#x624B;&#x52A8;&#x91CA;&#x653E;</p>
+</li>
+<li><p>&#x4F7F;&#x7528;__block&#x4FEE;&#x9970;&#x540E;&#x6355;&#x83B7;&#x5916;&#x90E8;&#x5BF9;&#x8C61;&#x65F6;&#x5728;block&#x5185;&#x90E8;&#x5B9E;&#x73B0;&#x6CA1;&#x6709;&#x8FDB;&#x884C;&#x5F3A;&#x5F15;&#x7528;&#x6355;&#x83B7;&#x7684;&#x5BF9;&#x8C61;</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>ARC</p>
+<ul>
+<li>&#x81EA;&#x52A8;&#x4ECE;&#x6808;&#x4E2D;&#x590D;&#x5236;&#x5230;&#x5806;&#x4E0A;&#xFF0C;ARC&#x9ED8;&#x8BA4;&#x5B9E;&#x73B0;&#x4E86;block copy</li>
+<li>&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x53C2;&#x6570;&#x4E3A; block &#x5185;&#x90E8;&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x4E34;&#x65F6;&#x53D8;&#x91CF;&#x751F;&#x6210;&#x5728;&#x6808;&#x4E0A;&#xFF0C;&#x81EA;&#x52A8;&#x8FDB;&#x884C;&#x4E86;copy</li>
+<li>&#x4F7F;&#x7528;__block&#x4FEE;&#x9970;&#x540E;&#x6355;&#x83B7;&#x5916;&#x90E8;&#x5BF9;&#x8C61;&#x65F6;Block&#x5185;&#x90E8;&#x9488;&#x5BF9;&#x6355;&#x83B7;&#x7684;&#x5BF9;&#x8C61;&#x8FDB;&#x884C;&#x4E86;&#x5F3A;&#x5F15;&#x7528;&#xFF0C;&#x5BB9;&#x6613;&#x51FA;&#x73B0;&#x5FAA;&#x73AF;&#x5F15;&#x7528;&#x7684;&#x95EE;&#x9898;</li>
+</ul>
+</li>
+</ul>
+<h3 id="block-&#x6709;&#x51E0;&#x79CD;&#x7C7B;&#x578B;">Block &#x6709;&#x51E0;&#x79CD;&#x7C7B;&#x578B;</h3>
+<p><div>
+<img src="4.png" style="zoom:30%;"></div></p>
+<p><div></div></p>
+<pre><code class="lang-objective-c">int b =3;
+void test() {
+    void (^block1)(void) = ^{
+        NSLog(@&quot;block1---------&quot;);
+    };
+
+    static int a = 2;
+      void (^block2)(void) = ^{
+        NSLog(@&quot;block2---------%d&quot;,a);
+    };
+
+      void (^block2)(void) = ^{
+        NSLog(@&quot;block2---------%d&quot;,b);
+    };
+}
+</code></pre>
+<p>&#x6CA1;&#x6709;&#x8BBF;&#x95EE;auto&#x53D8;&#x91CF;&#x5219;&#x5C31;&#x662F; NSGlobalBlock&#x3002;&#x8BBF;&#x95EE;&#x5176;&#x4ED6;&#x7684;&#x7684;&#x53D8;&#x91CF;&#x5982;&#x5168;&#x5C40;&#x53D8;&#x91CF;&#xFF0C;&#x9759;&#x6001;&#x53D8;&#x91CF;&#x90FD;&#x662F;NSGlobalBlock&#x7C7B;&#x578B;&#x7684; block&#xFF0C;&#x5982;&#x679C;&#x53EA;&#x8981;&#x8BBF;&#x95EE; auto&#x53D8;&#x91CF;&#x5C31;&#x662F; NSStackBlock &#x7C7B;&#x578B;&#x3002;</p>
+<pre><code class="lang-objective-c">void test() {
+    int a = 2;
+      void (^block2)(void) = ^{
+        NSLog(@&quot;block2---------%d&quot;,a);
+    };
+}
+</code></pre>
+<p>&#x6B63;&#x5E38;&#x60C5;&#x51B5;&#x4E0B;&#x53EA;&#x8981;&#x8BBF;&#x95EE;&#x4E86; auto &#x53D8;&#x91CF;&#x5C31;&#x662F; NSStackBlock &#x7C7B;&#x578B;&#xFF0C;&#x4F46;&#x662F;&#x6211;&#x4EEC;&#x7684;&#x7A0B;&#x5E8F;&#x9ED8;&#x8BA4;&#x662F;&#x5F00;&#x542F;&#x7684;ARC&#x6A21;&#x5F0F;&#xFF0C;&#x6240;&#x4EE5;&#x6253;&#x5370;&#x51FA;&#x53EF;&#x80FD;&#x5C31;&#x662F;NSMallocBlock &#x7C7B;&#x578B;&#xFF0C;&#x76F8;&#x5F53;&#x4E8E;ARC&#x81EA;&#x52A8;&#x505A;&#x4E86;copy &#x64CD;&#x4F5C;&#x5C06;block&#x590D;&#x5236;&#x5230;&#x5806;&#x4E0A;&#xFF0C;&#x4F46;&#x662F;&#x5982;&#x679C;&#x5728;MRC&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x53EA;&#x8981;&#x8BBF;&#x95EE;&#x4E86;auto &#x53D8;&#x91CF;&#x5C31;&#x662F; NSStackBlock &#x7C7B;&#x578B;&#x7684; block &#x3002;</p>
+<h4 id="nsstackblock-&#x5B58;&#x5728;&#x7684;&#x95EE;&#x9898;">NSStackBlock &#x5B58;&#x5728;&#x7684;&#x95EE;&#x9898;</h4>
+<pre><code class="lang-objective-c">void (^block)(void);
+void test2() {
+    // NSStackBlock
+    int age = 10;
+    block = ^{
+        NSLog(@&quot;block---------%d&quot;, age);
+    };
+}
+int main(int argc, const char * argv[]) {
+    @autoreleasepool {
+        test2();
+        block();
+    }
+    return 0;
+}
+
+2020-06-22 11:52:50.649339+0800 Interview01-Block&#x7684;&#x672C;&#x8D28;[94048:15102090] block----------272632840
+</code></pre>
+<p>&#x8FD9;&#x6BB5;&#x4EE3;&#x7801;&#x4F1A;&#x51FA;&#x73B0;&#x6570;&#x636E;&#x9519;&#x4E71;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x6253;&#x5370;&#x7684;&#x7ED3;&#x679C;&#x662F;272632840 age &#x7684;&#x503C;&#x4E0D;&#x5E94;&#x8BE5;&#x662F; 10 &#x561B;&#xFF1F;&#x90A3;&#x4E48;clang &#x4E00;&#x4E0B;&#x4EE3;&#x7801;&#x770B;&#x770B;&#x53D1;&#x751F;&#x4E86;&#x4EC0;&#x4E48;&#xFF1F;</p>
+<pre><code class="lang-objective-c">void (*block)(void);
+struct __test2_block_impl_0 {
+  struct __block_impl impl;
+  struct __test2_block_desc_0* Desc;
+  int age;
+  __test2_block_impl_0(void *fp, struct __test2_block_desc_0 *desc, int _age, int flags=0) : age(_age) {
+    impl.isa = &amp;_NSConcreteStackBlock;
+    impl.Flags = flags;
+    impl.FuncPtr = fp;
+    Desc = desc;
+  }
+};
+
+static void __test2_block_func_0(struct __test2_block_impl_0 *__cself) {
+  int age = __cself-&gt;age; // bound by copy
+        NSLog((NSString *)&amp;__NSConstantStringImpl__var_folders_7b_9l5163j531jb19nqq016c6d40000gn_T_main_775733_mi_0, age);
+    }
+
+static struct __test2_block_desc_0 {
+  size_t reserved;
+  size_t Block_size;
+} __test2_block_desc_0_DATA = { 0, sizeof(struct __test2_block_impl_0)};
+
+void test2() {
+    int age = 10;
+    block = ((void (*)())&amp;__test2_block_impl_0((void *)__test2_block_func_0, &amp;__test2_block_desc_0_DATA, age));
+}
+int main(int argc, const char * argv[]) {
+    /* @autoreleasepool */ { __AtAutoreleasePool __autoreleasepool; 
+        test2();
+        ((void (*)(__block_impl *))((__block_impl *)block)-&gt;FuncPtr)((__block_impl *)block);
+    }
+    return 0;
+}
+</code></pre>
+<p> &#x56E0;&#x4E3A;<code>((void (*)())&amp;__test2_block_impl_0((void *)__test2_block_func_0, &amp;__test2_block_desc_0_DATA, age))</code>&#x662F;&#x5728;&#x6808;&#x4E0A;&#x751F;&#x6210;&#x7684;&#xFF0C;&#x8D4B;&#x503C;&#x7ED9;&#x5168;&#x5C40;&#x7684;block&#x3002;&#x4F46;&#x662F;&#x7531;&#x4E8E;&#x6808;&#x4E0A;&#x7684; block&#x7684;&#x5B9E;&#x73B0;&#x5728; test&#x65B9;&#x6CD5; &#x8C03;&#x7528;&#x540E;&#x5C31;&#x4F1A;&#x91CA;&#x653E;&#xFF0C;&#x90A3;&#x4E48;&#x6808;&#x4E0A;&#x7684;&#x5B9E;&#x73B0;&#x7684; block &#x5730;&#x5740;&#x5B58;&#x50A8;&#x7684;&#x4E0D;&#x4E00;&#x5B9A;&#x662F;&#x4EC0;&#x4E48;&#x4EC0;&#x4E48;&#x4E1C;&#x897F;&#x3002;&#x8FD9;&#x65F6;&#x5728;&#x53BB;&#x8C03;&#x7528;&#x5168;&#x5C40;&#x7684;block&#x5C31;&#x4F1A;&#x51FA;&#x73B0;&#x6570;&#x636E;&#x8BBF;&#x95EE;&#x9519;&#x8BEF;&#x7684;&#x60C5;&#x51B5;&#x51FA;&#x73B0;&#x3002;&#x90A3;&#x4E48;&#x5E94;&#x8BE5;&#x5982;&#x4F55;&#x89E3;&#x51B3;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x5462;&#xFF1F;&#x9700;&#x8981;&#x628A;&#x6808;&#x4E0A;&#x7684; block &#x5730;&#x5740;&#x590D;&#x5236;&#x5230;&#x5806;&#x4E0A;&#x5C31;&#x4E0D;&#x4F1A;&#x51FA;&#x73B0;&#x4E86;&#x6570;&#x636E;&#x9519;&#x8BEF;&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x56E0;&#x4E3A;&#x5728;&#x5806;&#x4E0A;&#x7684;&#x6570;&#x636E;&#x4E0D;&#x4F1A;&#x88AB;&#x91CA;&#x653E;&#x6240;&#x4EE5;&#x8BB2; NSStackBlock &#x8FDB;&#x884C; copy &#x64CD;&#x4F5C;&#x540E;&#x5C31;&#x4F1A; &#x53D8;&#x6210; NSMallocBlock &#x540E;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#x3002;</p>
+<pre><code class="lang-objective-c">void test2() {
+    // NSStackBlock
+    int age = 10;
+    block = [^{
+        NSLog(@&quot;block---------%d&quot;, age);
+    }copy];
+      // copy &#x5230;&#x5806;&#x4E0A;&#x540E;&#x9700;&#x8981;&#x9500;&#x6BC1;
+      [block release];
+}
+</code></pre>
+<p>&#x5982;&#x679C; NSGloalBlock &#x8C03;&#x7528;copy &#x65B9;&#x6CD5;&#x6CA1;&#x6709;&#x6539;&#x53D8;&#x8FD8;&#x662F; NSGloalBlock &#x7C7B;&#x578B;&#x4E0D;&#x4F1A;&#x590D;&#x5236;&#x5230;&#x5806;&#x4E0A;&#xFF0C;&#x5982;&#x679C;&#x662F; NSMallocBlock  &#x6267;&#x884C; copy &#x4E5F;&#x8FD8;&#x662F;&#x5728;&#x5806;&#x4E0A;&#x4F46;&#x662F;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x4F1A; +1&#x3002;</p>
+<p><div>
+<img src="3.png" style="zoom:35%;"></div></p>
+<p><div></div></p>
+<h3 id="block&#x7684;&#x5C5E;&#x6027;&#x4FEE;&#x9970;&#x8BCD;&#x4E3A;&#x4EC0;&#x4E48;&#x662F;copy">block&#x7684;&#x5C5E;&#x6027;&#x4FEE;&#x9970;&#x8BCD;&#x4E3A;&#x4EC0;&#x4E48;&#x662F;copy</h3>
+<p><div>
+<img src="8.png" style="zoom:35%;"></div></p>
+<div>
+
+<pre><code class="lang-objective-c">typedef void (^MJBlock)(void);
+MJBlock myblock() {
+    return ^{
+        NSLog(@&quot;---------&quot;);
+    };
+}
+int main(int argc, const char * argv[]) {
+    @autoreleasepool {
+        int age = 10;
+        MJBlock block = ^{
+            NSLog(@&quot;---------%d&quot;, age);
+        };
+        NSLog(@&quot;%@&quot;, [block class]);
+    }
+    return 0;
+}
+</code></pre>
+<p>&#x56E0;&#x4E3A; NSSatckBlock &#x5728;&#x4F5C;&#x7528;&#x57DF;&#x7ED3;&#x675F;&#x540E;&#x5C31;&#x5185;&#x5B58;&#x5C31;&#x9500;&#x6BC1;&#x4E86;&#xFF0C;&#x6240;&#x4EE5;&#x9700;&#x8981;&#x62F7;&#x8D1D;&#x5230;&#x5806;&#x4E0A;&#x53EF;&#x4EE5;&#x4FDD;&#x6301;&#x7684;&#x66F4;&#x4E45;&#x3002;&#x5728; ARC &#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x8FD4;&#x56DE; block &#x4F1A;&#x81EA;&#x52A8;&#x6DFB;&#x52A0; copy &#x5219;&#x8FD4;&#x56DE;&#x7684;&#x4E8B; NSMallocBlock &#x7C7B;&#x578B;&#xFF0C;&#x5982;&#x679C;&#x662F;&#x5728; MRC &#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x5219;&#x8FD4;&#x56DE;&#x7684;&#x662F; NSStackBlock&#x7C7B;&#x578B;&#xFF0C;&#x5728;&#x51FD;&#x6570;&#x8C03;&#x7528;&#x5B8C;&#x6210;&#x540E;block&#x5730;&#x5740;&#x4F1A;&#x9500;&#x6BC1;&#x3002; &#x5982;&#x679C;&#x4E0D;&#x8BBF;&#x95EE;&#x4EFB;&#x4F55;&#x53D8;&#x91CF;&#x8FD4;&#x56DE; NSGloalBlock &#x5728; ARC &#x548C; MRC &#x4E0B;&#x662F;&#x6CA1;&#x6709;&#x533A;&#x522B;&#x7684;&#x3002;GCD&#x4F1A;&#x88AB;&#x81EA;&#x52A8;&#x590D;&#x5236;&#x5230;&#x5806;&#x4E0A;&#x6240;&#x4EE5;&#x4E0D;&#x7528;&#x5173;&#x5FC3;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x3002;</p>
+<h3 id="block-&#x81EA;&#x52A8;&#x622A;&#x53D6;&#x53D8;&#x91CF;">Block &#x81EA;&#x52A8;&#x622A;&#x53D6;&#x53D8;&#x91CF;</h3>
+<pre><code class="lang-objective-c">void (^block)(void);
+void test() {
+    int age = 10;
+    static int height = 10;
+    block = ^{
+        // age&#x7684;&#x503C;&#x6355;&#x83B7;&#x8FDB;&#x6765;&#xFF08;capture&#xFF09;
+        NSLog(@&quot;age is %d, height is %d&quot;, age, height);
+    };
+    age = 20;
+    height = 20;
+}
+</code></pre>
+<p>clang &#x540E;</p>
+<pre><code class="lang-objective-c">struct __test_block_impl_0 {
+  struct __block_impl impl;
+  struct __test_block_desc_0* Desc;
+  int age;
+  int *height;
+  __test_block_impl_0(void *fp, struct __test_block_desc_0 *desc, int _age, int *_height, int flags=0) : age(_age), height(_height) {
+    impl.isa = &amp;_NSConcreteStackBlock;
+    impl.Flags = flags;
+    impl.FuncPtr = fp;
+    Desc = desc;
+  }
+};
+
+static void __test_block_func_0(struct __test_block_impl_0 *__cself) {
+  int age = __cself-&gt;age; // bound by copy
+  int *height = __cself-&gt;height; // bound by copy
+        NSLog((NSString *)&amp;__NSConstantStringImpl__var_folders_2r__m13fp2x2n9dvlr8d68yry500000gn_T_main_d2875b_mi_0, age, (*height));
+    }
+
+static struct __test_block_desc_0 {
+  size_t reserved;
+  size_t Block_size;
+} __test_block_desc_0_DATA = { 0, sizeof(struct __test_block_impl_0)};
+
+void test() {
+    int age = 10;
+    static int height = 10;
+
+    block = ((void (*)())&amp;__test_block_impl_0((void *)__test_block_func_0, &amp;__test_block_desc_0_DATA, age, &amp;height));
+
+    age = 20;
+    height = 20;
+}
+
+int main(int argc, const char * argv[]) {
+    /* @autoreleasepool */ { __AtAutoreleasePool __autoreleasepool;
+        test();
+        ((void (*)(__block_impl *))((__block_impl *)block)-&gt;FuncPtr)((__block_impl *)block);
+    }
+    return 0;
+}
+</code></pre>
+<ul>
+<li>&#x5C40;&#x90E8;&#x53D8;&#x91CF;auto&#x53D8;&#x91CF;</li>
+</ul>
+<p>&#x5982;&#x679C;&#x6355;&#x83B7;&#x7684;&#x7684;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x4E5F;&#x5C31;&#x662F;auto&#x53D8;&#x91CF;&#xFF0C;&#x9ED8;&#x8BA4;&#x6355;&#x83B7;&#x7684;&#x53D8;&#x91CF;&#x76F8;&#x5F53;&#x4E8E;&#x53EA;&#x662F;&#x5C06;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x5728;&#x5185;&#x90E8;&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x76F8;&#x540C;&#x7684;&#x53D8;&#x91CF;&#xFF0C;&#x5728;Block&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x4E2D;&#x8FDB;&#x884C;&#x4E86;&#x590D;&#x5236;&#x64CD;&#x4F5C;&#xFF0C;&#x5B9E;&#x9645;&#x662F;&#x503C;&#x4F20;&#x9012;&#x3002;&#x6240;&#x4EE5;&#x5728;&#x5916;&#x90E8;&#x5373;&#x4F7F;&#x6539;&#x53D8;&#x4E86;&#x53D8;&#x91CF;&#xFF0C;&#x5728;block&#x5185;&#x90E8;&#x4E2D;&#x6355;&#x83B7;&#x7684;&#x53D8;&#x91CF;&#x4E5F;&#x4E0D;&#x4F1A;&#x6539;&#x53D8;&#x3002;</p>
+<p><div>
+<img src="5.png" style="zoom:30%;"></div></p>
+<div>
+
+<pre><code class="lang-objective-c">{
+    int age = 10;
+    static int height = 10;
+    block = ^{
+        // age&#x7684;&#x503C;&#x6355;&#x83B7;&#x8FDB;&#x6765;&#xFF08;capture&#xFF09;
+        NSLog(@&quot;age is %d, height is %d&quot;, age, height);
+    };
+    age = 20;
+}
+</code></pre>
+<ul>
+<li><p>&#x9759;&#x6001;&#x53D8;&#x91CF; &#x6216; &#x5168;&#x5C40;&#x53D8;&#x91CF;</p>
+<p>&#x4F46;&#x662F;&#x5982;&#x679C;&#x662F; static &#x6216;&#x8005; &#x5168;&#x5C40;&#x53D8;&#x91CF;&#xFF0C;height &#x662F;&#x6307;&#x9488;&#x4F20;&#x9012;&#xFF0C;&#x6240;&#x4EE5; static &#x6216;&#x8005; &#x5168;&#x5C40;&#x53D8;&#x91CF;&#x53EF;&#x4EE5;&#x4FEE;&#x6539;&#x3002;&#x56E0;&#x4E3A;&#x9759;&#x6001;&#x53D8;&#x91CF;&#x548C;&#x5168;&#x5C40;&#x53D8;&#x91CF;&#x4E00;&#x76F4;&#x5728;&#x5185;&#x5B58;&#x4E2D;&#x5B58;&#x5728;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x6307;&#x9488;&#x9488;&#x5BF9;&#x5185;&#x5B58;&#x5730;&#x5740;&#x8FDB;&#x884C;&#x4FEE;&#x6539;&#x3002;</p>
+</li>
+</ul>
+<p><div>
+<img src="2.png" style="zoom:40%;"></div></p>
+<div>
+
+<pre><code class="lang-objective-c">{
+    NSMutableArray *array = [NSMutableArray array];
+    void (^block3)(void) = ^{
+        [array addObject:@&quot;1&quot;];
+    };
+    block3();
+}
+</code></pre>
+<p>&#x662F;&#x5426;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x7F16;&#x8BD1;&#xFF1F;&#x4E3A;&#x4EC0;&#x4E48;&#xFF1F;</p>
+<p>&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x7F16;&#x8BD1;&#x4E14;&#x6CA1;&#x6709;&#x95EE;&#x9898;&#x4E0D;&#x9700;&#x8981;&#x6DFB;&#x52A0;__block&#xFF0C;&#x56E0;&#x4E3A;&#x6CA1;&#x6709;&#x5BF9; array &#x8FDB;&#x884C;&#x503C;&#x7684;&#x4FEE;&#x6539;&#x7684;&#x64CD;&#x4F5C;&#x3002;&#x6BD4;&#x5982;<code>array = array1</code>&#x5C31;&#x662F;&#x9488;&#x5BF9;&#x503C;&#x5F97;&#x4FEE;&#x6539;&#xFF0C;&#x4F46;&#x662F; [array addObject:@&quot;1&quot;]; &#x6CA1;&#x6709;&#x5BF9;&#x503C;&#x8FDB;&#x884C;&#x4FEE;&#x6539;&#xFF0C;&#x76F8;&#x5F53;&#x4E8E;&#x5BF9;array &#x53D1;&#x9001;&#x4E86;&#x4E00;&#x4E2A; addObject &#x7684;objc_msgSend&#x7684;&#x6D88;&#x606F;&#xFF0C;&#x6240;&#x4EE5;&#x4E0D;&#x9700;&#x8981;&#x6DFB;&#x52A0;
+_block&#x4E5F;&#x53EF;&#x4EE5;&#x6267;&#x884C;&#x3002;</p>
+<h3 id="block&#x7684;&#x4F5C;&#x7528;">__block&#x7684;&#x4F5C;&#x7528;</h3>
+<pre><code class="lang-objective-c">typedef void (^MJBlock)(void); 
+{
+    __block int age = 10;
+     MJBlock block = ^{
+       age = 20;
+       NSLog(@&quot;---------%d&quot;, age);
+    };
+}
+</code></pre>
+<p>&#x4E0A;&#x9762;&#x8FD9;&#x6BB5;&#x4EE3;&#x7801;&#x76EE;&#x524D;&#x53EA;&#x80FD;&#x6355;&#x83B7; age &#x7684;&#x6570;&#x503C;&#x4F46;&#x662F;&#x4E0D;&#x53EF;&#x4EE5;&#x4FEE;&#x6539; auto &#x53D8;&#x91CF;&#x7684;&#x503C;&#xFF0C;&#x90A3;&#x4E48;&#x53EF;&#x4EE5;&#x91C7;&#x7528; <code>__block</code> &#x7684;&#x5173;&#x952E;&#x5B57;&#x8FDB;&#x884C;&#x4FEE;&#x9970;&#x540E;&#x5C31;&#x53EF;&#x4EE5;&#x4FEE;&#x6539;&#x53D8;&#x91CF;&#x7684;&#x6570;&#x503C;&#x4E86;&#xFF0C;&#x90A3;&#x4E48;&#x4F7F;&#x7528;  <code>__block</code> &#x4E3A;&#x4EC0;&#x4E48;&#x53EF;&#x4EE5;&#x4FEE;&#x6539;&#x5C5E;&#x6027;&#x53D8;&#x91CF;&#x503C;&#x5462;&#xFF1F;&#x67E5;&#x770B;&#x4E00;&#x4E0B; <code>__block</code> &#x505A;&#x4E86;&#x4EC0;&#x4E48;?</p>
+<pre><code class="lang-objective-c">struct __Block_byref_age_0 {
+  void *__isa;
+__Block_byref_age_0 *__forwarding;
+ int __flags;
+ int __size;
+ int age; //10
+};
+
+struct __main_block_impl_0 {
+  struct __block_impl impl;
+  struct __main_block_desc_0* Desc;
+  __Block_byref_age_0 *age; // by ref
+  __main_block_impl_0(void *fp, struct __main_block_desc_0 *desc, __Block_byref_age_0 *_age, int flags=0) : age(_age-&gt;__forwarding) {
+    impl.isa = &amp;_NSConcreteStackBlock;
+    impl.Flags = flags;
+    impl.FuncPtr = fp;
+    Desc = desc;
+  }
+};
+
+static void __main_block_func_0(struct __main_block_impl_0 *__cself) {
+  __Block_byref_age_0 *age = __cself-&gt;age; // bound by ref
+    age-&gt;__forwarding-&gt;age = 20;
+    NSLog((NSString *)&amp;__NSConstantStringImpl__var_folders_7b_9l5163j531jb19nqq016c6d40000gn_T_main_b70630_mi_0, (age-&gt;__forwarding-&gt;age));
+}
+
+int main(int argc, const char * argv[]) {
+    /* @autoreleasepool */ { __AtAutoreleasePool __autoreleasepool; 
+                //&#x7B80;&#x5316;&#x540E; &#x521D;&#x59CB;&#x5316; age &#x7ED3;&#x6784;&#x4F53;
+       __Block_byref_age_0 age = {0,
+                                  // age &#x5BF9;&#x8C61;&#x672C;&#x8EAB;&#x7684;&#x5730;&#x5740;
+                                  (__Block_byref_age_0 *)&amp;age, 
+                                  0, 
+                                  sizeof(__Block_byref_age_0), 
+                                  10};
+
+        MJBlock block1 = &amp;__main_block_impl_0(
+                                            __main_block_func_0,
+                                            &amp;__main_block_desc_0_DATA,
+                                            &amp;age, 
+                                            570425344));
+
+        ((void (*)(__block_impl *))((__block_impl *)block1)-&gt;FuncPtr)((__block_impl *)block1);
+    }
+    return 0;
+}
+</code></pre>
+<h4 id="block&#x5982;&#x4F55;&#x4FEE;&#x6539;&#x503C;">__block&#x5982;&#x4F55;&#x4FEE;&#x6539;&#x503C;</h4>
+<p><code>__block</code> &#x4FEE;&#x9970;&#x4E86;&#x975E;&#x5BF9;&#x8C61;&#x53D8;&#x91CF;&#x540E;&#x4F1A;&#x5305;&#x88C5;&#x6210;&#x5BF9;&#x8C61;&#x7C7B;&#x578B;&#x5728; <code>struct</code> &#x4E2D; <code>__Block_byref_age_0 *age</code>&#x3002;age &#x53D8;&#x91CF;&#x5DF2;&#x7ECF;&#x88AB;&#x5305;&#x88C5;&#x6210;&#x4E86;&#x5BF9;&#x8C61;&#x7C7B;&#x578B;&#xFF0C;&#x7ECF;&#x8FC7;<code>__block</code>&#x4FEE;&#x9970;&#x540E;&#x4F20;&#x8FDB; block &#x5185;&#x90E8;&#x7684; age &#x4E0D;&#x662F; auto &#x7C7B;&#x578B;&#x7684;&#x53D8;&#x91CF;&#x5219;&#x662F;&#x88AB;&#x5305;&#x88C5;&#x540E;&#x7684; <code>__Block_byref_age_0</code> &#x7C7B;&#x578B;&#x7684; age &#x5BF9;&#x8C61;&#x5730;&#x5740;&#xFF0C;&#x6240;&#x4EE5; block &#x5185;&#x90E8;&#x6784;&#x9020;&#x4E2D;&#x4E0D;&#x518D;&#x662F;&#x5C06; int age = 10 &#x6355;&#x83B7;&#x8FDB;&#x53BB;&#xFF0C;&#x5728; <code>__main_block_impl_0</code> &#x51FD;&#x6570;&#x5B9E;&#x73B0;&#x4E0A;&#x4E5F;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x5C06; age &#x7684;&#x5730;&#x5740;&#x4F20;&#x5165; block &#xFF0C;&#x90A3;&#x4E48;&#x5728;block &#x5185;&#x90E8;&#x662F;&#x901A;&#x8FC7; <code>age-&gt;__forwarding-&gt;age = 20</code> &#x53BB;&#x4FEE;&#x6539; age &#x7684;&#x503C;&#xFF0C;&#x56E0;&#x4E3A; <code>__Block_byref_age_0</code> age &#x5BF9;&#x8C61; &#x4E2D;&#x6709;&#x4E00;&#x4E2A;&#x5C5E;&#x6027;&#x662F; <code>__forwarding</code> &#x6307;&#x9488;&#x6307;&#x5411;&#x81EA;&#x5DF1;&#xFF0C;&#x4FEE;&#x6539;&#x5C5E;&#x6027;&#x662F; <code>age</code> &#x53D8;&#x91CF;&#x662F;&#x901A;&#x8FC7; <code>age-&gt;__forwarding-&gt;age</code> &#x53BB;&#x4FEE;&#x6539;&#x5C5E;&#x6027;&#x7684;&#x503C;&#x3002;</p>
+<p><div>
+<img src="10.png" style="zoom:30%;"></div></p>
+<div>
+
+<h4 id="block-&#x4FEE;&#x9970;&#x7684;&#x5BF9;&#x8C61;&#x7C7B;&#x578B;">__block &#x4FEE;&#x9970;&#x7684;&#x5BF9;&#x8C61;&#x7C7B;&#x578B;</h4>
+<pre><code class="lang-objective-c">{
+      __block NSObject *obj = [NSObject new];
+      MJBlock block1 = ^{
+          NSLog(@&quot;obj is %@&quot;, obj);
+      };
+}
+</code></pre>
+<pre><code class="lang-objective-c">struct __Block_byref_obj_0 {
+  void *__isa;
+__Block_byref_obj_0 *__forwarding;
+ int __flags;
+ int __size;
+ void (*__Block_byref_id_object_copy)(void*, void*);
+ void (*__Block_byref_id_object_dispose)(void*);
+ NSObject *obj;
+};
+
+struct __main_block_impl_0 {
+  struct __block_impl impl;
+  struct __main_block_desc_0* Desc;
+  __Block_byref_obj_0 *obj; // by ref
+  __main_block_impl_0(void *fp, struct __main_block_desc_0 *desc, __Block_byref_obj_0 *_obj, int flags=0) : obj(_obj-&gt;__forwarding) {
+    impl.isa = &amp;_NSConcreteStackBlock;
+    impl.Flags = flags;
+    impl.FuncPtr = fp;
+    Desc = desc;
+  }
+};
+</code></pre>
+<p><div>
+<img src="13.png" style="zoom:30%;"></div></p>
+<div>
+
+<p>&#x5982;&#x679C;&#x4F7F;&#x7528; <code>__block</code> &#x4FEE;&#x9970;&#x7684;&#x5BF9;&#x8C61;&#x7C7B;&#x578B;&#x5F15;&#x7528;&#x5173;&#x7CFB;&#x5C31;&#x662F;&#x4E0A;&#x56FE;&#x8FD9;&#x6837;&#x7684;&#x5173;&#x7CFB;&#x3002;</p>
+<pre><code class="lang-objective-c">{
+      __block __weak NSObject *obj = [NSObject new];
+      MJBlock block1 = ^{
+          NSLog(@&quot;obj is %@&quot;, obj);
+      };
+}
+</code></pre>
+<pre><code class="lang-objective-c">struct __Block_byref_obj_0 {
+  void *__isa;
+__Block_byref_obj_0 *__forwarding;
+ int __flags;
+ int __size;
+ void (*__Block_byref_id_object_copy)(void*, void*);
+ void (*__Block_byref_id_object_dispose)(void*);
+ NSObject *__weak obj;
+};
+</code></pre>
+<p>&#x5982;&#x679C;&#x589E;&#x52A0;&#x4E86; <code>__weak</code> &#x53EA;&#x4F1A;&#x4FEE;&#x6539; <code>struct __Block_byref_obj_0</code> &#x7ED3;&#x6784;&#x4F53;&#x5185;&#x7684; obj &#x5BF9;&#x8C61;&#x7684;&#x5F31;&#x5F15;&#x7528;&#x4E5F;&#x5C31;&#x662F; block &#x5185;&#x90E8;&#x7684; <code>_obj</code> &#x5BF9;&#x8C61;&#x6C38;&#x8FDC;&#x90FD;&#x662F;&#x5F3A;&#x5F15;&#x7528; <code>_Block_byref_obj_0 *obj</code> &#x5BF9;&#x8C61;&#xFF0C;&#x53EA;&#x4F1A;&#x6539;&#x53D8; <code>`_Block_byref_obj_0</code> &#x5185;&#x90E8;&#x7684; obj &#x5BF9;&#x8C61;&#x7684;&#x5F3A;&#x5F31;&#x6539;&#x53D8;&#x3002;</p>
+<p><div>
+<img src="14.png" style="zoom:35%;"></div></p>
+<div>
+
+<h3 id="block-&#x7684;&#x5185;&#x5B58;&#x7BA1;&#x7406;">Block &#x7684;&#x5185;&#x5B58;&#x7BA1;&#x7406;</h3>
+<pre><code class="lang-objective-c">typedef void (^MJBlock)(void); 
+ MJBlock block;
+{
+    MJPerson *person = [[MJPerson alloc] init];
+    person.age = 10;
+    block = ^{
+        NSLog(@&quot;---------%d&quot;, person.age);
+    };
+}
+</code></pre>
+<p>&#x5927;&#x62EC;&#x53F7;&#x7ED3;&#x675F;&#x540E; Person &#x5BF9;&#x8C61;&#x4E0D;&#x4F1A;&#x88AB; dealloc &#x56DE;&#x6536;&#xFF0C;&#x5728; block &#x4E2D;&#x88AB;&#x6355;&#x83B7;&#x4E86;&#x5F15;&#x7528;&#x8BA1;&#x6570; +1 &#x4EA7;&#x751F;&#x4E86;&#x5F3A;&#x5F15;&#x7528;&#xFF0C;&#x6240;&#x4EE5; person &#x5BF9;&#x8C61;&#x5728;&#x4F5C;&#x7528;&#x57DF;&#x7ED3;&#x675F;&#x540E;&#x6CA1;&#x6709;&#x88AB;&#x91CA;&#x653E;&#x3002;&#x67E5;&#x770B;&#x4E00;&#x4E0B; block &#x5982;&#x4F55;&#x6355;&#x83B7; oc &#x5BF9;&#x8C61;&#x7684;&#x3002;</p>
+<pre><code class="lang-objective-c">struct __main_block_impl_0 {
+  struct __block_impl impl;
+  struct __main_block_desc_0* Desc;
+  MJPerson *person;
+  __main_block_impl_0(void *fp, struct __main_block_desc_0 *desc, MJPerson *_person, int flags=0) : person(_person) {
+    impl.isa = &amp;_NSConcreteStackBlock;
+    impl.Flags = flags;
+    impl.FuncPtr = fp;
+    Desc = desc;
+  }
+};
+
+static void __main_block_func_0(struct __main_block_impl_0 *__cself) {
+  MJPerson *person = __cself-&gt;person; // bound by copy
+
+                NSLog((NSString *)&amp;__NSConstantStringImpl__var_folders_7b_9l5163j531jb19nqq016c6d40000gn_T_main_8b61f3_mi_0, ((int (*)(id, SEL))(void *)objc_msgSend)((id)person, sel_registerName(&quot;age&quot;)));
+            }
+static void __main_block_copy_0(struct __main_block_impl_0*dst, struct __main_block_impl_0*src) {
+  _Block_object_assign((void*)&amp;dst-&gt;person, (void*)src-&gt;person, 3/*BLOCK_FIELD_IS_OBJECT*/);
+}
+
+static void __main_block_dispose_0(struct __main_block_impl_0*src) {
+  _Block_object_dispose((void*)src-&gt;person, 3/*BLOCK_FIELD_IS_OBJECT*/);
+}
+
+static struct __main_block_desc_0 {
+  size_t reserved;
+  size_t Block_size;
+  void (*copy)(struct __main_block_impl_0*, struct __main_block_impl_0*);
+  void (*dispose)(struct __main_block_impl_0*);
+} __main_block_desc_0_DATA = { 0, sizeof(struct __main_block_impl_0), __main_block_copy_0, __main_block_dispose_0};
+</code></pre>
+<p>&#x5728;&#x5806;&#x4E0A;&#x7684; block &#x4F1A;&#x5BF9;&#x6355;&#x83B7;&#x7684; oc &#x5BF9;&#x8C61;&#x8FDB;&#x884C;&#x5185;&#x5B58;&#x7BA1;&#x7406;&#xFF0C;&#x56E0;&#x4E3A;&#x9700;&#x8981;&#x5BF9; auto &#x7684; oc &#x5BF9;&#x8C61;&#x8FDB;&#x884C; &#x5F15;&#x7528;&#x8BA1;&#x6570;&#x52A0;&#x4E00;&#x64CD;&#x4F5C;&#xFF0C;&#x56E0;&#x4E3A;&#x62C5;&#x5FC3;auto &#x7C7B;&#x578B;&#x7684;&#x5BF9;&#x8C61;&#x9500;&#x6BC1;&#x3002;&#x5728; clang &#x540E;&#x7684;&#x4EE3;&#x7801;&#x4E2D;&#x4E5F;&#x6709;&#x663E;&#x793A;&#x7684;&#x5982;&#x4E0B;&#x4EE3;&#x7801;</p>
+<pre><code class="lang-objective-c">static void __main_block_copy_0(struct __main_block_impl_0*dst, struct __main_block_impl_0*src) {
+  _Block_object_assign((void*)&amp;dst-&gt;person, (void*)src-&gt;person, 3/*BLOCK_FIELD_IS_OBJECT*/);
+}
+static struct __main_block_desc_0 {
+  size_t reserved;
+  size_t Block_size;
+  void (*copy)(struct __main_block_impl_0*, struct __main_block_impl_0*);
+  void (*dispose)(struct __main_block_impl_0*);
+
+} __main_block_desc_0_DATA = { 0, sizeof(struct __main_block_impl_0), __main_block_copy_0, __main_block_dispose_0};
+</code></pre>
+<p>&#x5728; _Block_object_assign &#x51FD;&#x6570;&#x4E3B;&#x8981;&#x662F;&#x9488;&#x5BF9;&#x5BF9;&#x8C61;&#x7C7B;&#x578B;&#x8FDB;&#x884C;&#x5185;&#x5B58;&#x7BA1;&#x7406;&#x7684;&#xFF0C;&#x8FD8;&#x6709;&#x5728;&#x6355;&#x83B7;&#x5BF9;&#x8C61;&#x7C7B;&#x578B;&#x7684; block &#x4E2D;&#x4E0E; &#x975E;&#x5BF9;&#x8C61;&#x53D8;&#x91CF;&#x6709;&#x533A;&#x522B;&#xFF0C;&#x589E;&#x52A0;&#x4E86;&#x4E24;&#x4E2A;&#x51FD;&#x6570; <code>void (*copy)(struct __main_block_impl_0*, struct __main_block_impl_0*)</code> &#xFF0C;<code>void (*dispose)(struct __main_block_impl_0*)</code> &#x662F;&#x9488;&#x5BF9;&#x5BF9;&#x8C61;&#x7C7B;&#x578B;&#x8FDB;&#x884C;&#x5185;&#x5B58;&#x7BA1;&#x7406;&#x7684;&#x3002;</p>
+<p><div>
+<img src="9.png" style="zoom:35%;"></div></p>
+<div>
+
+<p>&#x5982;&#x679C;&#x662F;<code>__block</code> &#x4FEE;&#x9970;&#x7684;&#x53D8;&#x91CF;&#x5219;&#x5728; block &#x5185;&#x90E8;&#x90FD;&#x662F;&#x5F3A;&#x5F15;&#x7528;&#xFF0C;&#x5982;&#x679C;&#x662F;&#x6355;&#x83B7;&#x666E;&#x901A;&#x7684;&#x5BF9;&#x8C61;&#x5219;&#x9700;&#x8981;&#x770B;&#x662F;&#x7528;&#x4EC0;&#x4E48;&#x4FEE;&#x9970;&#x7B26;&#x6765;&#x4FEE;&#x9970;&#x7684;&#xFF0C;&#x9ED8;&#x8BA4;&#x662F; strong &#x4FEE;&#x9970;&#x5219;&#x5C31;&#x662F;&#x5F3A;&#x5F15;&#x7528;&#xFF0C;&#x5982;&#x679C;&#x7528;<code>__weak</code> &#x4FEE;&#x9970;&#x7684;&#x8BDD; block &#x5185;&#x90E8;&#x5219;&#x5C31;&#x662F;&#x5F31;&#x5F15;&#x7528;&#x8BE5;&#x5BF9;&#x8C61;&#x3002;</p>
+<pre><code class="lang-objective-c">{
+    __block int age = 20;
+    __weak NSObject *weakObject = [NSObject new];        
+    MJBlock block1 = ^{
+        NSLog(@&quot;age is %d&quot;, age);
+        NSLog(@&quot;strong obj is %@&quot;, weakObject);
+    };
+}
+</code></pre>
+<pre><code class="lang-objective-c">struct __main_block_impl_0 {
+  struct __block_impl impl;
+  struct __main_block_desc_0* Desc;
+  NSObject *__weak weakObject;
+   __Block_byref_age_0 *age; // by ref
+  __main_block_impl_0(void *fp, struct __main_block_desc_0 *desc, MJPerson *_person, int flags=0) : person(_person) {
+    impl.isa = &amp;_NSConcreteStackBlock;
+    impl.Flags = flags;
+    impl.FuncPtr = fp;
+    Desc = desc;
+  }
+};
+
+static void __main_block_copy_0(struct __main_block_impl_0*dst, struct __main_block_impl_0*src) {
+  _Block_object_assign((void*)&amp;dst-&gt;age, (void*)src-&gt;age, 3/*BLOCK_FIELD_IS_OBJECT*/);
+  _Block_object_assign((void*)&amp;dst-&gt;weakObject, (void*)src-&gt;weakObject, 3/*BLOCK_FIELD_IS_OBJECT*/);
+}
+</code></pre>
+<p><div>
+<img src="6.png" style="zoom:35%;"></div></p>
+<div>
+
+<p><div>
+<img src="11.png" style="zoom:35%;"></div></p>
+<div>
+
+<h4 id="&#x4E3A;&#x4EC0;&#x4E48;&#x9700;&#x8981;-forwarding-&#x6765;&#x4FEE;&#x6539;&#x503C;&#xFF1F;">&#x4E3A;&#x4EC0;&#x4E48;&#x9700;&#x8981; <code>__forwarding</code> &#x6765;&#x4FEE;&#x6539;&#x503C;&#xFF1F;</h4>
+<p>&#x56E0;&#x4E3A;&#x6709;&#x53EF;&#x80FD;&#x6700;&#x5F00;&#x59CB;&#x7684;&#x53D8;&#x91CF;&#x5728;&#x6808;&#x4E0A;&#x9762;&#x540E;&#x6765;&#x590D;&#x5236;&#x5230;&#x5806;&#x4E0A;&#xFF0C;&#x5982;&#x679C;&#x4F7F;&#x7528; age -&gt; age &#x8FD9;&#x6837;&#x8FD8;&#x662F;&#x4F1A;&#x53BB;&#x4FEE;&#x6539;&#x6808;&#x4E0A;&#x7684;&#x6570;&#x503C;&#x5C31;&#x53EF;&#x80FD;&#x51FA;&#x73B0;&#x95EE;&#x9898;&#x4E86;&#x3002;&#x4F46;&#x662F;&#x5982;&#x679C;&#x4F7F;&#x7528; age -&gt; <code>__forwarding</code> -&gt; age &#x6765;&#x4FEE;&#x6539;&#x7684;&#x8BDD;&#x5C31;&#x4E0D;&#x4F1A;&#x6709;&#x8FD9;&#x6837;&#x7684;&#x95EE;&#x9898;&#x3002;&#x56E0;&#x4E3A; <code>__forwarding</code> <code>&#x6307;&#x9488;&#x5DF2;&#x7ECF;&#x6307;&#x5411;&#x4E86;&#x5806;&#x4E0A;&#x7684; age &#x5BF9;&#x8C61;&#x4E86;&#xFF0C;&#x76F8;&#x5F53;&#x4E8E;&#x6808;&#x4E0A;&#x7684; age &#x5BF9;&#x8C61;</code> <code>__forwarding</code> &#x6307;&#x9488;&#x6307;&#x5411;&#x5806;&#x7684; age &#x5BF9;&#x8C61;&#xFF0C;&#x5806;&#x4E0A;&#x7684; age &#x5BF9;&#x8C61;&#x7684;<code>__forwarding</code>&#x6307;&#x5411;&#x4E86;&#x81EA;&#x5DF1;&#xFF0C;&#x6240;&#x4EE5;&#x91C7;&#x7528; <code>__forwarding</code> &#x6307;&#x9488;&#x65B9;&#x5F0F;&#x53BB;&#x4FEE;&#x6539;&#x5C5E;&#x6027;&#x7684;&#x503C;&#x4E0D;&#x7BA1;&#x4EC0;&#x4E48;&#x60C5;&#x51B5;&#x90FD;&#x662F;&#x4FEE;&#x6539;&#x5806;&#x4E0A;&#x7684;&#x503C;&#x5C31;&#x4E0D;&#x4F1A;&#x51FA;&#x73B0;&#x53EA;&#x4FEE;&#x6539;&#x6808;&#x4E0A;&#x7684;&#x503C;&#x7684;&#x95EE;&#x9898;&#x4E86;&#x3002;</p>
+<p><div>
+<img src="12.png" style="zoom:40%;"></div></p>
+<div>
+
+<h3 id="block-&#x5904;&#x7406;&#x5FAA;&#x73AF;&#x5F15;&#x7528;">Block &#x5904;&#x7406;&#x5FAA;&#x73AF;&#x5F15;&#x7528;</h3>
+<pre><code class="lang-objective-c">{
+    MJPerson *person = [[MJPerson alloc] init];
+    person.age = 10;
+    person.block = ^{
+      NSLog(@&quot;age is %d&quot;, person.age);
+    };
+    person.block();
+}
+</code></pre>
+<ul>
+<li>ARC&#x60C5;&#x51B5;&#x4E0B;</li>
+</ul>
+<p>&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4E0B;&#x9762;&#x7684;&#x65B9;&#x5F0F;&#x4FEE;&#x6539;&#x5FAA;&#x73AF;&#x5F15;&#x7528;&#xFF0C;&#x76F8;&#x5F53;&#x4E8E; person &#x4E0E; block &#x4EA7;&#x751F;&#x4E86;&#x5FAA;&#x73AF;&#x5F15;&#x7528;&#xFF0C;</p>
+<pre><code class="lang-objective-c">{
+    __block MJPerson *person = [[MJPerson alloc] init];
+    person.age = 10;
+    person.block = ^{
+      NSLog(@&quot;age is %d&quot;, person.age);                       
+      person = nil;
+    };
+    person.block();
+}
+</code></pre>
+<pre><code class="lang-objective-c">struct __Block_byref_person_0 {
+  void *__isa;
+__Block_byref_person_0 *__forwarding;
+ int __flags;
+ int __size;
+ void (*__Block_byref_id_object_copy)(void*, void*);
+ void (*__Block_byref_id_object_dispose)(void*);
+ MJPerson *person;
+};
+
+struct __main_block_impl_0 {
+  struct __block_impl impl;
+  struct __main_block_desc_0* Desc;
+  __Block_byref_person_0 *person; // by ref
+  __main_block_impl_0(void *fp, struct __main_block_desc_0 *desc, __Block_byref_person_0 *_person, int flags=0) : person(_person-&gt;__forwarding) {
+    impl.isa = &amp;_NSConcreteStackBlock;
+    impl.Flags = flags;
+    impl.FuncPtr = fp;
+    Desc = desc;
+  }
+};
+static void __main_block_func_0(struct __main_block_impl_0 *__cself) {
+  __Block_byref_person_0 *person = __cself-&gt;person; // bound by ref
+         NSLog((NSString *)&amp;__NSConstantStringImpl__var_folders_7b_9l5163j531jb19nqq016c6d40000gn_T_main_f0519a_mi_0, (
+         person-&gt;__forwarding-&gt;person, 
+         sel_registerName(&quot;age&quot;)));
+         person-&gt;__forwarding-&gt;person = __null;
+  }
+</code></pre>
+<p><div>
+<img src="15.png" style="zoom:30%;"></div></p>
+<div>
+
+
+<pre><code class="lang-objective-c">{
+    MJPerson *person = [[MJPerson alloc] init];
+    __weak MJPerson *weakPerson = person;
+    person.age = 10;
+    person.block = ^{
+        NSLog(@&quot;age is %d&quot;, weakPerson.age);
+    };
+    person.block();
+}
+</code></pre>
+<p><div>
+<img src="16.png" style="zoom:30%;"></div></p>
+<div>
+
+<p>&#x4F7F;&#x7528;&#x4E86; <code>__weak</code>&#x4FEE;&#x9970;&#x4E86; weakPerson &#x6307;&#x5411;&#x4E86;person&#xFF0C;&#x5728;block &#x5185;&#x90E8;&#x6355;&#x83B7;&#x7684;&#x662F; weakPerson &#x5219;&#x6253;&#x7834;&#x4E86;&#x5FAA;&#x73AF;&#x5F15;&#x7528;&#xFF0C;&#x5728;&#x4F5C;&#x7528;&#x57DF;&#x7ED3;&#x675F;&#x540E; person &#x5BF9;&#x8C61;&#x91CA;&#x653E;&#x5219; person &#x6307;&#x5411; MJPerson &#x6CA1;&#x6709;&#x4E86;&#x5F3A;&#x5F15;&#x7528;&#xFF0C;&#x56E0;&#x4E3A;&#x6CA1;&#x6709;&#x5BF9;&#x8C61;&#x5F3A;&#x5F15;&#x7528; MJPerson &#x5219; MJPerson &#x8FDB;&#x884C;&#x4E86;&#x91CA;&#x653E;&#x6240;&#x6709; block &#x5219;&#x9500;&#x6BC1;&#x4E0D;&#x4F1A;&#x4EA7;&#x751F;&#x5FAA;&#x73AF;&#x5F15;&#x7528;&#x95EE;&#x9898;&#x3002;</p>
+<p><div>
+<img src="17.png" style="zoom:40%;"></div></p>
+<div>
+
+<h3 id="dispatchblockt-&#x662F;&#x4EC0;&#x4E48;&#xFF1F;">dispatch_block_t &#x662F;&#x4EC0;&#x4E48;&#xFF1F;</h3>
+<p>GCD &#x4F7F;&#x7528;&#x7684;block &#x90FD;&#x662F;&#x5728;&#x5806;&#x4E0A;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x4E0D;&#x7528;&#x8003;&#x8651;&#x5FAA;&#x73AF;&#x5F15;&#x7528;&#x548C;&#x4F7F;&#x7528;__block&#x95EE;&#x9898;</p>
+</div></div></div></div></div></div></div></div></div></div></div></div></div>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                
+                <a href="NSNotification.html" class="navigation navigation-next navigation-unique" aria-label="Next page: NSNotification原理">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Block原理","level":"1.5.1","depth":2,"next":{"title":"NSNotification原理","level":"1.5.2","depth":2,"path":"消息传递机制/NSNotification.md","ref":"消息传递机制/NSNotification.md","articles":[]},"previous":{"title":"消息传递机制","level":"1.5","depth":1,"ref":"","articles":[{"title":"Block原理","level":"1.5.1","depth":2,"path":"消息传递机制/Block.md","ref":"消息传递机制/Block.md","articles":[]},{"title":"NSNotification原理","level":"1.5.2","depth":2,"path":"消息传递机制/NSNotification.md","ref":"消息传递机制/NSNotification.md","articles":[]},{"title":"KVO原理","level":"1.5.3","depth":2,"path":"消息传递机制/KVO.md","ref":"消息传递机制/KVO.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"消息传递机制/Block.md","mtime":"2020-06-23T03:23:14.138Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-06-23T05:10:41.331Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

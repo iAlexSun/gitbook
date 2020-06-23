@@ -1,0 +1,888 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>计时器实现原理 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Runloop.html" />
+    
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    操作系统
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../操作系统/MachO.html">
+            
+                <a href="../操作系统/MachO.html">
+            
+                    
+                    Mach O结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../操作系统/编译原理.html">
+            
+                <a href="../操作系统/编译原理.html">
+            
+                    
+                    编译原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../操作系统/链接原理.html">
+            
+                <a href="../操作系统/链接原理.html">
+            
+                    
+                    链接原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../操作系统/staticAnalysis.html">
+            
+                <a href="../操作系统/staticAnalysis.html">
+            
+                    
+                    静态代码分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    内存管理
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../内存管理/内存管理.html">
+            
+                <a href="../内存管理/内存管理.html">
+            
+                    
+                    内存管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../内存管理/autorelease原理.html">
+            
+                <a href="../内存管理/autorelease原理.html">
+            
+                    
+                    autorelease原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../内存管理/dealloc实现原理.html">
+            
+                <a href="../内存管理/dealloc实现原理.html">
+            
+                    
+                    dealloc实现原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../内存管理/weak实现原理.html">
+            
+                <a href="../内存管理/weak实现原理.html">
+            
+                    
+                    weak实现原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../多线程/多线程.html">
+            
+                <a href="../多线程/多线程.html">
+            
+                    
+                    多线程
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../多线程/GCD.html">
+            
+                <a href="../多线程/GCD.html">
+            
+                    
+                    GCD
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../多线程/NSOperation.html">
+            
+                <a href="../多线程/NSOperation.html">
+            
+                    
+                    NSOperation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../多线程/lock.html">
+            
+                <a href="../多线程/lock.html">
+            
+                    
+                    线程锁分类
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    消息传递机制
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../消息传递机制/Block.html">
+            
+                <a href="../消息传递机制/Block.html">
+            
+                    
+                    Block原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../消息传递机制/NSNotification.html">
+            
+                <a href="../消息传递机制/NSNotification.html">
+            
+                    
+                    NSNotification原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../消息传递机制/KVO.html">
+            
+                <a href="../消息传递机制/KVO.html">
+            
+                    
+                    KVO原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    循环引用
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../循环引用/循环引用.html">
+            
+                <a href="../循环引用/循环引用.html">
+            
+                    
+                    循环引用种类
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" >
+            
+                <span>
+            
+                    
+                    内存管理泄露追溯方案
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" >
+            
+                <span>
+            
+                    
+                    Runtime
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../Runtime/Class/Class.html">
+            
+                <a href="../Runtime/Class/Class.html">
+            
+                    
+                    Class结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../Runtime/Category/Category.html">
+            
+                <a href="../Runtime/Category/Category.html">
+            
+                    
+                    Category实现原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="../Runtime/Runtime/Runtime.html">
+            
+                <a href="../Runtime/Runtime/Runtime.html">
+            
+                    
+                    Runtime实际应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" >
+            
+                <span>
+            
+                    
+                    Runloop
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.8.1" data-path="计时器.html">
+            
+                <a href="计时器.html">
+            
+                    
+                    计时器实现原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="Runloop.html">
+            
+                <a href="Runloop.html">
+            
+                    
+                    Runloop原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="Runloop实际应用.html">
+            
+                <a href="Runloop实际应用.html">
+            
+                    
+                    Runloop应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" >
+            
+                <span>
+            
+                    
+                    性能优化
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" >
+            
+                <span>
+            
+                    
+                    启动时长
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" >
+            
+                <span>
+            
+                    
+                    包体积优化
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" >
+            
+                <span>
+            
+                    
+                    编译时长
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" >
+            
+                <span>
+            
+                    
+                    Feed优化
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" >
+            
+                <span>
+            
+                    
+                    算法相关
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" >
+            
+                <span>
+            
+                    
+                    二叉树
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" >
+            
+                <span>
+            
+                    
+                    链表
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >计时器实现原理</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h3 id="nstimer-&#x5B9E;&#x73B0;&#x539F;&#x7406;">NSTimer &#x5B9E;&#x73B0;&#x539F;&#x7406;</h3>
+<p>NSTimer&#x662F;&#x57FA;&#x4E8E;CFRunLoopTimerRef&#x5B9E;&#x73B0;&#x7684;&#xFF0C;&#x5C06;NSTimer&#x6CE8;&#x518C;&#x5230;Runloop&#x4E2D;&#x540E;&#xFF0C;RunLoop &#x4F1A;&#x4E3A;&#x5176;&#x91CD;&#x590D;&#x7684;&#x65F6;&#x95F4;&#x70B9;&#x6CE8;&#x518C;&#x597D;&#x4E8B;&#x4EF6;&#x3002;&#x5E76;&#x4E0D;&#x4F1A;&#x5728;&#x975E;&#x5E38;&#x51C6;&#x786E;&#x7684;&#x65F6;&#x95F4;&#x70B9;&#x56DE;&#x8C03;&#x8FD9;&#x4E2A;Timer&#x3002;Timer &#x6709;&#x4E2A;&#x5C5E;&#x6027;&#x53EB;&#x505A; Tolerance (&#x5BBD;&#x5BB9;&#x5EA6;)&#xFF0C;&#x6807;&#x793A;&#x4E86;&#x5F53;&#x65F6;&#x95F4;&#x70B9;&#x5230;&#x540E;&#xFF0C;&#x5BB9;&#x8BB8;&#x6709;&#x591A;&#x5C11;&#x6700;&#x5927;&#x8BEF;&#x5DEE;&#x3002;</p>
+<h5 id="&#x4E3A;&#x4EC0;&#x4E48;-nstimer-&#x5728;&#x6ED1;&#x52A8;&#x65F6;&#x4E0D;&#x597D;&#x7528;">&#x4E3A;&#x4EC0;&#x4E48; NSTimer &#x5728;&#x6ED1;&#x52A8;&#x65F6;&#x4E0D;&#x597D;&#x7528;</h5>
+<p>&#x5982;&#x679C;&#x5728;DefaultMode&#x7684;&#x60C5;&#x51B5;&#x4E0B;timer&#x662F;&#x4E0D;&#x4F1A;&#x8BA1;&#x65F6;&#x7684;&#xFF0C;&#x6ED1;&#x52A8;&#x540E;&#x7CFB;&#x7EDF;&#x4F1A;&#x8C03;&#x6574;&#x4E3A;<code>Track</code>&#x6A21;&#x5F0F;&#xFF0C;&#x6B63;&#x5E38;&#x60C5;&#x51B5;&#x4E0B;&#x53EA;&#x8981;&#x662F;&#x4E2D;&#x9014;&#x5207;&#x6362;&#x4E86;Mode&#x7684;&#x60C5;&#x51B5;timer&#x5C31;&#x4F1A;&#x5931;&#x6548;&#xFF0C;&#x9700;&#x8981;&#x5728;Timer&#x6DFB;&#x52A0;&#x5230;<code>Common Mode</code>&#x7C7B;&#x578B;&#x4E0B;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#x3002;&#x56E0;&#x4E3A;<code>Common Mode</code>&#x4F1A;&#x5305;&#x542B;<code>DefaultMode</code>&#x548C;<code>TrackMode</code>&#x4E24;&#x79CD;&#x6A21;&#x5F0F;&#x3002;</p>
+<h3 id="cadisplaylink-&#x4F7F;&#x7528;&#x53CA;&#x95EE;&#x9898;">CADisplayLink &#x4F7F;&#x7528;&#x53CA;&#x95EE;&#x9898;</h3>
+<p>&#x57FA;&#x4E8E; runloop &#x5237;&#x65B0;&#x7387;&#x5B9E;&#x73B0;&#x7684;&#x5B9A;&#x65F6;&#x5668;&#x6BCF;&#x79D2;60&#x6B21;&#x4E5F;&#x5C31;&#x662F;60FPS&#xFF0C;&#x4E00;&#x822C;&#x53EF;&#x4EE5;&#x7528;&#x6765;&#x68C0;&#x6D4B;&#x9875;&#x9762;&#x7684;&#x5237;&#x65B0;&#x7387;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;CADisplayLink&#xFF0C;&#x4F46;&#x662F;&#x540C;&#x6837;&#x4E5F;&#x4F1A;&#x6709;&#x5FAA;&#x73AF;&#x5F15;&#x7528;&#x7684;&#x95EE;&#x9898;&#x3002;</p>
+<pre><code class="lang-objective-c">@property (nonatomic, strong) CADisplayLink *link;
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.link = [CADisplayLink displayLinkWithTarget:self selector:@selector(linkTest)];
+    [self.link addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+}
+
+- (void)linkTest {
+    NSLog(@&quot;%s&quot;,__func__);
+}
+
+- (void)dealloc {
+    [self.link invalidate];
+}
+</code></pre>
+<p>&#x4E00;&#x822C;&#x60C5;&#x51B5;&#x4E0B;&#x65E5;&#x5E38;&#x5982;&#x679C;&#x4F7F;&#x7528; CADisplayLink &#x5FC5;&#x987B;&#x8981;&#x6DFB;&#x52A0;&#x5728; runloop &#x4E2D;&#x5426;&#x5219;&#x4F1A;&#x5931;&#x6548;&#xFF0C;&#x6DFB;&#x52A0;&#x56DE;&#x8C03;&#x65B9;&#x6CD5;&#x5728; dealloc &#x4E2D;&#x9500;&#x6BC1; CADisplayLink &#x5BF9;&#x8C61;&#xFF0C;&#x770B;&#x8D77;&#x6765;&#x6CA1;&#x95EE;&#x4EC0;&#x4E48;&#x95EE;&#x9898;&#xFF0C;&#x4F46;&#x662F;&#x5728; CADisplayLink &#x521D;&#x59CB;&#x5316;&#x5BF9;&#x8C61;&#x65F6;&#x548C; NSTimer &#x4E00;&#x6837;&#x4F1A;&#x4F20;&#x5165;&#x4E00;&#x4E2A; target &#xFF0C;&#x5728;&#x5185;&#x90E8;&#x5F3A;&#x5F15;&#x7528;&#x8FD9;&#x4E2A; target &#x5982;&#x679C;&#x662F;&#x4E0A;&#x9762;&#x4EE3;&#x7801;&#x5219;&#x5C31;&#x662F;&#x5F3A;&#x5F15;&#x7528;&#x4E86;&#x8FD9;&#x4E2A;VC&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x4F1A;&#x51FA;&#x73B0;&#x4E86;&#x5FAA;&#x73AF;&#x5F15;&#x7528;&#x95EE;&#x9898;<code>self &lt;-------&gt; CADisplayLink</code> &#x3002;</p>
+<h3 id="nstimer-&#x548C;-cadisplaylink-&#x5FAA;&#x73AF;&#x5F15;&#x7528;&#x95EE;&#x9898;">NSTimer &#x548C; CADisplayLink &#x5FAA;&#x73AF;&#x5F15;&#x7528;&#x95EE;&#x9898;</h3>
+<pre><code class="lang-objective-c">//&#x4F1A;&#x4EA7;&#x751F;&#x5FAA;&#x73AF;&#x5F15;&#x7528;
+self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerTest) userInfo:nil repeats:YES];
+</code></pre>
+<p>NSTimer&#x4F1A;&#x9020;&#x6210;&#x5FAA;&#x73AF;&#x5F15;&#x7528;&#xFF0C;timer&#x4F1A;&#x5F3A;&#x5F15;&#x7528;target&#x5373;self&#xFF0C;&#x4E00;&#x822C;self&#x53C8;&#x4F1A;&#x6301;&#x6709;timer&#x4F5C;&#x4E3A;&#x5C5E;&#x6027;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x9020;&#x6210;&#x4E86;&#x5FAA;&#x73AF;&#x5F15;&#x7528;.&#x5982;&#x679C;timer&#x53EA;&#x4F5C;&#x4E3A;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#xFF0C;&#x4E0D;&#x628A;timer&#x4F5C;&#x4E3A;&#x5C5E;&#x6027;&#x5462;&#xFF1F;&#x540C;&#x6837;&#x91CA;&#x653E;&#x4E0D;&#x4E86;&#xFF0C;&#x56E0;&#x4E3A;&#x5728;&#x52A0;&#x5165;runloop&#x7684;&#x64CD;&#x4F5C;&#x4E2D;&#xFF0C;timer&#x88AB;&#x5F3A;&#x5F15;&#x7528;&#x3002;&#x800C;timer&#x4F5C;&#x4E3A;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#xFF0C;&#x662F;&#x65E0;&#x6CD5;&#x6267;&#x884C;invalidate&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x5728;timer&#x88AB;invalidate&#x4E4B;&#x524D;&#xFF0C;self&#x4E5F;&#x5C31;&#x4E0D;&#x4F1A;&#x88AB;&#x91CA;&#x653E;&#x3002;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x8981;&#x6CE8;&#x610F;&#xFF0C;&#x4E0D;&#x4EC5;&#x4EC5;&#x662F;&#x628A;timer&#x5F53;&#x4F5C;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;&#x7684;&#x65F6;&#x5019;&#x4F1A;&#x9020;&#x6210;&#x5FAA;&#x73AF;&#x5F15;&#x7528;&#xFF0C;&#x53EA;&#x8981;&#x7533;&#x8BF7;&#x4E86;timer&#xFF0C;&#x52A0;&#x5165;&#x4E86;runloop&#xFF0C;&#x5E76;&#x4E14;target&#x662F;self&#xFF0C;&#x867D;&#x7136;&#x4E0D;&#x662F;&#x5FAA;&#x73AF;&#x5F15;&#x7528;&#xFF0C;&#x4F46;&#x662F;self&#x5374;&#x6CA1;&#x6709;&#x91CA;&#x653E;&#x7684;&#x65F6;&#x673A;&#x3002;&#x5982;&#x4E0B;&#x65B9;&#x5F0F;&#x7533;&#x8BF7;&#x7684;&#x5B9A;&#x65F6;&#x5668;&#xFF0C;self&#x5DF2;&#x7ECF;&#x65E0;&#x6CD5;&#x91CA;&#x653E;&#x4E86;&#x3002;</p>
+<p><div>
+<img src="image/14.png" style="zoom:30%;" align="center"></div></p>
+<div>
+
+<p><div>
+<img src="image/6.png" style="zoom:30%;" align="center"></div></p>
+<div>
+
+<h4 id="&#x65B9;&#x6848;1">&#x65B9;&#x6848;1</h4>
+<pre><code class="lang-objective-c">__weak typeof(self) weakSelf = self;
+//&#x4E0D;&#x4F1A;&#x4EA7;&#x751F;&#x5FAA;&#x73AF;&#x5F15;&#x7528;&#xFF0C;&#x4F46;&#x662F; Block &#x4E2D;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x5F31;&#x5F15;&#x7528;&#x5BF9;&#x8C61; weakSelf &#x9632;&#x6B62;&#x5FAA;&#x73AF;&#x5F15;&#x7528;
+self.timer = [NSTimer scheduledTimerWithTimeInterval:3 repeats:YES block:^(NSTimer * _Nonnull timer) {
+     NSLog(@&quot;%s&quot;,__func__);
+      [weakSelf timerTest];
+}];
+</code></pre>
+<p>&#x4F7F;&#x7528; block &#x56DE;&#x8C03;&#x7684;&#x5F62;&#x5F0F;&#x53EF;&#x4EE5;&#x907F;&#x514D; timer &#x5F3A;&#x5F15;&#x7528; self&#xFF0C;&#x4F46;&#x662F;&#x53EA;&#x8981;&#x662F; block &#x5C31;&#x4F1A;&#x6355;&#x83B7; self ,&#x6240;&#x4EE5;&#x5728; block &#x5185;&#x90E8;&#x4F7F;&#x7528; weakSelf &#x5F31;&#x5F15;&#x7528; self &#x5C31;&#x53EF;&#x4EE5;&#x89E3;&#x51B3;&#x8FD9;&#x4E2A;&#x4E3A;&#x95EE;&#x9898;&#x4E86;&#x3002;</p>
+<h4 id="&#x65B9;&#x6848;2">&#x65B9;&#x6848;2</h4>
+<p>&#x53EF;&#x4EE5;&#x4F7F;&#x7528;NSProxy&#x6765;&#x89E3;&#x51B3;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;&#x9996;&#x5148;&#x81EA;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A; NSProxy &#x5B50;&#x7C7B;&#x3002;</p>
+<pre><code class="lang-objective-c">@property (nonatomic, weak) id target;
++ (instancetype)proxyWithTarget:(id)target {
+    TestProxy *proxy = [TestProxy alloc];
+    proxy.target = target;
+    return proxy;
+}
+</code></pre>
+<pre><code class="lang-objective-c"> self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:[TestProxy proxyWithTarget:self] selector:@selector(timerTest) userInfo:nil repeats:YES];
+</code></pre>
+<p>&#x8FD9;&#x6837;&#x4FEE;&#x6539;&#x7684;&#x8BDD;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#x561B;&#xFF1F;&#x4F1A;&#x53D1;&#x73B0;&#x51FA;&#x73B0;&#x4E86; crash &#x4E86;&#x56E0;&#x4E3A; NSTimer &#x7684; target &#x6307;&#x5411;&#x4E86; NSProxy &#x6240;&#x4EE5;&#x6267;&#x884C;&#x7684;&#x65B9;&#x6CD5;&#x5C31;&#x8981;&#x627E; NSProxy &#x662F;&#x5426;&#x5B9E;&#x73B0;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x5219;&#x5C31;&#x4F1A;&#x5D29;&#x6E83;&#x4E86;&#x3002;&#x90A3;&#x4E48;&#x53EF;&#x4EE5;&#x600E;&#x4E48;&#x89E3;&#x51B3;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x5462;&#xFF1F;&#x65B9;&#x6848;1&#x53EF;&#x4EE5;&#x5728; NSProxy &#x5185;&#x90E8;&#x5B9E;&#x73B0; timerTest &#x65B9;&#x6CD5;&#x505A;&#x4E00;&#x4E9B;&#x4E8B;&#x60C5;&#xFF0C;&#x4F46;&#x662F;&#x8FD9;&#x79CD;&#x65B9;&#x6848;&#x4F1A;&#x6709;&#x95EE;&#x9898;&#xFF0C;&#x8FD9;&#x4E2A; NSProxy &#x4E4B;&#x540E;&#x5982;&#x679C;&#x518D;&#x6B21;&#x4F7F;&#x7528;&#x9700;&#x8981;&#x6DFB;&#x52A0;&#x4E0D;&#x540C;&#x7684;&#x65B9;&#x6CD5;&#x4E0D;&#x662F;&#x5F88;&#x597D;&#x800C;&#x4E14;&#x6709;&#x7684;&#x65E0;&#x6CD5;&#x5B9E;&#x73B0;&#x3002;&#x65B9;&#x6848;2 NSProxy &#x7684; API &#x9ED8;&#x8BA4;&#x652F;&#x6301;&#x6D88;&#x606F;&#x8F6C;&#x53D1;&#x673A;&#x5236;&#x76F8;&#x5BF9;&#x4E8E; NSObject &#x7684;&#x597D;&#x5904;&#x5728;&#x4E0D;&#x9700;&#x8981;&#x67E5;&#x627E;&#x6D41;&#x7A0B;&#x76F4;&#x63A5;&#x8FDB;&#x884C;&#x6D88;&#x606F;&#x8F6C;&#x53D1;&#x5373;&#x53EF;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x5219; crash&#xFF0C;&#x90A3;&#x4E48;&#x770B;&#x4E00;&#x4E0B;&#x5982;&#x4F55;&#x5B9E;&#x73B0; NSProxy &#x6D88;&#x606F;&#x8F6C;&#x53D1;&#x3002;</p>
+<pre><code class="lang-objective-c">- (NSMethodSignature *)methodSignatureForSelector:(SEL)sel {
+    return [self.target methodSignatureForSelector:sel];
+}
+- (void)forwardInvocation:(NSInvocation *)invocation {
+    [invocation invokeWithTarget:self.target];
+}
+</code></pre>
+<p> NSProxy &#x5B9E;&#x73B0;  forwardInvocation &#x548C; methodSignatureForSelector &#x5C06;&#x6D88;&#x606F;&#x8F6C;&#x53D1;&#x7ED9; target &#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#xFF0C;CADisplayLink &#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; NSProxy &#x7684;&#x8FD9;&#x4E2A;&#x65B9;&#x5F0F;&#x89E3;&#x9664;&#x5FAA;&#x73AF;&#x5F15;&#x7528;&#x95EE;&#x9898;&#xFF0C;&#x5C06;&#x6D88;&#x606F;&#x8F6C;&#x53D1;&#x7ED9; VC&#x3002;</p>
+<pre><code class="lang-objective-c">self.link = [CADisplayLink displayLinkWithTarget:[TestProxy proxyWithTarget:self] selector:@selector(linkTest)];
+[self.link addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+</code></pre>
+<p><div>
+<img src="image/15.png" style="zoom:30%;" align="center"></div></p>
+<div>
+
+<p><div>
+<img src="image/16.png" style="zoom:40%;" align="center"></div></p>
+<div>
+
+<h3 id="gcd-timer-&#x5982;&#x4F55;&#x4F7F;&#x7528;&#x53CA;&#x5C01;&#x88C5;">GCD Timer &#x5982;&#x4F55;&#x4F7F;&#x7528;&#x53CA;&#x5C01;&#x88C5;</h3>
+<p>&#x8FD9;&#x91CC;&#x53EF;&#x4EE5;&#x53C2;&#x8003; YYTimer &#x7684;&#x4E00;&#x4E2A;&#x81EA;&#x5B9A;&#x4E49;&#x5B9E;&#x73B0;&#x539F;&#x7406;&#x3002;</p>
+<pre><code class="lang-objective-c">- (instancetype)initWithFireTime:(NSTimeInterval)start
+                        interval:(NSTimeInterval)interval
+                          target:(id)target
+                        selector:(SEL)selector
+                         repeats:(BOOL)repeats {
+    self = [super init];
+    _repeats = repeats;
+    _timeInterval = interval;
+    _valid = YES;
+    _target = target;
+    _selector = selector;
+
+    __weak typeof(self) _self = self;
+    _lock = dispatch_semaphore_create(1);
+    _source = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
+    dispatch_source_set_timer(_source, dispatch_time(DISPATCH_TIME_NOW, (start * NSEC_PER_SEC)), (interval * NSEC_PER_SEC), 0);
+    dispatch_source_set_event_handler(_source, ^{[_self fire];});
+    dispatch_resume(_source);
+    return self;
+}
+</code></pre>
+<pre><code class="lang-objective-c">//&#x53D6;&#x6D88;&#x8BA1;&#x65F6;&#x5668;
+- (void)invalidate {
+    dispatch_semaphore_wait(_lock, DISPATCH_TIME_FOREVER);
+    if (_valid) {
+        dispatch_source_cancel(_source);
+        _source = NULL;
+        _target = nil;
+        _valid = NO;
+    }
+    dispatch_semaphore_signal(_lock);
+}
+//&#x5F00;&#x59CB;
+- (void)fire {
+    if (!_valid) return;
+    dispatch_semaphore_wait(_lock, DISPATCH_TIME_FOREVER);
+    id target = _target;
+    if (!target) {
+        dispatch_semaphore_signal(_lock);
+        [self invalidate];
+    } else {
+        dispatch_semaphore_signal(_lock);
+        [target performSelector:_selector withObject:self];
+        if (!_repeats) {
+            [self invalidate];
+        }
+    }
+}
+</code></pre>
+</div></div></div></div>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                
+                <a href="Runloop.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Runloop原理">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"计时器实现原理","level":"1.8.1","depth":2,"next":{"title":"Runloop原理","level":"1.8.2","depth":2,"path":"Runloop/Runloop.md","ref":"Runloop/Runloop.md","articles":[]},"previous":{"title":"Runloop","level":"1.8","depth":1,"ref":"","articles":[{"title":"计时器实现原理","level":"1.8.1","depth":2,"path":"Runloop/计时器.md","ref":"Runloop/计时器.md","articles":[]},{"title":"Runloop原理","level":"1.8.2","depth":2,"path":"Runloop/Runloop.md","ref":"Runloop/Runloop.md","articles":[]},{"title":"Runloop应用","level":"1.8.3","depth":2,"path":"Runloop/Runloop实际应用.md","ref":"Runloop/Runloop实际应用.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Runloop/计时器.md","mtime":"2020-06-23T05:10:30.744Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-06-23T05:10:41.331Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
